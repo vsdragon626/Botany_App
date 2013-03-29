@@ -17,9 +17,33 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int ic_action_attach=0x7f020000;
+        public static final int ic_action_call=0x7f020001;
+        public static final int ic_action_copy=0x7f020002;
+        public static final int ic_action_cut=0x7f020003;
+        public static final int ic_action_delete=0x7f020004;
+        public static final int ic_action_done=0x7f020005;
+        public static final int ic_action_edit=0x7f020006;
+        public static final int ic_action_locate=0x7f020007;
+        public static final int ic_action_mail=0x7f020008;
+        public static final int ic_action_mail_add=0x7f020009;
+        public static final int ic_action_microphone=0x7f02000a;
+        public static final int ic_action_overflow=0x7f02000b;
+        public static final int ic_action_paste=0x7f02000c;
+        public static final int ic_action_photo=0x7f02000d;
+        public static final int ic_action_refresh=0x7f02000e;
+        public static final int ic_action_search=0x7f02000f;
+        public static final int ic_action_select_all=0x7f020010;
+        public static final int ic_action_send=0x7f020011;
+        public static final int ic_action_share=0x7f020012;
+        public static final int ic_action_star=0x7f020013;
+        public static final int ic_action_user=0x7f020014;
+        public static final int ic_action_user_add=0x7f020015;
+        public static final int ic_action_video=0x7f020016;
+        public static final int ic_launcher=0x7f020017;
     }
     public static final class id {
+        public static final int menu_save=0x7f090001;
         public static final int menu_settings=0x7f090000;
     }
     public static final class layout {
@@ -33,30 +57,31 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050001;
+        public static final int menu_search=0x7f050004;
         public static final int menu_settings=0x7f050002;
-        public static final int pref_default_display_name=0x7f050009;
-        public static final int pref_description_social_recommendations=0x7f050007;
+        public static final int pref_default_display_name=0x7f05000a;
+        public static final int pref_description_social_recommendations=0x7f050008;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f05000b;
+        public static final int pref_header_data_sync=0x7f05000c;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f050005;
+        public static final int pref_header_general=0x7f050006;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f05000e;
-        public static final int pref_ringtone_silent=0x7f050011;
-        public static final int pref_title_add_friends_to_messages=0x7f05000a;
-        public static final int pref_title_display_name=0x7f050008;
-        public static final int pref_title_new_message_notifications=0x7f05000f;
-        public static final int pref_title_ringtone=0x7f050010;
-        public static final int pref_title_social_recommendations=0x7f050006;
-        public static final int pref_title_sync_frequency=0x7f05000c;
-        public static final int pref_title_system_sync_settings=0x7f05000d;
-        public static final int pref_title_vibrate=0x7f050012;
+        public static final int pref_header_notifications=0x7f05000f;
+        public static final int pref_ringtone_silent=0x7f050012;
+        public static final int pref_title_add_friends_to_messages=0x7f05000b;
+        public static final int pref_title_display_name=0x7f050009;
+        public static final int pref_title_new_message_notifications=0x7f050010;
+        public static final int pref_title_ringtone=0x7f050011;
+        public static final int pref_title_social_recommendations=0x7f050007;
+        public static final int pref_title_sync_frequency=0x7f05000d;
+        public static final int pref_title_system_sync_settings=0x7f05000e;
+        public static final int pref_title_vibrate=0x7f050013;
         public static final int title_activity_entry_screen=0x7f050003;
-        public static final int title_activity_settings=0x7f050004;
+        public static final int title_activity_settings=0x7f050005;
     }
     public static final class style {
         /** 
