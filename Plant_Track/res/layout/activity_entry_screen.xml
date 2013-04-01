@@ -4,4 +4,14 @@
     android:layout_height="match_parent"
     tools:context=".EntryScreen" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
+        android:text="Hello this screen will disappear in 10 seconds"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </RelativeLayout>

@@ -18,5 +18,4 @@ public class EntryScreen extends Activity {
 		getMenuInflater().inflate(R.menu.activity_entry_screen, menu);
 		return true;
 	}
-
 }

@@ -9,10 +9,11 @@ package com.cs.planttrack;
 
 public final class R {
     public static final class array {
-        public static final int pref_example_list_titles=0x7f060000;
-        public static final int pref_example_list_values=0x7f060001;
-        public static final int pref_sync_frequency_titles=0x7f060002;
-        public static final int pref_sync_frequency_values=0x7f060003;
+        public static final int action_list=0x7f060000;
+        public static final int pref_example_list_titles=0x7f060001;
+        public static final int pref_example_list_values=0x7f060002;
+        public static final int pref_sync_frequency_titles=0x7f060003;
+        public static final int pref_sync_frequency_values=0x7f060004;
     }
     public static final class attr {
     }
@@ -41,12 +42,20 @@ public final class R {
         public static final int ic_action_user_add=0x7f020015;
         public static final int ic_action_video=0x7f020016;
         public static final int ic_launcher=0x7f020017;
+        public static final int plant1=0x7f020018;
     }
     public static final class id {
-        public static final int menu_edit=0x7f090003;
-        public static final int menu_map=0x7f090002;
-        public static final int menu_search=0x7f090001;
-        public static final int menu_settings=0x7f090000;
+        public static final int entry_list=0x7f090001;
+        public static final int menu_edit=0x7f09000a;
+        public static final int menu_map=0x7f090009;
+        public static final int menu_search=0x7f090008;
+        public static final int menu_settings=0x7f090007;
+        public static final int rand_plant=0x7f090003;
+        public static final int tableRow1=0x7f090002;
+        public static final int tableRow2=0x7f090004;
+        public static final int tableRow3=0x7f090005;
+        public static final int tableRow4=0x7f090006;
+        public static final int textView1=0x7f090000;
     }
     public static final class layout {
         public static final int activity_entry_screen=0x7f030000;

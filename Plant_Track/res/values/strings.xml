@@ -8,5 +8,12 @@
     <string name="menu_search">Search</string>
     <string name="menu_map">Map</string>
     <string name="menu_edit">Edit</string>
+    <string-array name="action_list">
+        <item>Date (Decending)</item>
+        <item>Date (Ascending)</item>
+        <item>ID Number</item>
+        <item>Species Name</item>
+        <item>Genus Name</item>
+    </string-array>
 
 </resources>
