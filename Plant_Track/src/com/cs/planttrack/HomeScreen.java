@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 public class HomeScreen extends Activity {
 
@@ -38,9 +37,25 @@ public class HomeScreen extends Activity {
 		return true;
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menu_settings:
+	        settCall();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
 	public void entryScreen(View v){
 		Intent intent = new Intent(v.getContext(), EntryScreen.class);
 		startActivity(intent);
+	}
+	
+	public void settCall(){
+		Intent sett = new Intent(getBaseContext(),SettingsActivity.class);
+        startActivity(sett);
 	}
 
 }

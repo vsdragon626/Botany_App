@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <EditTextPreference
+        android:name="First additional Note"
+        android:summary="Enter the title of the new catagory"
+        android:defaultValue="Nothing"
+        android:title="First Additional Catagory"
+        android:key="editTextPref1">
+    </EditTextPreference>
+    <EditTextPreference
+        android:name="Second additional Note"
+        android:summary="Enter the title of the new catagory"
+        android:defaultValue="Nothing"
+        android:title="Second Additional Catagory"
+        android:key="editTextPref2">
+    </EditTextPreference>
+    <EditTextPreference
+        android:name="Third additional Note"
+        android:summary="Enter the title of the new catagory"
+        android:defaultValue="Nothing"
+        android:title="Third Additional Catagory"
+        android:key="editTextPref3">
+    </EditTextPreference>
+    <EditTextPreference
+        android:name="Fourth additional Note"
+        android:summary="Enter the title of the new catagory"
+        android:defaultValue="Nothing"
+        android:title="Fourth Additional Catagory"
+        android:key="editTextPref4">
+    </EditTextPreference>
+    <EditTextPreference
+        android:name="Fifth additional Note"
+        android:summary="Enter the title of the new catagory"
+        android:defaultValue="Nothing"
+        android:title="Fifth Additional Catagory"
+        android:key="editTextPref5">
+    </EditTextPreference>
+
+</PreferenceScreen>

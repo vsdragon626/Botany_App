@@ -6,12 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
+		final Button button2 = (Button) findViewById(R.id.button2);
+		button2.setOnClickListener(new View.OnClickListener() {      
+		    @Override
+		    public void onClick(View v) {
+		    	Intent intent = new Intent();
+		    	intent.setType("image/*");
+		    	intent.setAction(Intent.ACTION_GET_CONTENT);//
+		    	startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+		    }
+		});
 	}
 
 	@Override

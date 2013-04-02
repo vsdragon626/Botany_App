@@ -18,5 +18,9 @@ public class ManualLocationActivity extends Activity {
 		getMenuInflater().inflate(R.menu.manual_location, menu);
 		return true;
 	}
+	
+	public void back(){
+		finish();
+	}
 
 }
