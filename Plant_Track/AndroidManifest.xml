@@ -30,6 +30,10 @@
             android:name="com.cs.planttrack.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name="com.cs.planttrack.ManualLocationActivity"
+            android:label="@string/title_activity_manual_location" >
+        </activity>
     </application>
 
 </manifest>
