@@ -44,6 +44,9 @@ public class HomeScreen extends Activity {
 	    case R.id.menu_settings:
 	        settCall();
 	        return true;
+	    case R.id.menu_map:
+	    	map1_3();
+	    	return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
@@ -56,6 +59,11 @@ public class HomeScreen extends Activity {
 	public void settCall(){
 		Intent sett = new Intent(getBaseContext(),SettingsActivity.class);
         startActivity(sett);
+	}
+	
+	public void map1_3(){
+		Intent map13 = new Intent(getBaseContext(),Entrymap_1_3.class);
+        startActivity(map13);
 	}
 
 }

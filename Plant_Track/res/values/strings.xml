@@ -19,6 +19,7 @@
 
     <string name="title_activity_manual_location">ManualLocationActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_gallery">GalleryActivity</string>
+    <string name="title_activity_entrymap_1_3">Entry Map</string>
+    <string name="title_location_2_3">Location Map</string>
 
 </resources>

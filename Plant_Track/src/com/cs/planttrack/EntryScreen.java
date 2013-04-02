@@ -41,7 +41,8 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	
 	@Override
 	public void onDrop(DialogFragment dialog){
-		
+		Intent intent = new Intent(EntryScreen.this, Location_2_3.class);
+		startActivity(intent);
 	}
 	
 	@Override

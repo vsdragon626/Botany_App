@@ -35,8 +35,12 @@
             android:label="@string/title_activity_manual_location" >
         </activity>
         <activity
-            android:name="com.cs.planttrack.GalleryActivity"
-            android:label="@string/title_activity_gallery" >
+            android:name="com.cs.planttrack.Entrymap_1_3"
+            android:label="@string/title_activity_entrymap_1_3" >
+        </activity>
+        <activity
+            android:name="com.cs.planttrack.Location_2_3"
+            android:label="@string/title_location_2_3" >
         </activity>
     </application>
 
