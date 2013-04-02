@@ -57,7 +57,7 @@ public final class R {
         public static final int screen2_3=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0024;
+        public static final int action_settings=0x7f0a0023;
         public static final int bigtext1=0x7f0a000f;
         public static final int bigtext2=0x7f0a0011;
         public static final int button1=0x7f0a0001;
@@ -66,21 +66,20 @@ public final class R {
         public static final int button4=0x7f0a000e;
         public static final int button5=0x7f0a0013;
         public static final int button6=0x7f0a0014;
-        public static final int edit1=0x7f0a001d;
-        public static final int edit2=0x7f0a001e;
+        public static final int edit1=0x7f0a001c;
+        public static final int edit2=0x7f0a001d;
         public static final int editText1=0x7f0a0003;
         public static final int editText2=0x7f0a0005;
         public static final int editText3=0x7f0a0007;
         public static final int entry_list=0x7f0a0016;
         public static final int imageView1=0x7f0a0015;
         public static final int image_preview=0x7f0a0009;
-        public static final int map=0x7f0a001c;
-        public static final int menu_edit=0x7f0a0023;
-        public static final int menu_map=0x7f0a0022;
-        public static final int menu_search=0x7f0a0021;
-        public static final int menu_settings=0x7f0a0020;
+        public static final int menu_edit=0x7f0a0022;
+        public static final int menu_map=0x7f0a0021;
+        public static final int menu_search=0x7f0a0020;
+        public static final int menu_settings=0x7f0a001f;
         public static final int rand_plant=0x7f0a0018;
-        public static final int relative1=0x7f0a001f;
+        public static final int relative1=0x7f0a001e;
         public static final int relativeView1=0x7f0a0012;
         public static final int scrollView1=0x7f0a0000;
         public static final int tableRow1=0x7f0a0017;
