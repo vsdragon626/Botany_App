@@ -4,7 +4,7 @@
     <string name="app_name">Plant Track</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_entry_screen">EntryScreen</string>
+    <string name="title_activity_entry_screen">New Entry</string>
     <string name="menu_search">Search</string>
     <string name="menu_map">Map</string>
     <string name="menu_edit">Edit</string>
@@ -17,9 +17,10 @@
         <item>Genus Name</item>
     </string-array>
 
-    <string name="title_activity_manual_location">ManualLocationActivity</string>
+    <string name="title_activity_manual_location">Location</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_entrymap_1_3">Entry Map</string>
-    <string name="title_location_2_3">Location Map</string>
+    <string name="title_activity_entrymap_1_3">Map of Entries</string>
+    <string name="title_location_2_3">Location</string>
+    <string name="main">All Entries</string>
 
 </resources>
