@@ -14,21 +14,21 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
-		
+
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
-		    @Override
-		    public void onClick(View v) {
-		    	Intent intent = new Intent();
-		    	intent.setType("image/*");
-		    	intent.setAction(Intent.ACTION_GET_CONTENT);//
-		    	startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
-		    }
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setType("image/*");
+				intent.setAction(Intent.ACTION_GET_CONTENT);//
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+			}
 		});
-		
+
 		final Button lButton = (Button) findViewById(R.id.locButton);
 		lButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				MapDialogFragment mapDialog = new MapDialogFragment();
@@ -36,12 +36,22 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 		
-		TextView date = (TextView) findViewById(R.id.dateTime);
+		final TextView date = (TextView) findViewById(R.id.dateTime);
 		date.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				//TODO make date time picker dialog
+				DialogFragment newFragment = new DatePickerFragment((TextView) date);
+				newFragment.show(getFragmentManager(), "datePicker");
+			}
+		});
+
+		final TextView time = (TextView) findViewById(R.id.dateTime2);
+		time.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				DialogFragment newFragment = new TimePickerFragment((TextView) time);
+				newFragment.show(getFragmentManager(), "timePicker");
 			}
 		});
 	}
@@ -52,13 +62,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		getMenuInflater().inflate(R.menu.activity_entry_screen, menu);
 		return true;
 	}
-	
+
 	@Override
 	public void onDrop(DialogFragment dialog){
 		Intent intent = new Intent(EntryScreen.this, Location_2_3.class);
 		startActivity(intent);
 	}
-	
+
 	@Override
 	public void onManual(DialogFragment dialog){
 		Intent intent = new Intent(EntryScreen.this, ManualLocationActivity.class);

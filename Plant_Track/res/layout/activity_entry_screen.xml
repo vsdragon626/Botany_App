@@ -64,7 +64,7 @@
 		    <TextView
 		        android:id="@+id/dateTime"
 		        android:layout_width="150dp"
-		        android:layout_height="wrap_content"
+		        android:layout_height="35dp"
 		        android:gravity="center"
 		        android:layout_alignParentLeft="true"
 		        android:text="March 4, 2013" />
@@ -72,10 +72,10 @@
 		    <TextView
 		        android:id="@+id/dateTime2"
 		        android:layout_width="150dp"
-		        android:layout_height="wrap_content"
+		        android:layout_height="35dp"
 		        android:gravity="center"
 		        android:layout_alignParentRight="true"
-		        android:text="8:30AM" />
+		        android:text="8 : 30 AM" />
 		</RelativeLayout>
 
         <Button

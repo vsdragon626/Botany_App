@@ -22,5 +22,8 @@
     <string name="title_activity_entrymap_1_3">Map of Entries</string>
     <string name="title_location_2_3">Location</string>
     <string name="main">All Entries</string>
+    <string name="set_date">Select Date</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
