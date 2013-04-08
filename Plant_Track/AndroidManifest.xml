@@ -60,7 +60,7 @@
             android:value="AIzaSyDP6F_ZXdEpE83arqql22FOBjiTW6ioOAU" />
 
         <uses-library
-            android:name="com.google.andriod.gms.maps"
+            android:name="com.google.andriod.maps"
             android:required="true" />
 
         <activity
