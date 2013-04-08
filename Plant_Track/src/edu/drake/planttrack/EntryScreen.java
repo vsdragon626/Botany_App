@@ -1,7 +1,5 @@
 package edu.drake.planttrack;
 
-import com.cs.planttrack.R;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -9,14 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+
+import com.cs.planttrack.R;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
-
+		
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
@@ -38,21 +39,21 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 		
-		final EditText date = (EditText) findViewById(R.id.dateTime);
+		final TextView date = (TextView) findViewById(R.id.dateTime);
 		date.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new DatePickerFragment((EditText) date);
+				DialogFragment newFragment = new DatePickerFragment((TextView) date);
 				newFragment.show(getFragmentManager(), "datePicker");
 			}
 		});
 
-		final EditText time = (EditText) findViewById(R.id.dateTime2);
+		final TextView time = (TextView) findViewById(R.id.dateTime2);
 		time.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new TimePickerFragment((EditText) time);
+				DialogFragment newFragment = new TimePickerFragment((TextView) time);
 				newFragment.show(getFragmentManager(), "timePicker");
 			}
 		});

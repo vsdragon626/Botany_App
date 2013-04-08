@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <EditText
+            <TextView
                 android:id="@+id/dateTime"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -73,7 +73,7 @@
                 android:gravity="center"
                 android:text="March 4, 2013" />
 
-            <EditText
+            <TextView
                 android:id="@+id/dateTime2"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
@@ -176,7 +176,6 @@
             android:id="@+id/bigtext1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="300dp"
             android:minHeight="100dp" />
 
         <TextView
@@ -191,7 +190,6 @@
             android:id="@+id/bigtext2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="300dp"
             android:minHeight="100dp" />
 
         <RelativeLayout
