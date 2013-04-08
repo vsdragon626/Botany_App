@@ -41,17 +41,16 @@ public class HomeScreen extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.menu_settings:
-	        settCall();
-	        return true;
-	    case R.id.menu_map:
-	    	map1_3();
-	    	return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+	    int itemId = item.getItemId();
+		if (itemId == R.id.menu_settings) {
+			settCall();
+			return true;
+		} else if (itemId == R.id.menu_map) {
+			map1_3();
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
+		}
 	}
 	public void entryScreen(View v){
 		Intent intent = new Intent(v.getContext(), EntryScreen.class);
