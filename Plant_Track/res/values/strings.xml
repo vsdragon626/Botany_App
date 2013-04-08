@@ -25,5 +25,19 @@
     <string name="set_date">Select Date</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="BasicInfoButton">Basic Information</string>
+    <string name="IDNum">ID Number</string>
+    <string name="Species">Species</string>
+    <string name="DAT">Date and Time</string>
+    <string name="pic">Photos</string>
+    <string name="flower">It\'s a pretty flower</string>
+    <string name="loca">Location</string>
+    <string name="cords">Coordinates as calculated by phone\'s GPS\:</string>
+    <string name="note">Notes</string>
+    <string name="fnote">Flower Notes</string>
+    <string name="hnote">Habitat Notes</string>
+    <string name="save">Save</string>
+    <string name="lat">Latitude</string>
+    <string name="lon">Longitude</string>
 
 </resources>

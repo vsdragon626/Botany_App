@@ -1,4 +1,6 @@
-package com.cs.planttrack;
+package edu.drake.planttrack;
+
+import com.cs.planttrack.R;
 
 import android.os.Bundle;
 import android.app.Activity;

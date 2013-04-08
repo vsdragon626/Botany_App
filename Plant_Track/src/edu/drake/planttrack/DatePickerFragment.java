@@ -1,4 +1,4 @@
-package com.cs.planttrack;
+package edu.drake.planttrack;
 
 import java.util.Calendar;
 
@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 @SuppressLint("ValidFragment")
@@ -15,7 +16,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
 	public TextView activity_edittext;
 
-	public DatePickerFragment(TextView edit_text) {
+	public DatePickerFragment(EditText edit_text) {
 		activity_edittext = edit_text;
 	}
 

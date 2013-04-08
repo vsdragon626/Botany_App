@@ -1,4 +1,4 @@
-package com.cs.planttrack;
+package edu.drake.planttrack;
 
 import android.app.Activity;
 import android.app.AlertDialog;
