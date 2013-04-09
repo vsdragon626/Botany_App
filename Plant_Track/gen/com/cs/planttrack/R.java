@@ -88,7 +88,6 @@ public final class R {
         public static final int relative1=0x7f0a001f;
         public static final int relativeView5=0x7f0a0018;
         public static final int scrollView1=0x7f0a0000;
-        public static final int textView=0x7f0a0010;
         public static final int textView1=0x7f0a0002;
         public static final int textView2=0x7f0a0004;
         public static final int textView3=0x7f0a0008;
@@ -96,6 +95,7 @@ public final class R {
         public static final int textView5=0x7f0a000f;
         public static final int textView6=0x7f0a0014;
         public static final int textView7=0x7f0a0016;
+        public static final int textView8=0x7f0a0010;
     }
     public static final class layout {
         public static final int activity_entry_screen=0x7f030000;
@@ -112,58 +112,57 @@ public final class R {
         public static final int manual_location=0x7f090004;
     }
     public static final class string {
-        public static final int BasicInfoButton=0x7f06000f;
-        public static final int DAT=0x7f060012;
-        public static final int IDNum=0x7f060010;
-        public static final int Species=0x7f060011;
-        public static final int action_settings=0x7f060008;
+        public static final int BasicInfoButton=0x7f06000e;
+        public static final int DAT=0x7f060011;
+        public static final int IDNum=0x7f06000f;
+        public static final int Species=0x7f060010;
+        public static final int action_settings=0x7f060007;
         public static final int app_name=0x7f060000;
-        public static final int cancel=0x7f06000e;
-        public static final int common=0x7f06001d;
-        public static final int cords=0x7f060016;
-        public static final int flower=0x7f060014;
-        public static final int fnote=0x7f060018;
-        public static final int hello_world=0x7f060001;
-        public static final int hnote=0x7f060019;
-        public static final int lat=0x7f06001b;
-        public static final int loca=0x7f060015;
-        public static final int lon=0x7f06001c;
-        public static final int main=0x7f06000b;
-        public static final int menu_edit=0x7f060006;
-        public static final int menu_map=0x7f060005;
-        public static final int menu_search=0x7f060004;
-        public static final int menu_settings=0x7f060002;
-        public static final int note=0x7f060017;
-        public static final int ok=0x7f06000d;
-        public static final int pic=0x7f060013;
-        public static final int pref_default_display_name=0x7f060023;
-        public static final int pref_description_social_recommendations=0x7f060021;
+        public static final int cancel=0x7f06000d;
+        public static final int common=0x7f06001c;
+        public static final int cords=0x7f060015;
+        public static final int flower=0x7f060013;
+        public static final int fnote=0x7f060017;
+        public static final int hnote=0x7f060018;
+        public static final int lat=0x7f06001a;
+        public static final int loca=0x7f060014;
+        public static final int lon=0x7f06001b;
+        public static final int main=0x7f06000a;
+        public static final int menu_edit=0x7f060005;
+        public static final int menu_map=0x7f060004;
+        public static final int menu_search=0x7f060003;
+        public static final int menu_settings=0x7f060001;
+        public static final int note=0x7f060016;
+        public static final int ok=0x7f06000c;
+        public static final int pic=0x7f060012;
+        public static final int pref_default_display_name=0x7f060022;
+        public static final int pref_description_social_recommendations=0x7f060020;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f060025;
+        public static final int pref_header_data_sync=0x7f060024;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f06001f;
+        public static final int pref_header_general=0x7f06001e;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f060028;
-        public static final int pref_ringtone_silent=0x7f06002b;
-        public static final int pref_title_add_friends_to_messages=0x7f060024;
-        public static final int pref_title_display_name=0x7f060022;
-        public static final int pref_title_new_message_notifications=0x7f060029;
-        public static final int pref_title_ringtone=0x7f06002a;
-        public static final int pref_title_social_recommendations=0x7f060020;
-        public static final int pref_title_sync_frequency=0x7f060026;
-        public static final int pref_title_system_sync_settings=0x7f060027;
-        public static final int pref_title_vibrate=0x7f06002c;
-        public static final int save=0x7f06001a;
-        public static final int set_date=0x7f06000c;
-        public static final int title_activity_entry_screen=0x7f060003;
-        public static final int title_activity_entrymap_1_3=0x7f060009;
-        public static final int title_activity_manual_location=0x7f060007;
-        public static final int title_activity_settings=0x7f06001e;
-        public static final int title_location_2_3=0x7f06000a;
+        public static final int pref_header_notifications=0x7f060027;
+        public static final int pref_ringtone_silent=0x7f06002a;
+        public static final int pref_title_add_friends_to_messages=0x7f060023;
+        public static final int pref_title_display_name=0x7f060021;
+        public static final int pref_title_new_message_notifications=0x7f060028;
+        public static final int pref_title_ringtone=0x7f060029;
+        public static final int pref_title_social_recommendations=0x7f06001f;
+        public static final int pref_title_sync_frequency=0x7f060025;
+        public static final int pref_title_system_sync_settings=0x7f060026;
+        public static final int pref_title_vibrate=0x7f06002b;
+        public static final int save=0x7f060019;
+        public static final int set_date=0x7f06000b;
+        public static final int title_activity_entry_screen=0x7f060002;
+        public static final int title_activity_entrymap_1_3=0x7f060008;
+        public static final int title_activity_manual_location=0x7f060006;
+        public static final int title_activity_settings=0x7f06001d;
+        public static final int title_location_2_3=0x7f060009;
     }
     public static final class style {
         /** 

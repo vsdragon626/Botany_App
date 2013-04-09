@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Plant Track</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_entry_screen">New Entry</string>
     <string name="menu_search">Search</string>
@@ -21,7 +20,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_entrymap_1_3">Map of Entries</string>
     <string name="title_location_2_3">Location</string>
-    <string name="main">Plant Track</string>
+    <string name="main">All Entries</string>
     <string name="set_date">Select Date</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
@@ -34,7 +33,7 @@
     <string name="loca">Location</string>
     <string name="cords">Coordinates as calculated by phone\'s GPS\:</string>
     <string name="note">Notes</string>
-    <string name="fnote">Flower Notes</string>
+    <string name="fnote">Plant Notes</string>
     <string name="hnote">Habitat Notes</string>
     <string name="save">Save</string>
     <string name="lat">Latitude</string>

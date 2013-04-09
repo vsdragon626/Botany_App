@@ -3,6 +3,8 @@ package edu.drake.planttrack;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +21,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
-		
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
@@ -71,6 +73,33 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
 			}
 		});
+		
+		final TextView lati = (TextView) findViewById(R.id.lat);
+		lati.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				MapDialogFragment mapDialog = new MapDialogFragment();
+				mapDialog.show(getFragmentManager(), "Map Dialog");
+			}
+		});
+		
+		final TextView longi = (TextView) findViewById(R.id.lon);
+		longi.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				MapDialogFragment mapDialog = new MapDialogFragment();
+				mapDialog.show(getFragmentManager(), "Map Dialog");
+			}
+		});
+		
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 	
 	@Override

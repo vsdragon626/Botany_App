@@ -50,10 +50,10 @@
             android:ems="10"
             android:inputType="text"
             android:paddingLeft="30dp"
-            android:textStyle="italic"
-            android:text="Taraxacum     Officinale" >
+            android:text="Taraxacum     Officinale"
+            android:textStyle="italic" >
         </EditText>
-        
+
         <TextView
             android:id="@+id/commonText"
             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView8"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
@@ -195,7 +195,10 @@
             android:id="@+id/bigtext1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="100dp" />
+            android:minHeight="100dp"
+            android:lines="5"
+            android:gravity="top"
+   			android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/textView7"
@@ -209,7 +212,10 @@
             android:id="@+id/bigtext2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="100dp" />
+            android:minHeight="100dp"
+            android:lines="5"
+            android:gravity="top"
+   			android:scrollbars="vertical" />
 
         <RelativeLayout
             android:id="@+id/relativeView5"

@@ -32,7 +32,7 @@ Google Maps Android API v2, but are recommended.
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:debuggable="true" >
+        android:configChanges="keyboardHidden|orientation" >
         <activity
             android:name="edu.drake.planttrack.HomeScreen"
             android:label="@string/main" >
