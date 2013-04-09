@@ -63,6 +63,9 @@ public class HomeScreen extends Activity {
 	    case R.id.menu_map:
 	    	map1_3();
 	    	return true;
+	    case R.id.menu_edit:
+	    	entryScreen();
+	    	return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }

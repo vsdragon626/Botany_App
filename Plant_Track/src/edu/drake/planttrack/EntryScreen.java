@@ -5,8 +5,10 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs.planttrack.R;
@@ -57,6 +59,35 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				newFragment.show(getFragmentManager(), "timePicker");
 			}
 		});
+		
+		final ImageView pic = (ImageView) findViewById(R.id.image_preview);
+		pic.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v){
+				Intent intent = new Intent();
+				intent.setType("image/*");
+				intent.setAction(Intent.ACTION_GET_CONTENT);//
+				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+			}
+		});
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menu_settings:
+	        settCall();
+	    	return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	public void settCall(){
+		Intent sett = new Intent(getBaseContext(),SettingsActivity.class);
+        startActivity(sett);
 	}
 
 	@Override

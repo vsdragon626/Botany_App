@@ -50,7 +50,26 @@
             android:ems="10"
             android:inputType="text"
             android:paddingLeft="30dp"
+            android:textStyle="italic"
             android:text="Taraxacum     Officinale" >
+        </EditText>
+        
+        <TextView
+            android:id="@+id/commonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/common"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/commonEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:paddingLeft="30dp"
+            android:text="Dandelion" >
         </EditText>
 
         <TextView
