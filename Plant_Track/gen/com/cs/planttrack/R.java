@@ -58,11 +58,12 @@ public final class R {
         public static final int screen2_3=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0025;
+        public static final int action_settings=0x7f0a0027;
+        public static final int action_spinner=0x7f0a001d;
         public static final int bigtext1=0x7f0a0015;
         public static final int bigtext2=0x7f0a0017;
         public static final int button1=0x7f0a0001;
-        public static final int button2=0x7f0a0020;
+        public static final int button2=0x7f0a0022;
         public static final int button4=0x7f0a0013;
         public static final int button5=0x7f0a0019;
         public static final int button6=0x7f0a001a;
@@ -70,8 +71,8 @@ public final class R {
         public static final int commonText=0x7f0a0006;
         public static final int dateTime=0x7f0a0009;
         public static final int dateTime2=0x7f0a000a;
-        public static final int edit1=0x7f0a001d;
-        public static final int edit2=0x7f0a001e;
+        public static final int edit1=0x7f0a001f;
+        public static final int edit2=0x7f0a0020;
         public static final int editText1=0x7f0a0003;
         public static final int editText2=0x7f0a0005;
         public static final int imageView1=0x7f0a001b;
@@ -79,13 +80,14 @@ public final class R {
         public static final int lat=0x7f0a0011;
         public static final int locButton=0x7f0a000d;
         public static final int lon=0x7f0a0012;
-        public static final int mainlistview=0x7f0a001c;
-        public static final int menu_edit=0x7f0a0024;
-        public static final int menu_map=0x7f0a0023;
-        public static final int menu_search=0x7f0a0022;
-        public static final int menu_settings=0x7f0a0021;
+        public static final int mainlinearlayout=0x7f0a001c;
+        public static final int mainlistview=0x7f0a001e;
+        public static final int menu_edit=0x7f0a0026;
+        public static final int menu_map=0x7f0a0025;
+        public static final int menu_search=0x7f0a0024;
+        public static final int menu_settings=0x7f0a0023;
         public static final int picButton=0x7f0a000b;
-        public static final int relative1=0x7f0a001f;
+        public static final int relative1=0x7f0a0021;
         public static final int relativeView5=0x7f0a0018;
         public static final int scrollView1=0x7f0a0000;
         public static final int textView1=0x7f0a0002;

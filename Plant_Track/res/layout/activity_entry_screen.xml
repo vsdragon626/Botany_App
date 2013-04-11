@@ -17,6 +17,18 @@
             android:paddingLeft="10dp"
             android:text="@string/BasicInfoButton" />
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -24,13 +36,25 @@
             android:paddingLeft="20dp"
             android:text="@string/IDNum"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="text|textNoSuggestions"
             android:paddingLeft="30dp"
             android:text="ST2-225" >
         </EditText>
@@ -42,13 +66,25 @@
             android:paddingLeft="20dp"
             android:text="@string/Species"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="text|textNoSuggestions"
             android:paddingLeft="30dp"
             android:text="Taraxacum     Officinale"
             android:textStyle="italic" >
@@ -61,13 +97,25 @@
             android:paddingLeft="20dp"
             android:text="@string/common"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/commonEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
+            android:inputType="text|textNoSuggestions"
             android:paddingLeft="30dp"
             android:text="Dandelion" >
         </EditText>
@@ -79,6 +127,18 @@
             android:paddingLeft="20dp"
             android:text="@string/DAT"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -107,6 +167,18 @@
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/pic" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/image_preview"
@@ -121,6 +193,18 @@
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/loca" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView4"
@@ -128,7 +212,19 @@
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
             android:text="@string/cords"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="15sp" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -140,8 +236,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="@string/lat"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/lat" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -149,8 +244,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="@string/lon"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="@string/lon" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -163,8 +257,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="41.656497"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="41.656497" />
 
             <TextView
                 android:id="@+id/lon"
@@ -172,8 +265,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="-93.592873"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="-93.592873" />
         </RelativeLayout>
 
         <Button
@@ -182,6 +274,18 @@
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/note" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView6"
@@ -190,6 +294,18 @@
             android:paddingLeft="20dp"
             android:text="@string/fnote"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <MultiAutoCompleteTextView
             android:id="@+id/bigtext1"
@@ -198,6 +314,7 @@
             android:minHeight="100dp"
             android:lines="5"
             android:gravity="top"
+            android:inputType="text|textNoSuggestions"
    			android:scrollbars="vertical" />
 
         <TextView
@@ -207,6 +324,18 @@
             android:paddingLeft="20dp"
             android:text="@string/hnote"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" /> 
+        </RelativeLayout>
 
         <MultiAutoCompleteTextView
             android:id="@+id/bigtext2"
@@ -215,6 +344,7 @@
             android:minHeight="100dp"
             android:lines="5"
             android:gravity="top"
+            android:inputType="text|textNoSuggestions"
    			android:scrollbars="vertical" />
 
         <RelativeLayout

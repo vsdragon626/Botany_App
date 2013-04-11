@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.cs.planttrack.R;
 
@@ -26,6 +27,13 @@ public class HomeScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		//Drop down list code
+		Spinner spinner = (Spinner) findViewById(R.id.action_spinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.action_list, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		
 		//created a simple listview, but need to change to take data in from a cursor.
 		listView = (ListView) findViewById(R.id.mainlistview);
 		updateList();
