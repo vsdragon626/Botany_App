@@ -203,12 +203,12 @@ containing a value of this type.
         public static final int editText2=0x7f05000a;
         public static final int editText3=0x7f05000c;
         public static final int entry_list=0x7f05001b;
-        public static final int fragment1=0x7f05001a;
         public static final int fullscreen_content=0x7f050024;
         public static final int fullscreen_content_controls=0x7f050025;
         public static final int hybrid=0x7f050004;
         public static final int imageView1=0x7f050027;
         public static final int image_preview=0x7f05000e;
+        public static final int map=0x7f05001a;
         public static final int menu_edit=0x7f05002b;
         public static final int menu_map=0x7f05002a;
         public static final int menu_search=0x7f050029;
