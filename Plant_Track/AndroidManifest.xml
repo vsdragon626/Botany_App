@@ -68,10 +68,10 @@
         
          <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDP6F_ZXdEpE83arqql22FOBjiTW6ioOAU" />
+            android:value="AIzaSyCr-Zse16GRo3ZnGo6CMO6A3E30eodQtd8" />
          <uses-library  
        android:name="com.google.android.maps"  
-       android:required="true" /> 
+       android:required="true" />
     </application>
 
 </manifest>
