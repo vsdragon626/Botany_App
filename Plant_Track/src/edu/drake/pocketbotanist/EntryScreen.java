@@ -192,22 +192,55 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			btv4.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref3", false)){
-			//TODO fill in Preference 3
+			TextView tv11 = (TextView) findViewById(R.id.textView11);
+			tv11.setVisibility(0);
+			tv11.setText(sharedPrefs.getString("editTextPref3", "Nothing"));
+			RelativeLayout erl3 = (RelativeLayout) findViewById(R.id.extraRealative3);
+			erl3.setVisibility(0);
+			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext5);
+			btv5.setVisibility(0);
 		}
 		else{
-
+			TextView tv11 = (TextView) findViewById(R.id.textView11);
+			tv11.setVisibility(8);
+			RelativeLayout erl3 = (RelativeLayout) findViewById(R.id.extraRealative3);
+			erl3.setVisibility(8);
+			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext5);
+			btv5.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref4", false)){
-			//TODO fill in Preference 4
+			TextView tv12 = (TextView) findViewById(R.id.textView12);
+			tv12.setVisibility(0);
+			tv12.setText(sharedPrefs.getString("editTextPref4", "Nothing"));
+			RelativeLayout erl4 = (RelativeLayout) findViewById(R.id.extraRealative4);
+			erl4.setVisibility(0);
+			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext6);
+			btv6.setVisibility(0);
 		}
 		else{
-
+			TextView tv12 = (TextView) findViewById(R.id.textView12);
+			tv12.setVisibility(8);
+			RelativeLayout erl4 = (RelativeLayout) findViewById(R.id.extraRealative4);
+			erl4.setVisibility(8);
+			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext6);
+			btv6.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref5", false)){
-			//TODO fill in Preference 5
+			TextView tv13 = (TextView) findViewById(R.id.textView13);
+			tv13.setVisibility(0);
+			tv13.setText(sharedPrefs.getString("editTextPref5", "Nothing"));
+			RelativeLayout erl5 = (RelativeLayout) findViewById(R.id.extraRealative5);
+			erl5.setVisibility(0);
+			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext7);
+			btv7.setVisibility(0);
 		}
 		else{
-
+			TextView tv13 = (TextView) findViewById(R.id.textView13);
+			tv13.setVisibility(8);
+			RelativeLayout erl5 = (RelativeLayout) findViewById(R.id.extraRealative5);
+			erl5.setVisibility(8);
+			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext7);
+			btv7.setVisibility(8);
 		}
 	}
 
@@ -223,7 +256,8 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		switch (item.getItemId()) {
 		case R.id.menu_settings:
 			settCall();
-			updatePref();
+			finish();
+			startActivity(getIntent());
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

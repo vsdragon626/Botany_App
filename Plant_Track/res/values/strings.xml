@@ -40,5 +40,7 @@
     <string name="lon">Longitude</string>
     <string name="common">Common Name</string>
     <string name="Default">Nothing</string>
+    <string name="locacords">Location Coordinates</string>
+    <string name="loncords">Longitude Coordinates</string>
 
 </resources>
