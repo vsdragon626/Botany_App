@@ -23,7 +23,7 @@
         android:name="Second Additional Note"
         android:defaultValue="False"
         android:key="SwitchPref2"
-        android:title="First Additional Catagory"
+        android:title="Second Additional Catagory"
         android:persistent="true" >
     </SwitchPreference>
     <EditTextPreference
@@ -40,7 +40,7 @@
         android:name="Third Additional Note"
         android:defaultValue="False"
         android:key="SwitchPref3"
-        android:title="First Additional Catagory"
+        android:title="Third Additional Catagory"
         android:persistent="true" >
     </SwitchPreference>
     <EditTextPreference
@@ -57,7 +57,7 @@
         android:name="Fourth Additional Note"
         android:defaultValue="False"
         android:key="SwitchPref4"
-        android:title="First Additional Catagory"
+        android:title="Fourth Additional Catagory"
         android:persistent="true" >
     </SwitchPreference>
     <EditTextPreference
@@ -74,7 +74,7 @@
         android:name="Fifth Additional Note"
         android:defaultValue="False"
         android:key="SwitchPref5"
-        android:title="First Additional Catagory"
+        android:title="Fifth Additional Catagory"
         android:persistent="true" >
     </SwitchPreference>
     <EditTextPreference

@@ -1,7 +1,6 @@
 package edu.drake.pocketbotanist;
 
 import java.util.Calendar;
-
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -10,6 +9,7 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,21 +21,21 @@ import android.widget.TextView;
 
 import com.cs.pocketbotanist.R;
 
-public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener {
+public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
+													 PhotoDialogFragment.PhotoDialogListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.setType("image/*");
-				intent.setAction(Intent.ACTION_GET_CONTENT);//
-				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+				PhotoDialogFragment photoDialog = new PhotoDialogFragment();
+				photoDialog.show(getFragmentManager(), "Photo Dialog");	
 			}
 		});
 
@@ -59,48 +59,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		});
 
 		Calendar c = Calendar.getInstance();
-		String m = "";
-		switch (c.get(Calendar.MONTH)) {
-		case 1:  
-			m = "January";
-			break;
-		case 2:  
-			m = "February";
-			break;
-		case 3:  
-			m = "March";
-			break;
-		case 4:  
-			m = "April";
-			break;
-		case 5:  
-			m = "May";
-			break;
-		case 6:  
-			m = "June";
-			break;
-		case 7:  
-			m = "July";
-			break;
-		case 8:  
-			m = "August";
-			break;
-		case 9:  
-			m = "September";
-			break;
-		case 10: 
-			m = "October";
-			break;
-		case 11: 
-			m = "November";
-			break;
-		case 12: 
-			m = "December";
-			break;
-		default: 
-			m = "Invalid month";
-			break;
-		}
+		String m = getMonth(c.get(Calendar.MONTH));
 		date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
 
 		final TextView time = (TextView) findViewById(R.id.dateTime2);
@@ -120,10 +79,8 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 			@Override
 			public void onClick(View v){
-				Intent intent = new Intent();
-				intent.setType("image/*");
-				intent.setAction(Intent.ACTION_GET_CONTENT);//
-				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+				PhotoDialogFragment photoDialog = new PhotoDialogFragment();
+				photoDialog.show(getFragmentManager(), "Photo Dialog");
 			}
 		});
 
@@ -153,6 +110,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		
 		updatePref();
 
+	}
+	
+	@Override
+	public void onRestart(){
+		super.onRestart();
+		finish();
+		startActivity(getIntent());
 	}
 
 	public void updatePref(){
@@ -256,8 +220,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		switch (item.getItemId()) {
 		case R.id.menu_settings:
 			settCall();
-			finish();
-			startActivity(getIntent());
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -286,5 +248,67 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	public void onManual(DialogFragment dialog){
 		Intent intent = new Intent(EntryScreen.this, ManualLocationActivity.class);
 		startActivity(intent);
+	}
+
+	@Override
+	public void onTakePicture(DialogFragment dialog) {
+		// TODO implement camera specific code
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(takePictureIntent, 0);
+	}
+
+	@Override
+	public void onChoosePicture(DialogFragment dialog) {
+		//TODO implement advanced gallery code
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);//
+		startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+	}
+	
+	public String getMonth(int month){
+		String m = "";
+		switch (month+1) {
+		case 1:  
+			m = "January";
+			break;
+		case 2:  
+			m = "February";
+			break;
+		case 3:  
+			m = "March";
+			break;
+		case 4:  
+			m = "April";
+			break;
+		case 5:  
+			m = "May";
+			break;
+		case 6:  
+			m = "June";
+			break;
+		case 7:  
+			m = "July";
+			break;
+		case 8:  
+			m = "August";
+			break;
+		case 9:  
+			m = "September";
+			break;
+		case 10: 
+			m = "October";
+			break;
+		case 11: 
+			m = "November";
+			break;
+		case 12: 
+			m = "December";
+			break;
+		default: 
+			m = "Invalid month";
+			break;
+		}
+		return m;
 	}
 }
