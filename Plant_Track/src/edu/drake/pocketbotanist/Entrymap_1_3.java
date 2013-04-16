@@ -1,6 +1,6 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
-import com.cs.planttrack.R;
+import com.cs.pocketbotanist.R;
 
 import android.os.Bundle;
 import android.app.Activity;

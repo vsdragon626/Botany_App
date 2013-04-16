@@ -1,4 +1,4 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.cs.planttrack.R;
+import com.cs.pocketbotanist.R;
 
 public class HomeScreen extends Activity {
 	
@@ -103,19 +103,3 @@ public class HomeScreen extends Activity {
 	}
 
 }
-//Dropdown menu code
-//ActionBar actionBar = getActionBar();
-//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-//SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.action_list,
-//          android.R.layout.simple_spinner_dropdown_item);
-//OnNavigationListener mOnNavigationListener;
-//mOnNavigationListener = new OnNavigationListener() {
-//	  // Get the same strings provided for the drop-down's ArrayAdapter
-//	  //String[] strings = getResources().getStringArray(R.array.action_list);
-//	  @Override
-//	  public boolean onNavigationItemSelected(int position, long itemId) {
-//	    // Create new fragment from our own Fragment class
-//	    return true;
-//	  }
-//};
-//actionBar.setListNavigationCallbacks(mSpinnerAdapter, mOnNavigationListener);

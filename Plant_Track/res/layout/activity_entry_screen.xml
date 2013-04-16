@@ -10,6 +10,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <!-- Basic Information -->
+
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
@@ -21,13 +23,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
+
+        <!-- ID Number, Species, Common Name, and Date and Time -->
 
         <TextView
             android:id="@+id/textView1"
@@ -36,17 +40,17 @@
             android:paddingLeft="20dp"
             android:text="@string/IDNum"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <EditText
@@ -55,8 +59,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text|textNoSuggestions"
-            android:paddingLeft="30dp"
-            android:text="ST2-225" >
+            android:minHeight="10dp"
+            android:paddingLeft="30dp" >
         </EditText>
 
         <TextView
@@ -66,17 +70,17 @@
             android:paddingLeft="20dp"
             android:text="@string/Species"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <EditText
@@ -85,8 +89,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text|textNoSuggestions"
+            android:minHeight="10dp"
             android:paddingLeft="30dp"
-            android:text="Taraxacum     Officinale"
             android:textStyle="italic" >
         </EditText>
 
@@ -97,17 +101,17 @@
             android:paddingLeft="20dp"
             android:text="@string/common"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <EditText
@@ -116,8 +120,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text|textNoSuggestions"
-            android:paddingLeft="30dp"
-            android:text="Dandelion" >
+            android:minHeight="10dp"
+            android:paddingLeft="30dp" >
         </EditText>
 
         <TextView
@@ -127,17 +131,17 @@
             android:paddingLeft="20dp"
             android:text="@string/DAT"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -150,7 +154,8 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="March 4, 2013" />
+                android:minHeight="10dp"
+                android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/dateTime2"
@@ -158,8 +163,11 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="8 : 30 AM" />
+                android:minHeight="10dp"
+                android:textIsSelectable="false" />
         </RelativeLayout>
+
+        <!-- Picture section -->
 
         <Button
             android:id="@+id/picButton"
@@ -167,25 +175,29 @@
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/pic" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
+
+        <!-- #CCCCCC is the exsact color of the buttons which is why it wasn't used, thank you Josh. -->
 
         <ImageView
             android:id="@+id/image_preview"
             android:layout_width="fill_parent"
             android:layout_height="100dp"
-            android:contentDescription="@string/flower"
-            android:src="@drawable/plant1" />
+            android:background="#888888"
+            android:contentDescription="@string/flower" />
+
+        <!-- Location Section -->
 
         <Button
             android:id="@+id/locButton"
@@ -193,17 +205,17 @@
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/loca" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <TextView
@@ -213,17 +225,17 @@
             android:paddingLeft="20dp"
             android:text="@string/cords"
             android:textSize="15sp" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -257,7 +269,8 @@
                 android:layout_height="35dp"
                 android:layout_alignParentLeft="true"
                 android:gravity="center"
-                android:text="41.656497" />
+                android:minHeight="10dp"
+                android:textIsSelectable="false" />
 
             <TextView
                 android:id="@+id/lon"
@@ -265,26 +278,29 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text="-93.592873" />
+                android:minHeight="10dp"
+                android:textIsSelectable="false" />
         </RelativeLayout>
 
+        <!-- Notes Section -->
+
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/noteButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingLeft="10dp"
             android:text="@string/note" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <TextView
@@ -294,28 +310,26 @@
             android:paddingLeft="20dp"
             android:text="@string/fnote"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
             android:id="@+id/bigtext1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="200dp"
             android:minHeight="100dp"
-            android:lines="5"
-            android:gravity="top"
-            android:inputType="text|textNoSuggestions"
-   			android:scrollbars="vertical" />
+            android:scrollbars="vertical" />
 
         <TextView
             android:id="@+id/textView7"
@@ -324,28 +338,176 @@
             android:paddingLeft="20dp"
             android:text="@string/hnote"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
-            android:paddingRight="10dp">
+            android:paddingRight="10dp" >
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" /> 
+                android:background="#000000" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
             android:id="@+id/bigtext2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="200dp"
             android:minHeight="100dp"
-            android:lines="5"
-            android:gravity="top"
-            android:inputType="text|textNoSuggestions"
-   			android:scrollbars="vertical" />
+            android:scrollbars="vertical" />
+
+        <!-- Start the extra stuff beyond this point should be all based on preferences -->
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/Default"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/extraRealative1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/bigtext3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:minHeight="100dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/Default"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            
+            android:id="@+id/extraRealative2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/bigtext4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:minHeight="100dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/Default"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/extraRealative3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/bigtext5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:minHeight="100dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/Default"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/extraRealative4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/bigtext6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:minHeight="100dp"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:text="@string/Default"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/extraRealative5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp" >
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dip"
+                android:background="#000000" />
+        </RelativeLayout>
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/bigtext7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="200dp"
+            android:minHeight="100dp"
+            android:scrollbars="vertical" />
+
+        <!-- Buttons at the end of the scroll view -->
 
         <RelativeLayout
             android:id="@+id/relativeView5"

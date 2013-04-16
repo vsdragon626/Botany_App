@@ -1,22 +1,28 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
+
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.MultiAutoCompleteTextView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cs.planttrack.R;
+import com.cs.pocketbotanist.R;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +48,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				mapDialog.show(getFragmentManager(), "Map Dialog");	
 			}
 		});
-		
+
 		final TextView date = (TextView) findViewById(R.id.dateTime);
 		date.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -51,6 +57,51 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				newFragment.show(getFragmentManager(), "datePicker");
 			}
 		});
+
+		Calendar c = Calendar.getInstance();
+		String m = "";
+		switch (c.get(Calendar.MONTH)) {
+		case 1:  
+			m = "January";
+			break;
+		case 2:  
+			m = "February";
+			break;
+		case 3:  
+			m = "March";
+			break;
+		case 4:  
+			m = "April";
+			break;
+		case 5:  
+			m = "May";
+			break;
+		case 6:  
+			m = "June";
+			break;
+		case 7:  
+			m = "July";
+			break;
+		case 8:  
+			m = "August";
+			break;
+		case 9:  
+			m = "September";
+			break;
+		case 10: 
+			m = "October";
+			break;
+		case 11: 
+			m = "November";
+			break;
+		case 12: 
+			m = "December";
+			break;
+		default: 
+			m = "Invalid month";
+			break;
+		}
+		date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
 
 		final TextView time = (TextView) findViewById(R.id.dateTime2);
 		time.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +112,12 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				newFragment.show(getFragmentManager(), "timePicker");
 			}
 		});
-		
+
+		time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+
 		final ImageView pic = (ImageView) findViewById(R.id.image_preview);
 		pic.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v){
 				Intent intent = new Intent();
@@ -73,7 +126,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
 			}
 		});
-		
+
 		final TextView lati = (TextView) findViewById(R.id.lat);
 		lati.setOnClickListener(new View.OnClickListener() {
 
@@ -83,7 +136,9 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				mapDialog.show(getFragmentManager(), "Map Dialog");
 			}
 		});
-		
+
+		lati.setText("Click to Edit");
+
 		final TextView longi = (TextView) findViewById(R.id.lon);
 		longi.setOnClickListener(new View.OnClickListener() {
 
@@ -93,30 +148,91 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				mapDialog.show(getFragmentManager(), "Map Dialog");
 			}
 		});
+
+		longi.setText("Click to Edit");
 		
+		updatePref();
+
 	}
-	
+
+	public void updatePref(){
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if(sharedPrefs.getBoolean("SwitchPref1", false)){
+			TextView tv9 = (TextView) findViewById(R.id.textView9);
+			tv9.setVisibility(0);
+			tv9.setText(sharedPrefs.getString("editTextPref1", "Nothing"));
+			RelativeLayout erl1 = (RelativeLayout) findViewById(R.id.extraRealative1);
+			erl1.setVisibility(0);
+			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+			btv3.setVisibility(0);
+		}
+		else{
+			TextView tv9 = (TextView) findViewById(R.id.textView9);
+			tv9.setVisibility(8);
+			RelativeLayout erl1 = (RelativeLayout) findViewById(R.id.extraRealative1);
+			erl1.setVisibility(8);
+			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+			btv3.setVisibility(8);
+		}
+		if(sharedPrefs.getBoolean("SwitchPref2", false)){
+			TextView tv10 = (TextView) findViewById(R.id.textView10);
+			tv10.setVisibility(0);
+			tv10.setText(sharedPrefs.getString("editTextPref2", "Nothing"));
+			RelativeLayout erl2 = (RelativeLayout) findViewById(R.id.extraRealative2);
+			erl2.setVisibility(0);
+			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext4);
+			btv4.setVisibility(0);
+		}
+		else{
+			TextView tv10 = (TextView) findViewById(R.id.textView10);
+			tv10.setVisibility(8);
+			RelativeLayout erl2 = (RelativeLayout) findViewById(R.id.extraRealative2);
+			erl2.setVisibility(8);
+			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext4);
+			btv4.setVisibility(8);
+		}
+		if(sharedPrefs.getBoolean("SwitchPref3", false)){
+			//TODO fill in Preference 3
+		}
+		else{
+
+		}
+		if(sharedPrefs.getBoolean("SwitchPref4", false)){
+			//TODO fill in Preference 4
+		}
+		else{
+
+		}
+		if(sharedPrefs.getBoolean("SwitchPref5", false)){
+			//TODO fill in Preference 5
+		}
+		else{
+
+		}
+	}
+
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle item selection
-	    switch (item.getItemId()) {
-	    case R.id.menu_settings:
-	        settCall();
-	    	return true;
-	    default:
-	        return super.onOptionsItemSelected(item);
-	    }
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_settings:
+			settCall();
+			updatePref();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
-	
+
 	public void settCall(){
 		Intent sett = new Intent(getBaseContext(),SettingsActivity.class);
-        startActivity(sett);
+		startActivity(sett);
 	}
 
 	@Override

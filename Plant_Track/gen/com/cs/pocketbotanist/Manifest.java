@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.cs.planttrack;
+package com.cs.pocketbotanist;
 
 public final class Manifest {
     public static final class permission {

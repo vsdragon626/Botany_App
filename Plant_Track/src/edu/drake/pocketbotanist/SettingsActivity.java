@@ -1,4 +1,4 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
@@ -6,11 +6,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 
 public class SettingsActivity extends Activity {
-    @Override
+
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); 
+        
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())

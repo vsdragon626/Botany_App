@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cs.planttrack"
+    package="com.cs.pocketbotanist"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -34,7 +34,7 @@ Google Maps Android API v2, but are recommended.
         android:theme="@style/AppTheme"
         android:configChanges="keyboardHidden|orientation" >
         <activity
-            android:name="edu.drake.planttrack.HomeScreen"
+            android:name="edu.drake.pocketbotanist.HomeScreen"
             android:label="@string/main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,24 +43,24 @@ Google Maps Android API v2, but are recommended.
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.drake.planttrack.EntryScreen"
+            android:name="edu.drake.pocketbotanist.EntryScreen"
             android:label="@string/title_activity_entry_screen"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="edu.drake.planttrack.SettingsActivity"
+            android:name="edu.drake.pocketbotanist.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="edu.drake.planttrack.ManualLocationActivity"
+            android:name="edu.drake.pocketbotanist.ManualLocationActivity"
             android:label="@string/title_activity_manual_location" >
         </activity>
         <activity
-            android:name="edu.drake.planttrack.Entrymap_1_3"
+            android:name="edu.drake.pocketbotanist.Entrymap_1_3"
             android:label="@string/title_activity_entrymap_1_3" >
         </activity>
         <activity
-            android:name="edu.drake.planttrack.Location_2_3"
+            android:name="edu.drake.pocketbotanist.Location_2_3"
             android:label="@string/title_location_2_3" >
         </activity>
     </application>

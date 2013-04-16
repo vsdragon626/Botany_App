@@ -1,4 +1,4 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
 import java.util.Calendar;
 
