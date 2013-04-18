@@ -1,4 +1,4 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
 import android.app.Activity;
 import android.app.Fragment;
