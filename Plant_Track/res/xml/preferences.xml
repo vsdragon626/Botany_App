@@ -1,39 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <EditTextPreference
-        android:name="First additional Note"
-        android:summary="Enter the title of the new catagory"
-        android:defaultValue="Nothing"
+
+    <SwitchPreference
+        android:name="First Additional Note"
+        android:defaultValue="False"
+        android:key="SwitchPref1"
         android:title="First Additional Catagory"
-        android:key="editTextPref1">
-    </EditTextPreference>
-    <EditTextPreference
-        android:name="Second additional Note"
-        android:summary="Enter the title of the new catagory"
+        android:persistent="true" >
+    </SwitchPreference>
+	<EditTextPreference
+        android:name="First Additonal Note"
         android:defaultValue="Nothing"
+        android:dependency="SwitchPref1"
+        android:key="editTextPref1"
+        android:shouldDisableView="true"
+        android:summary="Enter the title of the new catagory"
+        android:title="First Additional Catagory"
+        android:persistent="true" >
+    </EditTextPreference>
+
+    <SwitchPreference
+        android:name="Second Additional Note"
+        android:defaultValue="False"
+        android:key="SwitchPref2"
         android:title="Second Additional Catagory"
-        android:key="editTextPref2">
-    </EditTextPreference>
+        android:persistent="true" >
+    </SwitchPreference>
     <EditTextPreference
-        android:name="Third additional Note"
-        android:summary="Enter the title of the new catagory"
+        android:name="Second Additonal Note"
         android:defaultValue="Nothing"
+        android:dependency="SwitchPref2"
+        android:key="editTextPref2"
+        android:summary="Enter the title of the new catagory"
+        android:title="Second Additional Catagory"
+        android:persistent="true" >
+    </EditTextPreference>
+
+    <SwitchPreference
+        android:name="Third Additional Note"
+        android:defaultValue="False"
+        android:key="SwitchPref3"
         android:title="Third Additional Catagory"
-        android:key="editTextPref3">
-    </EditTextPreference>
+        android:persistent="true" >
+    </SwitchPreference>
     <EditTextPreference
-        android:name="Fourth additional Note"
-        android:summary="Enter the title of the new catagory"
+        android:name="Third Additonal Note"
         android:defaultValue="Nothing"
+        android:dependency="SwitchPref3"
+        android:key="editTextPref3"
+        android:summary="Enter the title of the new catagory"
+        android:title="Third Additional Catagory"
+        android:persistent="true" >
+    </EditTextPreference>
+
+    <SwitchPreference
+        android:name="Fourth Additional Note"
+        android:defaultValue="False"
+        android:key="SwitchPref4"
         android:title="Fourth Additional Catagory"
-        android:key="editTextPref4">
-    </EditTextPreference>
+        android:persistent="true" >
+    </SwitchPreference>
     <EditTextPreference
-        android:name="Fifth additional Note"
-        android:summary="Enter the title of the new catagory"
+        android:name="Fourth Additonal Note"
         android:defaultValue="Nothing"
+        android:dependency="SwitchPref4"
+        android:key="editTextPref4"
+        android:summary="Enter the title of the new catagory"
+        android:title="Fourth Additional Catagory"
+        android:persistent="true" >
+    </EditTextPreference>
+
+    <SwitchPreference
+        android:name="Fifth Additional Note"
+        android:defaultValue="False"
+        android:key="SwitchPref5"
         android:title="Fifth Additional Catagory"
-        android:key="editTextPref5">
+        android:persistent="true" >
+    </SwitchPreference>
+    <EditTextPreference
+        android:name="Fifth Additonal Note"
+        android:defaultValue="Nothing"
+        android:dependency="SwitchPref5"
+        android:key="editTextPref5"
+        android:summary="Enter the title of the new catagory"
+        android:title="Fifth Additional Catagory"
+        android:persistent="true" >
     </EditTextPreference>
 
 </PreferenceScreen>

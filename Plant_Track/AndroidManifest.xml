@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="edu.drake.planttrack"
+=======
+    package="com.cs.pocketbotanist"
+>>>>>>> origin/Backup-Branch
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -12,8 +16,16 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/Backup-Branch
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission
+        android:name="com.cs.planttrack.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -28,10 +40,16 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:configChanges="keyboardHidden|orientation" >
         <activity
+<<<<<<< HEAD
             android:name="edu.drake.planttrack.HomeScreen"
             android:label="@string/app_name" >
+=======
+            android:name="edu.drake.pocketbotanist.HomeScreen"
+            android:label="@string/main" >
+>>>>>>> origin/Backup-Branch
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,6 +57,7 @@
             </intent-filter>
         </activity>
         <activity
+<<<<<<< HEAD
             android:name="edu.drake.planttrack.EntryScreen"
             android:label="@string/title_activity_entry_screen" >
         </activity>
@@ -72,6 +91,28 @@
          <uses-library  
        android:name="com.google.android.maps"  
        android:required="true" />
+=======
+            android:name="edu.drake.pocketbotanist.EntryScreen"
+            android:label="@string/title_activity_entry_screen"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="edu.drake.pocketbotanist.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="edu.drake.pocketbotanist.ManualLocationActivity"
+            android:label="@string/title_activity_manual_location" >
+        </activity>
+        <activity
+            android:name="edu.drake.pocketbotanist.Entrymap_1_3"
+            android:label="@string/title_activity_entrymap_1_3" >
+        </activity>
+        <activity
+            android:name="edu.drake.pocketbotanist.Location_2_3"
+            android:label="@string/title_location_2_3" >
+        </activity>
+>>>>>>> origin/Backup-Branch
     </application>
 
 </manifest>
