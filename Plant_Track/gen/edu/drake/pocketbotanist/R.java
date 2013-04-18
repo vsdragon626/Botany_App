@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.cs.pocketbotanist;
+package edu.drake.pocketbotanist;
 
 public final class R {
     public static final class array {
@@ -270,7 +270,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010000, 0x7f010001
         };
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 
@@ -280,7 +280,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 

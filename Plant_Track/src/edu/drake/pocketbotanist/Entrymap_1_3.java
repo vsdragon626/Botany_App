@@ -1,6 +1,6 @@
 package edu.drake.pocketbotanist;
 
-import com.cs.pocketbotanist.R;
+import edu.drake.pocketbotanist.R;
 
 import android.os.Bundle;
 import android.app.Activity;

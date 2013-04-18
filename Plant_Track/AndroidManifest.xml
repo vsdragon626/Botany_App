@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-<<<<<<< HEAD
-    package="edu.drake.planttrack"
-=======
-    package="com.cs.pocketbotanist"
->>>>>>> origin/Backup-Branch
+	package="com.cs.pocketbotanist"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -16,23 +12,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
-<<<<<<< HEAD
-=======
-    
->>>>>>> origin/Backup-Branch
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <permission
-        android:name="com.cs.planttrack.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
 
     <permission
-        android:name="edu.drake.planttrack.permission.MAPS_RECEIVE"
+        android:name="edu.drake.pocketbotanist.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
 <uses-permission android:name="edu.drake.planttrack.permission.MAPS_RECEIVE"/>
 
@@ -43,13 +31,9 @@
         android:theme="@style/AppTheme"
         android:configChanges="keyboardHidden|orientation" >
         <activity
-<<<<<<< HEAD
-            android:name="edu.drake.planttrack.HomeScreen"
-            android:label="@string/app_name" >
-=======
             android:name="edu.drake.pocketbotanist.HomeScreen"
             android:label="@string/main" >
->>>>>>> origin/Backup-Branch
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,41 +41,6 @@
             </intent-filter>
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name="edu.drake.planttrack.EntryScreen"
-            android:label="@string/title_activity_entry_screen" >
-        </activity>
-        <activity
-            android:name="edu.drake.planttrack.SettingsActivity"
-            android:label="@string/title_activity_settings" >
-        </activity>
-        <activity
-            android:name="edu.drake.planttrack.ManualLocationActivity"
-            android:label="@string/title_activity_manual_location" >
-        </activity>
-        <activity
-            android:name="edu.drake.planttrack.Entrymap_1_3"
-            android:label="@string/title_activity_entrymap_1_3" >
-        </activity>
-        <activity
-            android:name="edu.drake.planttrack.Location_2_3"
-            android:label="@string/title_location_2_3" >
-        </activity>
-
-        <activity
-            android:name="edu.drake.planttrack.Mapfragmentpreview"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_mapfragmentpreview"
-            android:theme="@style/FullscreenTheme" >
-        </activity>
-        
-         <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCr-Zse16GRo3ZnGo6CMO6A3E30eodQtd8" />
-         <uses-library  
-       android:name="com.google.android.maps"  
-       android:required="true" />
-=======
             android:name="edu.drake.pocketbotanist.EntryScreen"
             android:label="@string/title_activity_entry_screen"
             android:windowSoftInputMode="stateHidden" >
@@ -112,7 +61,19 @@
             android:name="edu.drake.pocketbotanist.Location_2_3"
             android:label="@string/title_location_2_3" >
         </activity>
->>>>>>> origin/Backup-Branch
+        <activity
+            android:name="edu.drake.planttrack.Mapfragmentpreview"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_mapfragmentpreview"
+            android:theme="@style/FullscreenTheme" >
+        </activity>
+        
+         <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCr-Zse16GRo3ZnGo6CMO6A3E30eodQtd8" />
+         <uses-library  
+       android:name="com.google.android.maps"  
+       android:required="true" />
     </application>
 
 </manifest>

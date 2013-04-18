@@ -18,15 +18,11 @@
 
     <string name="title_activity_manual_location">Location</string>
     <string name="action_settings">Settings</string>
-<<<<<<< HEAD
     <string name="title_activity_entrymap_1_3">Entry Map</string>
     <string name="title_location_2_3">Location Map</string>
     <string name="title_activity_mapfragmentpreview">Mapfragmentpreview</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-=======
-    <string name="title_activity_entrymap_1_3">Map of Entries</string>
-    <string name="title_location_2_3">Location</string>
     <string name="main">Pocket Botanist</string>
     <string name="set_date">Select Date</string>
     <string name="ok">OK</string>
@@ -49,6 +45,5 @@
     <string name="Default">Nothing</string>
     <string name="locacords">Location Coordinates</string>
     <string name="loncords">Longitude Coordinates</string>
->>>>>>> origin/Backup-Branch
 
 </resources>

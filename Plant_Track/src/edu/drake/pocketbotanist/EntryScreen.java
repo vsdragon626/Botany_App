@@ -19,7 +19,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cs.pocketbotanist.R;
+import edu.drake.pocketbotanist.R;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener {

@@ -1,4 +1,4 @@
-package edu.drake.planttrack;
+package edu.drake.pocketbotanist;
 
 import edu.drake.pocketbotanist.util.SystemUiHider;
 
