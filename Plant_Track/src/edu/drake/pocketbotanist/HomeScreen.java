@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class HomeScreen extends Activity {
@@ -48,7 +49,7 @@ public class HomeScreen extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				//TODO action taken on selection of row
-				entryScreen();
+				entryScreenList(((TextView) view).getText().toString());
 			}
 		});
 	}
@@ -97,6 +98,13 @@ public class HomeScreen extends Activity {
 	}
 	public void entryScreen(){
 		Intent intent = new Intent(getBaseContext(), EntryScreen.class);
+		intent.putExtra("passer", "New Entry");
+		startActivity(intent);
+	}
+	
+	public void entryScreenList(String t){
+		Intent intent = new Intent(getBaseContext(), EntryScreen.class);
+		intent.putExtra("passer", t);
 		startActivity(intent);
 	}
 	

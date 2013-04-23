@@ -190,7 +190,7 @@ containing a value of this type.
         public static final int screen2_3=0x7f02001e;
     }
     public static final class id {
-        public static final int action_settings=0x7f050040;
+        public static final int action_settings=0x7f05003f;
         public static final int action_spinner=0x7f050031;
         public static final int bigtext1=0x7f05001a;
         public static final int bigtext2=0x7f05001c;
@@ -200,14 +200,12 @@ containing a value of this type.
         public static final int bigtext6=0x7f050028;
         public static final int bigtext7=0x7f05002b;
         public static final int button1=0x7f050006;
-        public static final int button5=0x7f05002d;
-        public static final int button6=0x7f05002e;
-        public static final int cancelButton=0x7f050037;
+        public static final int cancelButton=0x7f05002e;
         public static final int commonEditText=0x7f05000c;
         public static final int commonText=0x7f05000b;
         public static final int dateTime=0x7f05000e;
         public static final int dateTime2=0x7f05000f;
-        public static final int dummy_button=0x7f05003a;
+        public static final int dummy_button=0x7f050039;
         public static final int edit1=0x7f050033;
         public static final int edit2=0x7f050034;
         public static final int editText2=0x7f05000a;
@@ -216,11 +214,11 @@ containing a value of this type.
         public static final int extraRealative3=0x7f050024;
         public static final int extraRealative4=0x7f050027;
         public static final int extraRealative5=0x7f05002a;
-        public static final int fullscreen_content=0x7f050038;
-        public static final int fullscreen_content_controls=0x7f050039;
+        public static final int fullscreen_content=0x7f050037;
+        public static final int fullscreen_content_controls=0x7f050038;
         public static final int hybrid=0x7f050004;
         public static final int idEdit=0x7f050008;
-        public static final int imageView1=0x7f05003b;
+        public static final int imageView1=0x7f05003a;
         public static final int image_preview=0x7f050011;
         public static final int lat=0x7f050016;
         public static final int locButton=0x7f050012;
@@ -228,10 +226,10 @@ containing a value of this type.
         public static final int mainlinearlayout=0x7f050030;
         public static final int mainlistview=0x7f050032;
         public static final int map=0x7f05002f;
-        public static final int menu_edit=0x7f05003f;
-        public static final int menu_map=0x7f05003e;
-        public static final int menu_search=0x7f05003d;
-        public static final int menu_settings=0x7f05003c;
+        public static final int menu_edit=0x7f05003e;
+        public static final int menu_map=0x7f05003d;
+        public static final int menu_search=0x7f05003c;
+        public static final int menu_settings=0x7f05003b;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int noteButton=0x7f050018;
@@ -240,6 +238,7 @@ containing a value of this type.
         public static final int relative1=0x7f050035;
         public static final int relativeView5=0x7f05002c;
         public static final int satellite=0x7f050002;
+        public static final int saveButton=0x7f05002d;
         public static final int scrollView1=0x7f050005;
         public static final int terrain=0x7f050003;
         public static final int textView1=0x7f050007;

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -26,12 +27,22 @@ import android.widget.TextView;
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener {
 	EditText iD;
+	String path;
+	String value;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+		    value = extras.getString("passer");
+		}
+		int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+		TextView title = (TextView)findViewById(titleId);
+		title.setText(value);
 		
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
@@ -106,6 +117,15 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			public void onClick(View v) {
 				MapDialogFragment mapDialog = new MapDialogFragment();
 				mapDialog.show(getFragmentManager(), "Map Dialog");
+			}
+		});
+		
+		final Button cancel = (Button) findViewById(R.id.cancelButton);
+		cancel.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				finish();
 			}
 		});
 
@@ -255,12 +275,25 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
-		// TODO implement camera specific code
 		iD = (EditText) findViewById(R.id.idEdit);
 		if(!iD.getText().equals("")||iD.getText()!=null){
 			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+iD.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
+				path = imageDirectory.getAbsolutePath();
+			}
+		}
+		else{
+			String date;
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR));
+			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+"New Entry "+date+"/");
+			File[] contents = imageDirectory.listFiles();
+			int i = 1;
+			while(imageDirectory.exists() && contents == null){
+				imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+"New Entry "+date+"("+String.valueOf(i)+")"+"/");
+				i++;
 			}
 		}
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
