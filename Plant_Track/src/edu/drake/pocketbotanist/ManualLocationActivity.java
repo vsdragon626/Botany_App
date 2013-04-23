@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import edu.drake.pocketbotanist.R;
+import com.cs.pocketbotanist.R;
 
 public class ManualLocationActivity extends Activity {
 

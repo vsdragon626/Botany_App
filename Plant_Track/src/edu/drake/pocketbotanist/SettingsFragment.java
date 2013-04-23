@@ -3,7 +3,7 @@ package edu.drake.pocketbotanist;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import edu.drake.pocketbotanist.R;
+import com.cs.pocketbotanist.R;
 
 public class SettingsFragment extends PreferenceFragment {
     @Override

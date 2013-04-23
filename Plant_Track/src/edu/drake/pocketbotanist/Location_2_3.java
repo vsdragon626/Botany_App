@@ -1,10 +1,10 @@
 package edu.drake.pocketbotanist;
 
-import edu.drake.pocketbotanist.R;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
+
+import com.cs.pocketbotanist.R;
 
 public class Location_2_3 extends Activity {
 

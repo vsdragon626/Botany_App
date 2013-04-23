@@ -1,6 +1,7 @@
 package edu.drake.pocketbotanist;
 
 import java.util.Calendar;
+
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -19,7 +20,7 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import edu.drake.pocketbotanist.R;
+import com.cs.pocketbotanist.R;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener {

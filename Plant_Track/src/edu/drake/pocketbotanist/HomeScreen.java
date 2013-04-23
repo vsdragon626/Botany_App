@@ -15,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import edu.drake.pocketbotanist.R;
+import com.cs.pocketbotanist.R;
 
 public class HomeScreen extends Activity {
 	

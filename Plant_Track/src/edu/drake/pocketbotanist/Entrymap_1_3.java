@@ -1,17 +1,27 @@
 package edu.drake.pocketbotanist;
 
-import edu.drake.pocketbotanist.R;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
-public class Entrymap_1_3 extends Activity {
+import com.cs.pocketbotanist.R;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class Entrymap_1_3<GoogleMap> extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entrymap_1_3);
+	 
+		com.google.android.gms.maps.GoogleMap mMap;
+		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		((com.google.android.gms.maps.GoogleMap) mMap).addMarker(new MarkerOptions()
+		        .position(new LatLng(0, 0))
+		        .title("Hello world"));
+		
 	}
 
 	@Override
@@ -20,23 +30,4 @@ public class Entrymap_1_3 extends Activity {
 		getMenuInflater().inflate(R.menu.entrymap_1_3, menu);
 		return true;
 	}
-
-	
-	//code to add marker
-	/*
-	private GoogleMap mMap;
-	mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-	mMap.addMarker(new MarkerOptions()
-	        .position(new LatLng(0, 0))
-	        .title("Hello world"));
-	        
-	//info on marker
-	static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-	Marker melbourne = mMap.addMarker(new MarkerOptions()
-                          .position(MELBOURNE)
-                          .title("Melbourne")
-                          .snippet("Population: 4,137,400"));
-    
-    
-*/
 }
