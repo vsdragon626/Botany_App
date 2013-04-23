@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.cs.pocketbotanist;
+package edu.drake.pocketbotanist;
 
 public final class Manifest {
     public static final class permission {

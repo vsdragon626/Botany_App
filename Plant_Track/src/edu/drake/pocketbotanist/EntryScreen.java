@@ -1,5 +1,6 @@
 package edu.drake.pocketbotanist;
 
+import java.io.File;
 import java.util.Calendar;
 
 import android.app.Activity;
@@ -9,21 +10,22 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.cs.pocketbotanist.R;
-
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener {
+	EditText iD;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -254,6 +256,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
 		// TODO implement camera specific code
+		iD = (EditText) findViewById(R.id.idEdit);
+		if(!iD.getText().equals("")||iD.getText()!=null){
+			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+iD.getText()+"/");
+			if (!imageDirectory.exists()){
+				imageDirectory.mkdir();
+			}
+		}
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(takePictureIntent, 0);
 	}

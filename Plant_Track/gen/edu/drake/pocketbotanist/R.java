@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.cs.pocketbotanist;
+package edu.drake.pocketbotanist;
 
 public final class R {
     public static final class array {
@@ -210,7 +210,6 @@ containing a value of this type.
         public static final int dummy_button=0x7f05003a;
         public static final int edit1=0x7f050033;
         public static final int edit2=0x7f050034;
-        public static final int editText1=0x7f050008;
         public static final int editText2=0x7f05000a;
         public static final int extraRealative1=0x7f05001e;
         public static final int extraRealative2=0x7f050021;
@@ -220,6 +219,7 @@ containing a value of this type.
         public static final int fullscreen_content=0x7f050038;
         public static final int fullscreen_content_controls=0x7f050039;
         public static final int hybrid=0x7f050004;
+        public static final int idEdit=0x7f050008;
         public static final int imageView1=0x7f05003b;
         public static final int image_preview=0x7f050011;
         public static final int lat=0x7f050016;
@@ -446,8 +446,8 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle com.cs.pocketbotanist:buttonBarButtonStyle}</code></td><td></td></tr>
-           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle com.cs.pocketbotanist:buttonBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarButtonStyle edu.drake.pocketbotanist:buttonBarButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #ButtonBarContainerTheme_buttonBarStyle edu.drake.pocketbotanist:buttonBarStyle}</code></td><td></td></tr>
            </table>
            @see #ButtonBarContainerTheme_buttonBarButtonStyle
            @see #ButtonBarContainerTheme_buttonBarStyle
@@ -456,7 +456,7 @@ containing a value of this type.
             0x7f01000e, 0x7f01000f
         };
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#buttonBarButtonStyle}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#buttonBarButtonStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 
@@ -466,7 +466,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int ButtonBarContainerTheme_buttonBarButtonStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#buttonBarStyle}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#buttonBarStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 
@@ -481,20 +481,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MapAttrs_cameraBearing com.cs.pocketbotanist:cameraBearing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLat com.cs.pocketbotanist:cameraTargetLat}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLng com.cs.pocketbotanist:cameraTargetLng}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTilt com.cs.pocketbotanist:cameraTilt}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraZoom com.cs.pocketbotanist:cameraZoom}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_mapType com.cs.pocketbotanist:mapType}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiCompass com.cs.pocketbotanist:uiCompass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiRotateGestures com.cs.pocketbotanist:uiRotateGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiScrollGestures com.cs.pocketbotanist:uiScrollGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiTiltGestures com.cs.pocketbotanist:uiTiltGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomControls com.cs.pocketbotanist:uiZoomControls}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomGestures com.cs.pocketbotanist:uiZoomGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_useViewLifecycle com.cs.pocketbotanist:useViewLifecycle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_zOrderOnTop com.cs.pocketbotanist:zOrderOnTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing edu.drake.pocketbotanist:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat edu.drake.pocketbotanist:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng edu.drake.pocketbotanist:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt edu.drake.pocketbotanist:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom edu.drake.pocketbotanist:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType edu.drake.pocketbotanist:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass edu.drake.pocketbotanist:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures edu.drake.pocketbotanist:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures edu.drake.pocketbotanist:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures edu.drake.pocketbotanist:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls edu.drake.pocketbotanist:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures edu.drake.pocketbotanist:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle edu.drake.pocketbotanist:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop edu.drake.pocketbotanist:zOrderOnTop}</code></td><td></td></tr>
            </table>
            @see #MapAttrs_cameraBearing
            @see #MapAttrs_cameraTargetLat
@@ -518,7 +518,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f01000c, 0x7f01000d
         };
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#cameraBearing}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#cameraBearing}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -532,7 +532,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#cameraTargetLat}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#cameraTargetLat}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -546,7 +546,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#cameraTargetLng}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#cameraTargetLng}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -560,7 +560,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#cameraTilt}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#cameraTilt}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -574,7 +574,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#cameraZoom}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#cameraZoom}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -588,7 +588,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#mapType}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#mapType}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -608,7 +608,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_mapType = 0;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiCompass}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiCompass}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -622,7 +622,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiRotateGestures}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiRotateGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -636,7 +636,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiScrollGestures}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiScrollGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -650,7 +650,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiTiltGestures}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiTiltGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -664,7 +664,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiZoomControls}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiZoomControls}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -678,7 +678,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#uiZoomGestures}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#uiZoomGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -692,7 +692,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#useViewLifecycle}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#useViewLifecycle}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -706,7 +706,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
-          <p>This symbol is the offset where the {@link com.cs.pocketbotanist.R.attr#zOrderOnTop}
+          <p>This symbol is the offset where the {@link edu.drake.pocketbotanist.R.attr#zOrderOnTop}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 

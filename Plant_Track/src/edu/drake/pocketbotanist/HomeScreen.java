@@ -1,10 +1,13 @@
 package edu.drake.pocketbotanist;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import com.cs.pocketbotanist.R;
 
 public class HomeScreen extends Activity {
 	
@@ -27,6 +29,12 @@ public class HomeScreen extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		//Inital folder creation code
+		File appDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/");
+		if (!appDirectory.exists()){
+			appDirectory.mkdir();
+		}
 		
 		//Drop down list code
 		Spinner spinner = (Spinner) findViewById(R.id.action_spinner);
