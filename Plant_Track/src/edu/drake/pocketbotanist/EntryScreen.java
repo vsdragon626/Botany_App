@@ -10,6 +10,9 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -28,7 +31,8 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 													 PhotoDialogFragment.PhotoDialogListener {
 	EditText iD;
 	String path;
-	String value;
+	ImageView pic;
+	String filename;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +42,10 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    value = extras.getString("passer");
+		    int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+			TextView title = (TextView)findViewById(titleId);
+			title.setText(extras.getString("passer"));
 		}
-		int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
-		TextView title = (TextView)findViewById(titleId);
-		title.setText(value);
 		
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
@@ -88,7 +91,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 		time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 
-		final ImageView pic = (ImageView) findViewById(R.id.image_preview);
+		pic = (ImageView) findViewById(R.id.image_preview);
 		pic.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -296,8 +299,29 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				i++;
 			}
 		}
+		//TODO Test on actual device
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(takePictureIntent, 0);
+		filename = String.valueOf(System.currentTimeMillis()) + ".jpg";
+		File file = new File(Environment.getExternalStorageDirectory(), path + filename);
+		
+		Uri outputFileUri = Uri.fromFile(file); 
+		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
+		 
+		startActivityForResult(takePictureIntent, 1);
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data){
+		super.onActivityResult(requestCode, resultCode, data);
+		//TODO test on actual device
+		if(resultCode == 1){
+			pic.setImageURI(data.getData());
+
+//			BitmapFactory.Options options = new BitmapFactory.Options();
+//			options.inSampleSize = 4;
+//			Bitmap bitmap = BitmapFactory.decodeFile(filename, options);
+//			pic.setImageBitmap(bitmap);
+		}
+		
 	}
 
 	@Override

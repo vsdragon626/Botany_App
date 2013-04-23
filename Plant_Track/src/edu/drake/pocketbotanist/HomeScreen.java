@@ -48,7 +48,7 @@ public class HomeScreen extends Activity {
 		updateList();
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//TODO action taken on selection of row
+				//This needs to happen even when the cursor is added
 				entryScreenList(((TextView) view).getText().toString());
 			}
 		});
