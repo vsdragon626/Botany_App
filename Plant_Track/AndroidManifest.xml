@@ -74,6 +74,12 @@
          <uses-library  
        android:name="com.google.android.maps"  
        android:required="true" />
+         
+         <provider
+      android:name=".contentprovider.MyEntryContentProvider"
+      android:authorities="edu.drake.pocketbotanist.entries.contentprovider" 
+      android:exported="false">
+   </provider>
     </application>
 
 </manifest>
