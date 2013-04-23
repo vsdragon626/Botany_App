@@ -1,22 +1,27 @@
 package edu.drake.pocketbotanist;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
+import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,25 +33,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
-													 PhotoDialogFragment.PhotoDialogListener {
+PhotoDialogFragment.PhotoDialogListener,
+MediaScannerConnectionClient{
 	EditText iD;
-	String path;
 	ImageView pic;
-	String filename;
+	String filename,foldername;
+	private MediaScannerConnection conn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		
+
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-		    int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
-			TextView title = (TextView)findViewById(titleId);
-			title.setText(extras.getString("passer"));
+			ActionBar actionBar = getActionBar();
+			actionBar.setTitle(extras.getString("passer"));
 		}
-		
+
 		final Button pButton = (Button) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
@@ -122,7 +127,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				mapDialog.show(getFragmentManager(), "Map Dialog");
 			}
 		});
-		
+
 		final Button cancel = (Button) findViewById(R.id.cancelButton);
 		cancel.setOnClickListener(new View.OnClickListener() {
 
@@ -133,11 +138,11 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		});
 
 		longi.setText("Click to Edit");
-		
+
 		updatePref();
 
 	}
-	
+
 	@Override
 	public void onRestart(){
 		super.onRestart();
@@ -261,7 +266,9 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_entry_screen, menu);
-		return true;
+		//TODO search!!
+		//SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -279,11 +286,11 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
 		iD = (EditText) findViewById(R.id.idEdit);
-		if(!iD.getText().equals("")||iD.getText()!=null){
-			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+iD.getText()+"/");
+		if(iD.getText()!=null){
+			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+iD.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
-				path = imageDirectory.getAbsolutePath();
+				foldername = iD.getText()+"/";
 			}
 		}
 		else{
@@ -291,48 +298,90 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			Calendar c = Calendar.getInstance();
 			String m = getMonth(c.get(Calendar.MONTH));
 			date = m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR));
-			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+"New Entry "+date+"/");
+			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry "+date+"/");
 			File[] contents = imageDirectory.listFiles();
 			int i = 1;
 			while(imageDirectory.exists() && contents == null){
-				imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"Pocket Botanist/"+"New Entry "+date+"("+String.valueOf(i)+")"+"/");
+				imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry "+date+"("+String.valueOf(i)+")"+"/");
 				i++;
+				contents = imageDirectory.listFiles();
 			}
+			foldername = "New Entry "+date+"("+String.valueOf(i--)+")"+"/";
+			imageDirectory.mkdir();
 		}
-		//TODO Test on actual device
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		filename = String.valueOf(System.currentTimeMillis()) + ".jpg";
-		File file = new File(Environment.getExternalStorageDirectory(), path + filename);
-		
+		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
+
 		Uri outputFileUri = Uri.fromFile(file); 
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
-		 
+
 		startActivityForResult(takePictureIntent, 1);
 	}
-	
+
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		super.onActivityResult(requestCode, resultCode, data);
 		//TODO test on actual device
 		if(resultCode == 1){
-			pic.setImageURI(data.getData());
-
-//			BitmapFactory.Options options = new BitmapFactory.Options();
-//			options.inSampleSize = 4;
-//			Bitmap bitmap = BitmapFactory.decodeFile(filename, options);
-//			pic.setImageBitmap(bitmap);
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inSampleSize = 4;
+			Bitmap bitmap = BitmapFactory.decodeFile(filename, options);
+			pic.setImageBitmap(bitmap);
 		}
-		
+		else if(resultCode == 2){
+			Uri chosenImageUri = data.getData();
+
+	        Bitmap mBitmap = null;
+	        try {
+				mBitmap = Media.getBitmap(this.getContentResolver(), chosenImageUri);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        pic.setImageBitmap(mBitmap);
+		}
+
 	}
 
 	@Override
 	public void onChoosePicture(DialogFragment dialog) {
 		//TODO implement advanced gallery code
-		Intent intent = new Intent();
-		intent.setType("image/*");
-		intent.setAction(Intent.ACTION_GET_CONTENT);//
-		startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+		//		Intent intent = new Intent();
+		//		intent.setType("image/*");
+		//		intent.setAction(Intent.ACTION_GET_CONTENT);
+		//		startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
+		if(conn!=null)
+		{
+			conn.disconnect();
+		}
+		conn = new MediaScannerConnection(this,this);
+		conn.connect();
 	}
-	
+	@Override
+	public void onMediaScannerConnected() {
+		conn.scanFile(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, "image/*");    
+	}
+	@Override
+	public void onScanCompleted(String path, Uri uri) {
+		try {
+			System.out.println("URI " + uri);             
+			if (uri != null) 
+			{
+				Intent imagePickIntent = new Intent(Intent.ACTION_GET_CONTENT);
+				imagePickIntent.setData(uri);
+				imagePickIntent.setType("image/*");
+				startActivityForResult(imagePickIntent, 2);
+			}
+		} finally 
+		{
+			conn.disconnect();
+			conn = null;
+		}
+	}
+
 	public String getMonth(int month){
 		String m = "";
 		switch (month+1) {
