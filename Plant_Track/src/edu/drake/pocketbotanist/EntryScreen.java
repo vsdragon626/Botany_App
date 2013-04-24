@@ -33,11 +33,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
-PhotoDialogFragment.PhotoDialogListener,
-MediaScannerConnectionClient{
-	EditText iD;
-	ImageView pic;
-	String filename,foldername;
+													 PhotoDialogFragment.PhotoDialogListener, 
+													 MediaScannerConnectionClient{
+	private EditText iD;
+	private ImageView pic;
+	private String filename,foldername;
+	public String[] allFiles;
+    private String scanPath;
+	private String path = Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/";
 	private MediaScannerConnection conn;
 
 	@Override
@@ -266,8 +269,6 @@ MediaScannerConnectionClient{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_entry_screen, menu);
-		//TODO search!!
-		//SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -286,8 +287,9 @@ MediaScannerConnectionClient{
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
 		iD = (EditText) findViewById(R.id.idEdit);
-		if(iD.getText()!=null){
-			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+iD.getText()+"/");
+		File imageDirectory;
+		if(!iD.getText().toString().isEmpty()){
+			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+iD.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
 				foldername = iD.getText()+"/";
@@ -296,23 +298,26 @@ MediaScannerConnectionClient{
 		else{
 			String date;
 			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR));
-			File imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry "+date+"/");
+			date = c.get(Calendar.MONTH)+1 + "-" + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(c.get(Calendar.YEAR));
+			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry-"+date+"/");
+			foldername = "New Entry-"+date+"/";
 			File[] contents = imageDirectory.listFiles();
 			int i = 1;
-			while(imageDirectory.exists() && contents == null){
-				imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry "+date+"("+String.valueOf(i)+")"+"/");
+			while(imageDirectory.exists() && contents != null){
+				imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+"New Entry-"+date+"("+String.valueOf(i)+")"+"/");
 				i++;
 				contents = imageDirectory.listFiles();
+				foldername = "New Entry-"+date+"("+String.valueOf(i--)+")"+"/";
 			}
-			foldername = "New Entry "+date+"("+String.valueOf(i--)+")"+"/";
 			imageDirectory.mkdir();
+			
 		}
+		
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		
 		filename = String.valueOf(System.currentTimeMillis()) + ".jpg";
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
-
+		
 		Uri outputFileUri = Uri.fromFile(file); 
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
 
@@ -325,7 +330,7 @@ MediaScannerConnectionClient{
 		if(resultCode == 1){
 			BitmapFactory.Options options = new BitmapFactory.Options();
 			options.inSampleSize = 4;
-			Bitmap bitmap = BitmapFactory.decodeFile(filename, options);
+			Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername+filename, options);
 			pic.setImageBitmap(bitmap);
 		}
 		else if(resultCode == 2){
@@ -349,39 +354,56 @@ MediaScannerConnectionClient{
 	@Override
 	public void onChoosePicture(DialogFragment dialog) {
 		//TODO implement advanced gallery code
-		//		Intent intent = new Intent();
-		//		intent.setType("image/*");
-		//		intent.setAction(Intent.ACTION_GET_CONTENT);
-		//		startActivityForResult(Intent.createChooser(intent, "Select Picture"),1);
-		if(conn!=null)
-		{
-			conn.disconnect();
-		}
-		conn = new MediaScannerConnection(this,this);
-		conn.connect();
-	}
-	@Override
-	public void onMediaScannerConnected() {
-		conn.scanFile(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, "image/*");    
-	}
-	@Override
-	public void onScanCompleted(String path, Uri uri) {
-		try {
-			System.out.println("URI " + uri);             
-			if (uri != null) 
-			{
-				Intent imagePickIntent = new Intent(Intent.ACTION_GET_CONTENT);
-				imagePickIntent.setData(uri);
-				imagePickIntent.setType("image/*");
-				startActivityForResult(imagePickIntent, 2);
-			}
-		} finally 
-		{
-			conn.disconnect();
-			conn = null;
-		}
-	}
+//		Uri p = Uri.parse(path);
+//		Intent intent = new Intent();
+//		intent.setType("image/*");
+//		intent.setData(p);
+//		intent.setAction(Intent.ACTION_GET_CONTENT);
+//		startActivityForResult(Intent.createChooser(intent, "Select Picture"),2);
+		File folder = new File(path);
+        allFiles = folder.list();
 
+        scanPath=path+allFiles[0];
+        
+        startScan();
+	}
+	
+	private void startScan()
+    {
+        if(conn!=null)
+        {
+            conn.disconnect();
+        }
+
+        conn = new MediaScannerConnection(this, this);
+        conn.connect();
+    }
+
+
+    public void onMediaScannerConnected()
+    {
+        conn.scanFile(scanPath, "image/*");    
+    }
+
+
+    public void onScanCompleted(String path, Uri uri)
+    {
+        try
+        {
+            if (uri != null) 
+            {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        }
+        finally 
+        {
+            conn.disconnect();
+            conn = null;
+        }
+    }
+	
 	public String getMonth(int month){
 		String m = "";
 		switch (month+1) {
