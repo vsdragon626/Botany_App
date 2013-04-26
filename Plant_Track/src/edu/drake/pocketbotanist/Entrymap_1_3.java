@@ -8,6 +8,9 @@ import android.view.Menu;
 =======
 import com.cs.pocketbotanist.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
+<<<<<<< HEAD
+>>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
+=======
 >>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
