@@ -38,9 +38,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	private ImageView pic;
 	private String filename,foldername;
 	private File[] allFiles;
-    private String scanPath;
 	private String path = Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/";
-	//private MediaScannerConnection conn;
 	private TextView lati;
 	private TextView longi;
 	private TextView date;
@@ -405,10 +403,15 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	public void onTakePicture(DialogFragment dialog) {
 		idnum = (EditText) findViewById(R.id.idEdit);
 		File imageDirectory;
+		int numOfPics = 0;
 		if(!idnum.getText().toString().isEmpty()){
 			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+idnum.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
+				foldername = idnum.getText()+"/";
+			}
+			else{
+				numOfPics = imageDirectory.list().length;
 				foldername = idnum.getText()+"/";
 			}
 		}
@@ -427,12 +430,17 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				foldername = "New Entry-"+date+"("+String.valueOf(i--)+")"+"/";
 			}
 			imageDirectory.mkdir();
-			
 		}
 		
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
-		filename = String.valueOf(System.currentTimeMillis()) + ".jpg";
+		if(numOfPics == 0){
+			filename = idnum.getText()+".jpg";
+		}
+		else{
+			filename = idnum.getText()+"("+numOfPics+")"+".jpg";
+		}
+		System.out.println("Foldername = "+foldername);
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
 		
 		Uri outputFileUri = Uri.fromFile(file); 
@@ -444,7 +452,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
 		super.onActivityResult(requestCode, resultCode, data);
-		//TODO test on actual device
+		//TODO MAKE WORK!!!!!
 		if(resultCode == 1){
 			BitmapFactory.Options options = new BitmapFactory.Options();
 			options.inSampleSize = 4;
@@ -458,10 +466,8 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	        try {
 				mBitmap = Media.getBitmap(this.getContentResolver(), chosenImageUri);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	        pic.setImageBitmap(mBitmap);
@@ -474,25 +480,28 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		//TODO implement advanced gallery code
 		File folder = new File(path+idnum.getText()+"/");
         allFiles = folder.listFiles();
-        new SingleMediaScanner(this.getBaseContext(), allFiles[0]);
+        new MultiMediaScanner(this.getBaseContext(), allFiles);
 	}
     
-    public class SingleMediaScanner implements MediaScannerConnectionClient {
+    public class MultiMediaScanner implements MediaScannerConnectionClient {
 
         private MediaScannerConnection mMs;
-        private File mFile;
+        private File[] mFile;
 
-        public SingleMediaScanner(Context context, File f) {
+        public MultiMediaScanner(Context context, File[] f) {
             mFile = f;
             mMs = new MediaScannerConnection(context, this);
             mMs.connect();
         }
 
         public void onMediaScannerConnected() {
-            mMs.scanFile(mFile.getAbsolutePath(), null);
+        	for(int i = 0; i < mFile.length; i++){
+        		mMs.scanFile(mFile[i].getAbsolutePath(), null);
+        	}
         }
 
         public void onScanCompleted(String path, Uri uri) {
+        	//TODO fix to be correct intent
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(uri);
             startActivity(intent);

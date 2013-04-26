@@ -4,17 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-<<<<<<< HEAD
-=======
 import com.cs.pocketbotanist.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
-=======
->>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
-=======
->>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
