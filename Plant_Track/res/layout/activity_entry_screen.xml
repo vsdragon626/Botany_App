@@ -13,7 +13,7 @@
         <!-- Basic Information -->
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/basicInfoButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingLeft="10dp"
@@ -84,7 +84,7 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/speciesEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -115,7 +115,7 @@
         </RelativeLayout>
 
         <EditText
-            android:id="@+id/commonEditText"
+            android:id="@+id/commonEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -324,7 +324,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext1"
+            android:id="@+id/pNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -352,7 +352,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext2"
+            android:id="@+id/hNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -383,7 +383,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext3"
+            android:id="@+id/extra1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -413,7 +413,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext4"
+            android:id="@+id/extra2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -442,7 +442,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext5"
+            android:id="@+id/extra3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -471,7 +471,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext6"
+            android:id="@+id/extra4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"
@@ -500,7 +500,7 @@
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
-            android:id="@+id/bigtext7"
+            android:id="@+id/extra5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="200dp"

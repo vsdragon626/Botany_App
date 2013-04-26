@@ -8,6 +8,7 @@ import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -33,26 +34,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
-													 PhotoDialogFragment.PhotoDialogListener, 
-													 MediaScannerConnectionClient{
-	private EditText iD;
+													 PhotoDialogFragment.PhotoDialogListener{
 	private ImageView pic;
 	private String filename,foldername;
-	public String[] allFiles;
+	private File[] allFiles;
     private String scanPath;
 	private String path = Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/";
-	private MediaScannerConnection conn;
+	//private MediaScannerConnection conn;
+	private TextView lati;
+	private TextView longi;
+	private TextView date;
+	private TextView time;
+	private EditText idnum,species,common;
+	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			ActionBar actionBar = getActionBar();
 			actionBar.setTitle(extras.getString("passer"));
+			fillData(extras.getString("passer"));
 		}
 
 		final Button pButton = (Button) findViewById(R.id.picButton);
@@ -74,7 +80,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		final TextView date = (TextView) findViewById(R.id.dateTime);
 		date.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -83,11 +88,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		Calendar c = Calendar.getInstance();
-		String m = getMonth(c.get(Calendar.MONTH));
-		date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-
-		final TextView time = (TextView) findViewById(R.id.dateTime2);
 		time.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -97,9 +97,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-
-		pic = (ImageView) findViewById(R.id.image_preview);
 		pic.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -109,7 +106,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		final TextView lati = (TextView) findViewById(R.id.lat);
 		lati.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -119,9 +115,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		lati.setText("Click to Edit");
-
-		final TextView longi = (TextView) findViewById(R.id.lon);
 		longi.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -140,10 +133,134 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		longi.setText("Click to Edit");
-
 		updatePref();
 
+	}
+	
+	public void fillData(String id){
+		//TODO function that will fill the data if there is an entry in the database
+		if(id.equals("ST2-225")){
+			idnum = (EditText) findViewById(R.id.idEdit);
+			idnum.setText(id);
+			species = (EditText) findViewById(R.id.speciesEdit);
+			species.setText("Taraxacum Ocinale");
+			common = (EditText) findViewById(R.id.commonEdit);
+			common.setText("Dandelion");
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = (TextView) findViewById(R.id.dateTime);
+			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
+			time = (TextView) findViewById(R.id.dateTime2);
+			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+			pic = (ImageView) findViewById(R.id.image_preview);
+			pic.setImageResource(R.drawable.plant1);
+			lati = (TextView) findViewById(R.id.lat);
+			lati.setText("41.656497");
+			longi = (TextView) findViewById(R.id.lon);
+			longi.setText("-93.592873");
+			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
+			plantNotes.setText("This particular plant had a nearly flawless flower, with what looked like a heathly green stem.");
+			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
+			habitatNotes.setText("The habitat surrounding this plant was about standard for what you would exect");
+			extraNotes1 = (MultiAutoCompleteTextView) findViewById(R.id.extra1);
+			extraNotes1.setText("");
+			extraNotes2 = (MultiAutoCompleteTextView) findViewById(R.id.extra2);
+			extraNotes2.setText("");
+			extraNotes3 = (MultiAutoCompleteTextView) findViewById(R.id.extra3);
+			extraNotes3.setText("");
+			extraNotes4 = (MultiAutoCompleteTextView) findViewById(R.id.extra4);
+			extraNotes4.setText("");
+			extraNotes5 = (MultiAutoCompleteTextView) findViewById(R.id.extra5);
+			extraNotes5.setText("");
+			
+		}
+		else if(id.equals("PAPAVERACEAE")){
+			idnum = (EditText) findViewById(R.id.idEdit);
+			idnum.setText(id);
+			species = (EditText) findViewById(R.id.speciesEdit);
+			species.setText("Sanguinaria canadensis L.");
+			common = (EditText) findViewById(R.id.commonEdit);
+			common.setText("Bloodroot");
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = (TextView) findViewById(R.id.dateTime);
+			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
+			time = (TextView) findViewById(R.id.dateTime2);
+			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+			pic = (ImageView) findViewById(R.id.image_preview);
+			pic.setImageResource(R.drawable.plant0);
+			lati = (TextView) findViewById(R.id.lat);
+			lati.setText("42° 1' 49\" N");
+			longi = (TextView) findViewById(R.id.lon);
+			longi.setText("93° 35' 27\" W");
+			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
+			plantNotes.setText("");
+			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
+			habitatNotes.setText("Iowa: Story Co.: Ames: Carr Woods (East River Valley Access; flat wooded area, specimens interspersed among other members of the herbaceous layer)");
+			
+		}
+		else if(id.equals("CRASSULACEAE")){
+			idnum = (EditText) findViewById(R.id.idEdit);
+			idnum.setText(id);
+			species = (EditText) findViewById(R.id.speciesEdit);
+			species.setText("Penthorum sedoides L.");
+			common = (EditText) findViewById(R.id.commonEdit);
+			common.setText("Ditch Stonecrop");
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = (TextView) findViewById(R.id.dateTime);
+			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
+			time = (TextView) findViewById(R.id.dateTime2);
+			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+			pic = (ImageView) findViewById(R.id.image_preview);
+			pic.setImageResource(R.drawable.plant2);
+			lati = (TextView) findViewById(R.id.lat);
+			lati.setText("42° 4' 14\" N");
+			longi = (TextView) findViewById(R.id.lon);
+			longi.setText("93° 39' 4\" W");
+			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
+			plantNotes.setText("Quite abundant along the riverbank on the west side, south of the boat ramp/Riverside Dr. overpass.");
+			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
+			habitatNotes.setText("Iowa: Story Co.: Ames: Sleepy Hollow Access to South Skunk River.");
+		
+		}
+		else if(id.equals("COMMELINACEAE")){
+			idnum = (EditText) findViewById(R.id.idEdit);
+			idnum.setText(id);
+			species = (EditText) findViewById(R.id.speciesEdit);
+			species.setText("Tradescantia ohiensis Raf.");
+			common = (EditText) findViewById(R.id.commonEdit);
+			common.setText("Ohio Spiderwort");
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = (TextView) findViewById(R.id.dateTime);
+			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
+			time = (TextView) findViewById(R.id.dateTime2);
+			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+			pic = (ImageView) findViewById(R.id.image_preview);
+			pic.setImageResource(R.drawable.plant3);
+			lati = (TextView) findViewById(R.id.lat);
+			lati.setText("42° 3' 23\" N");
+			longi = (TextView) findViewById(R.id.lon);
+			longi.setText("93° 38' 42\" W");
+			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
+			plantNotes.setText("At the time of collection, Stange Rd. heading north ended in a T-intersection with Bloomington Dr.  Specimen was located in a routinely water-logged ditch on the north side of the T-intersection.  Subsequent urban development around 2007 or 2008 destroyed the habitat; Stange Rd. now runs further north, on top of where the population grew.");
+			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
+			habitatNotes.setText("Iowa: Story Co.: Ames: Intersection of Stange and Bloomington.");
+		}
+		else{
+			Calendar c = Calendar.getInstance();
+			String m = getMonth(c.get(Calendar.MONTH));
+			date = (TextView) findViewById(R.id.dateTime);
+			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
+			time = (TextView) findViewById(R.id.dateTime2);
+			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
+			lati = (TextView) findViewById(R.id.lat);
+			lati.setText("Click to Edit");
+			longi = (TextView) findViewById(R.id.lon);
+			longi.setText("Click to Edit");
+			pic = (ImageView) findViewById(R.id.image_preview);
+		}
 	}
 
 	@Override
@@ -161,7 +278,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv9.setText(sharedPrefs.getString("editTextPref1", "Nothing"));
 			RelativeLayout erl1 = (RelativeLayout) findViewById(R.id.extraRealative1);
 			erl1.setVisibility(0);
-			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.extra1);
 			btv3.setVisibility(0);
 		}
 		else{
@@ -169,7 +286,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv9.setVisibility(8);
 			RelativeLayout erl1 = (RelativeLayout) findViewById(R.id.extraRealative1);
 			erl1.setVisibility(8);
-			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+			MultiAutoCompleteTextView btv3 = (MultiAutoCompleteTextView) findViewById(R.id.extra1);
 			btv3.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref2", false)){
@@ -178,7 +295,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv10.setText(sharedPrefs.getString("editTextPref2", "Nothing"));
 			RelativeLayout erl2 = (RelativeLayout) findViewById(R.id.extraRealative2);
 			erl2.setVisibility(0);
-			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext4);
+			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.extra2);
 			btv4.setVisibility(0);
 		}
 		else{
@@ -186,7 +303,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv10.setVisibility(8);
 			RelativeLayout erl2 = (RelativeLayout) findViewById(R.id.extraRealative2);
 			erl2.setVisibility(8);
-			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext4);
+			MultiAutoCompleteTextView btv4 = (MultiAutoCompleteTextView) findViewById(R.id.extra2);
 			btv4.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref3", false)){
@@ -195,7 +312,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv11.setText(sharedPrefs.getString("editTextPref3", "Nothing"));
 			RelativeLayout erl3 = (RelativeLayout) findViewById(R.id.extraRealative3);
 			erl3.setVisibility(0);
-			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext5);
+			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.extra3);
 			btv5.setVisibility(0);
 		}
 		else{
@@ -203,7 +320,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv11.setVisibility(8);
 			RelativeLayout erl3 = (RelativeLayout) findViewById(R.id.extraRealative3);
 			erl3.setVisibility(8);
-			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext5);
+			MultiAutoCompleteTextView btv5 = (MultiAutoCompleteTextView) findViewById(R.id.extra3);
 			btv5.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref4", false)){
@@ -212,7 +329,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv12.setText(sharedPrefs.getString("editTextPref4", "Nothing"));
 			RelativeLayout erl4 = (RelativeLayout) findViewById(R.id.extraRealative4);
 			erl4.setVisibility(0);
-			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext6);
+			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.extra4);
 			btv6.setVisibility(0);
 		}
 		else{
@@ -220,7 +337,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv12.setVisibility(8);
 			RelativeLayout erl4 = (RelativeLayout) findViewById(R.id.extraRealative4);
 			erl4.setVisibility(8);
-			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext6);
+			MultiAutoCompleteTextView btv6 = (MultiAutoCompleteTextView) findViewById(R.id.extra4);
 			btv6.setVisibility(8);
 		}
 		if(sharedPrefs.getBoolean("SwitchPref5", false)){
@@ -229,7 +346,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv13.setText(sharedPrefs.getString("editTextPref5", "Nothing"));
 			RelativeLayout erl5 = (RelativeLayout) findViewById(R.id.extraRealative5);
 			erl5.setVisibility(0);
-			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext7);
+			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.extra5);
 			btv7.setVisibility(0);
 		}
 		else{
@@ -237,7 +354,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			tv13.setVisibility(8);
 			RelativeLayout erl5 = (RelativeLayout) findViewById(R.id.extraRealative5);
 			erl5.setVisibility(8);
-			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext7);
+			MultiAutoCompleteTextView btv7 = (MultiAutoCompleteTextView) findViewById(R.id.extra5);
 			btv7.setVisibility(8);
 		}
 	}
@@ -286,13 +403,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
-		iD = (EditText) findViewById(R.id.idEdit);
+		idnum = (EditText) findViewById(R.id.idEdit);
 		File imageDirectory;
-		if(!iD.getText().toString().isEmpty()){
-			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+iD.getText()+"/");
+		if(!idnum.getText().toString().isEmpty()){
+			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+idnum.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
-				foldername = iD.getText()+"/";
+				foldername = idnum.getText()+"/";
 			}
 		}
 		else{
@@ -322,6 +439,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
 
 		startActivityForResult(takePictureIntent, 1);
+		
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -335,7 +453,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		}
 		else if(resultCode == 2){
 			Uri chosenImageUri = data.getData();
-
+			
 	        Bitmap mBitmap = null;
 	        try {
 				mBitmap = Media.getBitmap(this.getContentResolver(), chosenImageUri);
@@ -354,54 +472,33 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	@Override
 	public void onChoosePicture(DialogFragment dialog) {
 		//TODO implement advanced gallery code
-//		Uri p = Uri.parse(path);
-//		Intent intent = new Intent();
-//		intent.setType("image/*");
-//		intent.setData(p);
-//		intent.setAction(Intent.ACTION_GET_CONTENT);
-//		startActivityForResult(Intent.createChooser(intent, "Select Picture"),2);
-		File folder = new File(path);
-        allFiles = folder.list();
-
-        scanPath=path+allFiles[0];
-        
-        startScan();
+		File folder = new File(path+idnum.getText()+"/");
+        allFiles = folder.listFiles();
+        new SingleMediaScanner(this.getBaseContext(), allFiles[0]);
 	}
-	
-	private void startScan()
-    {
-        if(conn!=null)
-        {
-            conn.disconnect();
+    
+    public class SingleMediaScanner implements MediaScannerConnectionClient {
+
+        private MediaScannerConnection mMs;
+        private File mFile;
+
+        public SingleMediaScanner(Context context, File f) {
+            mFile = f;
+            mMs = new MediaScannerConnection(context, this);
+            mMs.connect();
         }
 
-        conn = new MediaScannerConnection(this, this);
-        conn.connect();
-    }
-
-
-    public void onMediaScannerConnected()
-    {
-        conn.scanFile(scanPath, "image/*");    
-    }
-
-
-    public void onScanCompleted(String path, Uri uri)
-    {
-        try
-        {
-            if (uri != null) 
-            {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(uri);
-                startActivity(intent);
-            }
+        public void onMediaScannerConnected() {
+            mMs.scanFile(mFile.getAbsolutePath(), null);
         }
-        finally 
-        {
-            conn.disconnect();
-            conn = null;
+
+        public void onScanCompleted(String path, Uri uri) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(uri);
+            startActivity(intent);
+            mMs.disconnect();
         }
+
     }
 	
 	public String getMonth(int month){

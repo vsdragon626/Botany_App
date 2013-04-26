@@ -24,7 +24,7 @@ import android.widget.TextView;
 public class HomeScreen extends Activity {
 	
 	ListView listView;
-	private final String[] values = new String[] {"ST2-225","ST3-212","ST3-123","ST4-145"};
+	private final String[] values = new String[] {"ST2-225","PAPAVERACEAE","CRASSULACEAE","COMMELINACEAE"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class HomeScreen extends Activity {
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				//This needs to happen even when the cursor is added
-				entryScreenList(((TextView) view).getText().toString());
+				entryScreen(((TextView) view).getText().toString());
 			}
 		});
 	}
@@ -92,19 +92,14 @@ public class HomeScreen extends Activity {
 	    	map1_3();
 	    	return true;
 	    case R.id.menu_edit:
-	    	entryScreen();
+	    	entryScreen("New Entry");
 	    	return true;
 	    default:
 	        return super.onOptionsItemSelected(item);
 	    }
 	}
-	public void entryScreen(){
-		Intent intent = new Intent(getBaseContext(), EntryScreen.class);
-		intent.putExtra("passer", "New Entry");
-		startActivity(intent);
-	}
 	
-	public void entryScreenList(String t){
+	public void entryScreen(String t){
 		Intent intent = new Intent(getBaseContext(), EntryScreen.class);
 		intent.putExtra("passer", t);
 		startActivity(intent);
