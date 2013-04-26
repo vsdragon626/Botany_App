@@ -29,13 +29,14 @@ import android.widget.Spinner;
 import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
 import edu.drake.pocketbotanist.database.EntryTable;
 
-import com.cs.pocketbotanist.R;
 
-public class HomeScreen extends Activity implements
+public class HomeScreen extends ListActivity implements
 LoaderManager.LoaderCallbacks<Cursor> {
 	
-	ListView listView;
-	private final String[] values = new String[] {"ST2-225","ST3-212","ST3-123","ST4-145"};
+		
+	 private static final int ACTIVITY_CREATE = 0;
+	  private static final int ACTIVITY_EDIT = 1;
+	  private static final int DELETE_ID = Menu.FIRST + 1;
 	
 	 // private Cursor cursor;
 	  private SimpleCursorAdapter adapter;
@@ -44,6 +45,7 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_screen);
+		this.getListView().setDividerHeight(2);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		//Drop down list code
@@ -52,15 +54,9 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
 		
-		//created a simple listview, but need to change to take data in from a cursor.
-		listView = (ListView) findViewById(R.id.mainlistview);
-		updateList();
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				//TODO action taken on selection of row
-				entryScreen();
-			}
-		});
+		fillData();
+		registerForContextMenu(getListView());
+		
 	}
 	
 	@Override
@@ -69,18 +65,23 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 	
-	private void updateList() {
-		ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, values){
-			@Override
-			public View getView(int position, View convertView, ViewGroup parent) {
-				View view =super.getView(position, convertView, parent);
-				return view;
-			}
-		};
-		
-		listView.setAdapter(adapter);
-	}
 
+	@Override
+	  public boolean onContextItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case DELETE_ID:
+	      AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+	          .getMenuInfo();
+	      Uri uri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/"
+	          + info.id);
+	      getContentResolver().delete(uri, null, null);
+	      fillData();
+	      return true;
+	    }
+	    return super.onContextItemSelected(item);
+	  }
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -119,21 +120,49 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		Intent map13 = new Intent(getBaseContext(),Entrymap_1_3.class);
         startActivity(map13);
 	}
+	
+	
+	  // Opens the second activity if an entry is clicked
+	  @Override
+	  protected void onListItemClick(ListView l, View v, int position, long id) {
+	    super.onListItemClick(l, v, position, id);
+	    Intent i = new Intent(this, EntryScreen.class);
+	    Uri itemUri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/" + id);
+	    i.putExtra(MyEntryContentProvider.CONTENT_ITEM_TYPE, itemUri);
+
+	    startActivity(i);
+	  }
 
 	@Override
-	//When we create the loader we're going to get the projection for the ID customID and common name columns
+	//When we create the loader we're going to get the projection for the ID, customID, species name, and time columns
 	//(insures that these exist within the database)
 	//then we create our cursor loader which will be responsible for loading data from the database
-	//using the projection and our content providor
+	//using the projection and our content provider
 	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_COMMONNAME };
+		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_TIME };
 	    CursorLoader cursorLoader = new CursorLoader(this,
 	        MyEntryContentProvider.CONTENT_URI, projection, null, null, null);
 	    return cursorLoader;
 	}
+	
+	private void fillData() {
+
+	    // Fields from the database (projection)
+	    // Must include the _id column for the adapter to work
+	    String[] from = new String[] { EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES , EntryTable.COLUMN_TIME };
+	    // Fields on the UI to which we map
+	    int[] to = new int[] { R.id.customidlabel, R.id.namelabel, R.id.timelabel };
+
+	    getLoaderManager().initLoader(0, null, this);
+	    adapter = new SimpleCursorAdapter(this, R.layout.list_row, null, from,
+	        to, 0);
+
+	    setListAdapter(adapter);
+	  }
+
 
 	@Override
-	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
+	public void onLoadFinished(Loader<Cursor> arg0, Cursor data) {
 		adapter.swapCursor(data);		
 	}
 
