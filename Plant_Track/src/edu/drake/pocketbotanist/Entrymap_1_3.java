@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
+<<<<<<< HEAD
+=======
+import com.cs.pocketbotanist.R;
+import com.google.android.gms.maps.CameraUpdateFactory;
+>>>>>>> bdfaca179d552be04e7858257ff335377fe2cdf8
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -17,10 +23,13 @@ public class Entrymap_1_3<GoogleMap> extends Activity {
 	 
 		com.google.android.gms.maps.GoogleMap mMap;
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+		mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(null, 41, -93, 0));
 		((com.google.android.gms.maps.GoogleMap) mMap).addMarker(new MarkerOptions()
-		        .position(new LatLng(0, 0))
-		        .title("Hello world"));
-		
+		        .position(new LatLng(41.601378, -93.6518857))
+		        .title("ST2-225")
+				.snippet("41.601378, -93.6518857")
+				.icon(BitmapDescriptorFactory.fromResource(R.drawable.pb_marker))
+				);
 	}
 
 	@Override
