@@ -32,9 +32,11 @@ import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener{
+	private int numTimes;
 	private ImageView pic;
 	private String filename,foldername;
 	private File[] allFiles;
@@ -440,7 +442,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		else{
 			filename = idnum.getText()+"("+numOfPics+")"+".jpg";
 		}
-		System.out.println("Foldername = "+foldername);
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
 		
 		Uri outputFileUri = Uri.fromFile(file); 
@@ -450,37 +451,20 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		super.onActivityResult(requestCode, resultCode, data);
-		//TODO MAKE WORK!!!!!
-		if(resultCode == 1){
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize = 4;
-			Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername+filename, options);
-			pic.setImageBitmap(bitmap);
-		}
-		else if(resultCode == 2){
-			Uri chosenImageUri = data.getData();
-			
-	        Bitmap mBitmap = null;
-	        try {
-				mBitmap = Media.getBitmap(this.getContentResolver(), chosenImageUri);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	        pic.setImageBitmap(mBitmap);
-		}
-
-	}
-
 	@Override
-	public void onChoosePicture(DialogFragment dialog) {
+	public void onViewPicture(DialogFragment dialog) {
 		//TODO implement advanced gallery code
 		File folder = new File(path+idnum.getText()+"/");
-        allFiles = folder.listFiles();
-        new MultiMediaScanner(this.getBaseContext(), allFiles);
+		if(!folder.exists()){
+			folder.mkdir();
+		}
+		allFiles = folder.listFiles();
+		if(allFiles.length == 0){
+			Toast.makeText(getBaseContext(), "No pictures currently associated with this entry.", Toast.LENGTH_SHORT).show();
+		}
+		else{
+			new MultiMediaScanner(this.getBaseContext(), allFiles);
+		}
 	}
     
     public class MultiMediaScanner implements MediaScannerConnectionClient {
@@ -501,11 +485,16 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
         }
 
         public void onScanCompleted(String path, Uri uri) {
-        	//TODO fix to be correct intent
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(uri);
-            startActivity(intent);
-            mMs.disconnect();
+        	if(numTimes==mFile.length-1){
+        		Intent intent = new Intent(Intent.ACTION_VIEW);
+            	intent.setData(uri);
+            	startActivity(intent);
+            	mMs.disconnect();
+            	numTimes=0;
+        	}
+        	else{
+            	numTimes++;
+        	}
         }
 
     }
