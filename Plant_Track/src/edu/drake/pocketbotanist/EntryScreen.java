@@ -448,7 +448,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 	@Override
 	public void onViewPicture(DialogFragment dialog) {
-		//TODO implement advanced gallery code
 		File folder = new File(path+idnum.getText()+"/");
 		if(!folder.exists()){
 			folder.mkdir();
