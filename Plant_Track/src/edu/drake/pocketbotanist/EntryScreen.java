@@ -56,7 +56,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			fillData(extras.getString("passer"));
 		}
 
-		final Button pButton = (Button) findViewById(R.id.picButton);
+		final TextView pButton = (TextView) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
@@ -65,7 +65,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		final Button lButton = (Button) findViewById(R.id.locButton);
+		final TextView lButton = (TextView) findViewById(R.id.locButton);
 		lButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -444,6 +444,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 		startActivityForResult(takePictureIntent, 1);
 		
+		//TODO write method to fill picture
 	}
 
 	@Override
