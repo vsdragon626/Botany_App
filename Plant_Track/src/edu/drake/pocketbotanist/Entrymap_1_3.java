@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -19,7 +21,7 @@ public class Entrymap_1_3<GoogleMap> extends Activity {
 	 
 		com.google.android.gms.maps.GoogleMap mMap;
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-		mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(null, 41, -93, 0));
+		//mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(null, 41, -93, 0));
 		((com.google.android.gms.maps.GoogleMap) mMap).addMarker(new MarkerOptions()
 		        .position(new LatLng(41.601378, -93.6518857))
 		        .title("ST2-225")

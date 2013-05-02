@@ -18,9 +18,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.LayoutInflater.Filter;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -42,7 +48,12 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	private TextView time;
 	private EditText idnum,species,common;
 	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
-
+	private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
+    File imagePath;
+    File[] images;
+    int iter = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,12 +103,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		pic.setOnClickListener(new View.OnClickListener() {
+		pic.setOnLongClickListener(new View.OnLongClickListener() {
 
 			@Override
-			public void onClick(View v){
+			public boolean onLongClick(View v){
 				PhotoDialogFragment photoDialog = new PhotoDialogFragment();
 				photoDialog.show(getFragmentManager(), "Photo Dialog");
+				return true;
 			}
 		});
 
@@ -127,10 +139,57 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				finish();
 			}
 		});
+		
+		imagePath = new File(path+idnum.getText().toString());
+		images = imagePath.listFiles();
+		gestureDetector = new GestureDetector(this, new myGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        }; 
+        pic.setOnTouchListener(gestureListener);
 
 		updatePref();
 
 	}
+	
+	class myGestureDetector extends SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        	images = imagePath.listFiles();
+        	try {
+                if (Math.abs(e1.getY() - e2.getY()) > 250)
+                    return false;
+                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 200) {
+                	//TODO Left Swipe
+                	if(iter>0){
+                		iter--;
+                	}
+                	else{
+                		iter = images.length-1;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 200) {
+                    //TODO Right Swipe
+                	if(iter>images.length-1){
+                		iter++;
+                	}
+                	else{
+                		iter = 0;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
+                }
+            	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
+            	pic.setImageURI(pathUri);
+            } catch (Exception e) {
+                Log.v("Gesture Error", "Failed to read gesture");
+            }
+            return false;
+        }
+    }
 	
 	public void fillData(String id){
 		//TODO function that will fill the data if there is an entry in the database
