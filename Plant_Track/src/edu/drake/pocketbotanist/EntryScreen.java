@@ -1,8 +1,6 @@
 package edu.drake.pocketbotanist;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Calendar;
 
 import android.app.ActionBar;
@@ -13,8 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
@@ -22,9 +18,12 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images.Media;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,9 +31,11 @@ import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 													 PhotoDialogFragment.PhotoDialogListener{
+	private int numTimes;
 	private ImageView pic;
 	private String filename,foldername;
 	private File[] allFiles;
@@ -45,7 +46,12 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	private TextView time;
 	private EditText idnum,species,common;
 	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
-
+	private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
+    File imagePath;
+    File[] images;
+    int iter = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +65,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			fillData(extras.getString("passer"));
 		}
 
-		final Button pButton = (Button) findViewById(R.id.picButton);
+		final TextView pButton = (TextView) findViewById(R.id.picButton);
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
@@ -68,7 +74,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		final Button lButton = (Button) findViewById(R.id.locButton);
+		final TextView lButton = (TextView) findViewById(R.id.locButton);
 		lButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -95,12 +101,13 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
-		pic.setOnClickListener(new View.OnClickListener() {
+		pic.setOnLongClickListener(new View.OnLongClickListener() {
 
 			@Override
-			public void onClick(View v){
+			public boolean onLongClick(View v){
 				PhotoDialogFragment photoDialog = new PhotoDialogFragment();
 				photoDialog.show(getFragmentManager(), "Photo Dialog");
+				return true;
 			}
 		});
 
@@ -130,10 +137,57 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 				finish();
 			}
 		});
+		
+		imagePath = new File(path+idnum.getText().toString());
+		images = imagePath.listFiles();
+		gestureDetector = new GestureDetector(this, new myGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        }; 
+        pic.setOnTouchListener(gestureListener);
 
 		updatePref();
 
 	}
+	
+	class myGestureDetector extends SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        	images = imagePath.listFiles();
+        	try {
+                if (Math.abs(e1.getY() - e2.getY()) > 250)
+                    return false;
+                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 200) {
+                	//TODO Left Swipe
+                	if(iter>0){
+                		iter--;
+                	}
+                	else{
+                		iter = images.length-1;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 200) {
+                    //TODO Right Swipe
+                	if(iter>images.length-1){
+                		iter++;
+                	}
+                	else{
+                		iter = 0;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
+                }
+            	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
+            	pic.setImageURI(pathUri);
+            } catch (Exception e) {
+                Log.v("Gesture Error", "Failed to read gesture");
+            }
+            return false;
+        }
+    }
 	
 	public void fillData(String id){
 		//TODO function that will fill the data if there is an entry in the database
@@ -440,7 +494,6 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		else{
 			filename = idnum.getText()+"("+numOfPics+")"+".jpg";
 		}
-		System.out.println("Foldername = "+foldername);
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
 		
 		Uri outputFileUri = Uri.fromFile(file); 
@@ -448,39 +501,22 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 		startActivityForResult(takePictureIntent, 1);
 		
-	}
-
-	public void onActivityResult(int requestCode, int resultCode, Intent data){
-		super.onActivityResult(requestCode, resultCode, data);
-		//TODO MAKE WORK!!!!!
-		if(resultCode == 1){
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inSampleSize = 4;
-			Bitmap bitmap = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername+filename, options);
-			pic.setImageBitmap(bitmap);
-		}
-		else if(resultCode == 2){
-			Uri chosenImageUri = data.getData();
-			
-	        Bitmap mBitmap = null;
-	        try {
-				mBitmap = Media.getBitmap(this.getContentResolver(), chosenImageUri);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	        pic.setImageBitmap(mBitmap);
-		}
-
+		//TODO write method to fill picture
 	}
 
 	@Override
-	public void onChoosePicture(DialogFragment dialog) {
-		//TODO implement advanced gallery code
+	public void onViewPicture(DialogFragment dialog) {
 		File folder = new File(path+idnum.getText()+"/");
-        allFiles = folder.listFiles();
-        new MultiMediaScanner(this.getBaseContext(), allFiles);
+		if(!folder.exists()){
+			folder.mkdir();
+		}
+		allFiles = folder.listFiles();
+		if(allFiles.length == 0){
+			Toast.makeText(getBaseContext(), "No pictures currently associated with this entry.", Toast.LENGTH_SHORT).show();
+		}
+		else{
+			new MultiMediaScanner(this.getBaseContext(), allFiles);
+		}
 	}
     
     public class MultiMediaScanner implements MediaScannerConnectionClient {
@@ -501,11 +537,16 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
         }
 
         public void onScanCompleted(String path, Uri uri) {
-        	//TODO fix to be correct intent
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(uri);
-            startActivity(intent);
-            mMs.disconnect();
+        	if(numTimes==mFile.length-1){
+        		Intent intent = new Intent(Intent.ACTION_VIEW);
+            	intent.setData(uri);
+            	startActivity(intent);
+            	mMs.disconnect();
+            	numTimes=0;
+        	}
+        	else{
+            	numTimes++;
+        	}
         }
 
     }

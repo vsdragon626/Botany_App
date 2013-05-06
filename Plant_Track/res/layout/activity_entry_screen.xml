@@ -12,12 +12,14 @@
 
         <!-- Basic Information -->
 
-        <Button
+        <TextView
             android:id="@+id/basicInfoButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:gravity="bottom"
             android:paddingLeft="10dp"
-            android:text="@string/BasicInfoButton" />
+            android:text="@string/BasicInfoButton"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -169,12 +171,14 @@
 
         <!-- Picture section -->
 
-        <Button
+        <TextView
             android:id="@+id/picButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:gravity="bottom"
             android:paddingLeft="10dp"
-            android:text="@string/pic" />
+            android:text="@string/pic"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -199,12 +203,14 @@
 
         <!-- Location Section -->
 
-        <Button
+        <TextView
             android:id="@+id/locButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:gravity="bottom"
             android:paddingLeft="10dp"
-            android:text="@string/loca" />
+            android:text="@string/loca"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -284,12 +290,14 @@
 
         <!-- Notes Section -->
 
-        <Button
+        <TextView
             android:id="@+id/noteButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:gravity="bottom"
             android:paddingLeft="10dp"
-            android:text="@string/note" />
+            android:text="@string/note"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -515,18 +523,18 @@
             android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/saveButton"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:text="@string/save" />
-
-            <Button
                 android:id="@+id/cancelButton"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:text="@string/cancel" />
+            
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:text="@string/save" />
         </RelativeLayout>
     </LinearLayout>
 

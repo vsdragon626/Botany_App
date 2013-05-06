@@ -157,47 +157,27 @@ containing a value of this type.
         public static final int activity_vertical_margin=0x7f080001;
     }
     public static final class drawable {
-        public static final int ic_action_attach=0x7f020000;
-        public static final int ic_action_call=0x7f020001;
-        public static final int ic_action_copy=0x7f020002;
-        public static final int ic_action_cut=0x7f020003;
-        public static final int ic_action_delete=0x7f020004;
-        public static final int ic_action_done=0x7f020005;
-        public static final int ic_action_edit=0x7f020006;
-        public static final int ic_action_locate=0x7f020007;
-        public static final int ic_action_mail=0x7f020008;
-        public static final int ic_action_mail_add=0x7f020009;
-        public static final int ic_action_microphone=0x7f02000a;
-        public static final int ic_action_overflow=0x7f02000b;
-        public static final int ic_action_paste=0x7f02000c;
-        public static final int ic_action_photo=0x7f02000d;
-        public static final int ic_action_refresh=0x7f02000e;
-        public static final int ic_action_search=0x7f02000f;
-        public static final int ic_action_select_all=0x7f020010;
-        public static final int ic_action_send=0x7f020011;
-        public static final int ic_action_settings=0x7f020012;
-        public static final int ic_action_share=0x7f020013;
-        public static final int ic_action_star=0x7f020014;
-        public static final int ic_action_user=0x7f020015;
-        public static final int ic_action_user_add=0x7f020016;
-        public static final int ic_action_video=0x7f020017;
-        public static final int ic_launcher=0x7f020018;
-        public static final int launcher_icon_512=0x7f020019;
-        public static final int map=0x7f02001a;
-        public static final int pb_marker=0x7f02001b;
-        public static final int plant0=0x7f02001c;
-        public static final int plant1=0x7f02001d;
-        public static final int plant2=0x7f02001e;
-        public static final int plant3=0x7f02001f;
-        public static final int pushpin=0x7f020020;
-        public static final int screen1_3=0x7f020021;
-        public static final int screen2_3=0x7f020022;
+        public static final int entry=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
+        public static final int launcher_icon_512=0x7f020002;
+        public static final int map=0x7f020003;
+        public static final int map_icon=0x7f020004;
+        public static final int pb_marker=0x7f020005;
+        public static final int pblogo=0x7f020006;
+        public static final int plant0=0x7f020007;
+        public static final int plant1=0x7f020008;
+        public static final int plant2=0x7f020009;
+        public static final int plant3=0x7f02000a;
+        public static final int pushpin=0x7f02000b;
+        public static final int screen1_3=0x7f02000c;
+        public static final int screen2_3=0x7f02000d;
+        public static final int search_icon=0x7f02000e;
     }
     public static final class id {
         public static final int action_settings=0x7f05003f;
         public static final int action_spinner=0x7f050031;
         public static final int basicInfoButton=0x7f050006;
-        public static final int cancelButton=0x7f05002e;
+        public static final int cancelButton=0x7f05002d;
         public static final int commonEdit=0x7f05000c;
         public static final int commonText=0x7f05000b;
         public static final int dateTime=0x7f05000e;
@@ -241,7 +221,7 @@ containing a value of this type.
         public static final int relative1=0x7f050035;
         public static final int relativeView5=0x7f05002c;
         public static final int satellite=0x7f050002;
-        public static final int saveButton=0x7f05002d;
+        public static final int saveButton=0x7f05002e;
         public static final int scrollView1=0x7f050005;
         public static final int speciesEdit=0x7f05000a;
         public static final int terrain=0x7f050003;
@@ -413,12 +393,6 @@ containing a value of this type.
 
     
  API 11 theme customizations can go here. 
-
-        Base application theme for API 14+. This theme completely replaces
-        AppBaseTheme from BOTH res/values/styles.xml and
-        res/values-v11/styles.xml on API 14+ devices.
-    
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 

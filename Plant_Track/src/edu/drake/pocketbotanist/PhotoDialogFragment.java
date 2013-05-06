@@ -9,10 +9,10 @@ import android.os.Bundle;
 
 public class PhotoDialogFragment extends DialogFragment{
 	
-	private String[] options = {"Take Picture","Choose Picture"};
+	private String[] options = {"Take Picture","View Pictures"};
 	public interface PhotoDialogListener{
 		public void onTakePicture(DialogFragment dialog);
-		public void onChoosePicture(DialogFragment dialog);
+		public void onViewPicture(DialogFragment dialog);
 	}
 	
 	PhotoDialogListener pListener;
@@ -37,7 +37,7 @@ public class PhotoDialogFragment extends DialogFragment{
 	            		  pListener.onTakePicture(PhotoDialogFragment.this);
 	            	  }
 	            	  else{
-	            		  pListener.onChoosePicture(PhotoDialogFragment.this);
+	            		  pListener.onViewPicture(PhotoDialogFragment.this);
 	            	  }
 	           }
 	    });
