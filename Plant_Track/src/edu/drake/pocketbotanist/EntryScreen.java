@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
@@ -21,12 +22,10 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.LayoutInflater.Filter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,10 +48,11 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	private EditText idnum,species,common;
 	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
 	private GestureDetector gestureDetector;
-    View.OnTouchListener gestureListener;
-    File imagePath;
-    File[] images;
-    int iter = 0;
+    private View.OnTouchListener gestureListener;
+    private File imagePath;
+    private File[] images;
+    private int iter = 0;
+    private boolean picAdded = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -161,19 +161,19 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
         	try {
                 if (Math.abs(e1.getY() - e2.getY()) > 250)
                     return false;
-                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 200) {
+                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 150) {
                 	//TODO Left Swipe
-                	if(iter>0){
-                		iter--;
+                	if(iter <= 0 && iter < images.length-1){
+                		iter++;
                 	}
                 	else{
                 		iter = images.length-1;
                 	}
                 	System.out.print("Iter:"+iter+" In subtraction");
                 	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
-                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 200) {
+                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 150) {
                     //TODO Right Swipe
-                	if(iter>images.length-1){
+                	if(iter > images.length-1 && iter >= 0){
                 		iter++;
                 	}
                 	else{
@@ -184,12 +184,49 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
                 }
             	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
             	pic.setImageURI(pathUri);
+            	picAdded = true;
             } catch (Exception e) {
                 Log.v("Gesture Error", "Failed to read gesture");
             }
             return false;
         }
     }
+	/*
+	 * Try and work this in
+	 * public static Bitmap loadImageFromUrl(String url) {
+
+        Bitmap bm;
+        try {  
+
+                URL aURL = new URL(url);  
+                URLConnection conn = aURL.openConnection(); 
+
+                conn.connect();  
+                InputStream is = null;
+                try
+                {
+                 is= conn.getInputStream();  
+                }catch(IOException e)
+                {
+                     return null;
+                }
+
+                BufferedInputStream bis = new BufferedInputStream(is);  
+
+                bm = BitmapFactory.decodeStream(bis);
+
+                bis.close();  
+                is.close();  
+
+           } catch (IOException e) {  
+            return null;
+           }  
+
+        return  Bitmap.createScaledBitmap(bm,100,100,true);
+
+
+    }
+	 */
 	
 	public void fillData(String id){
 		//TODO function that will fill the data if there is an entry in the database
@@ -207,7 +244,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant1);
+			if(!picAdded) pic.setImageResource(R.drawable.plant1);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("41.656497");
 			longi = (TextView) findViewById(R.id.lon);
@@ -242,7 +279,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant0);
+			if(!picAdded) pic.setImageResource(R.drawable.plant0);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 1' 49\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -267,7 +304,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant2);
+			if(!picAdded) pic.setImageResource(R.drawable.plant2);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 4' 14\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -292,7 +329,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant3);
+			if(!picAdded) pic.setImageResource(R.drawable.plant3);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 3' 23\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -503,7 +540,14 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
 		startActivityForResult(takePictureIntent, 1);
 		
-		//TODO write method to fill picture
+		fillPic(file);
+	}
+	
+	public void fillPic(File f){
+		pic.setImageURI(null);
+		Uri pathUri = Uri.parse(f.getAbsolutePath());
+    	pic.setImageURI(pathUri);
+    	picAdded = true;
 	}
 
 	@Override

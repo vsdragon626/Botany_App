@@ -2,18 +2,18 @@
 
     <item android:id="@+id/menu_search"
           android:title="@string/menu_search"
-          android:icon="@drawable/search_icon"
+          android:icon="@drawable/search_small"
           android:showAsAction="ifRoom|collapseActionView"
           android:actionViewClass="android.widget.SearchView" />
     
     <item
         android:id="@+id/menu_map"
-        android:icon="@drawable/map_icon"
+        android:icon="@drawable/map_small"
         android:showAsAction="ifRoom"
         android:title="@string/menu_map"/>
     <item
         android:id="@+id/menu_edit"
-        android:icon="@drawable/entry"
+        android:icon="@drawable/entry_small"
         android:showAsAction="ifRoom"
         android:title="@string/menu_edit"/>
     <item
