@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Database-Branch
 public class ManualLocationActivity extends Activity {
 
 	@Override

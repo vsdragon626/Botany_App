@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+<<<<<<< HEAD
 import android.widget.Toast;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
@@ -55,12 +56,63 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
     File[] images;
     int iter = 0;
 	
+=======
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.widget.EditText;
+import android.widget.Spinner;
+import edu.drake.pocketbotanist.contentprovider.*;
+import edu.drake.pocketbotanist.database.*;
+
+
+public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
+PhotoDialogFragment.PhotoDialogListener {
+	private Uri itemUri;
+	private EditText mSpecies;
+	private EditText mID;
+	private EditText mCommonName;
+	private TextView mDate;
+	private TextView mTime;
+	private ImageView mPhoto;
+	private TextView mLongitude;
+	private TextView mLatitude;
+	private MultiAutoCompleteTextView mPlantNotes;
+	private MultiAutoCompleteTextView mHabitatNotes;
+	private MultiAutoCompleteTextView mExtraNotes1;
+	private MultiAutoCompleteTextView mExtraNotes2;
+	private MultiAutoCompleteTextView mExtraNotes3;
+	private MultiAutoCompleteTextView mExtraNotes4;
+	private MultiAutoCompleteTextView mExtraNotes5;
+
+>>>>>>> origin/Database-Branch
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+		mSpecies = (EditText) findViewById(R.id.editText1);
+		mID = (EditText) findViewById(R.id.editText1);
+		mCommonName = (EditText) findViewById(R.id.editText1);
+		mDate = (TextView) findViewById(R.id.textView5);
+		mTime = (TextView) findViewById(R.id.textView5);
+		mPhoto = (ImageView) findViewById(R.id.image_preview);
+		mLongitude = (TextView) findViewById(R.id.textView5);
+		mLatitude = (TextView) findViewById(R.id.textView5);
+		mPlantNotes = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mHabitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mExtraNotes1 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mExtraNotes2 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mExtraNotes3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mExtraNotes4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
+		mExtraNotes5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
 		
+		Button saveButton = (Button) findViewById(R.id.button5);
+		
+<<<<<<< HEAD
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			ActionBar actionBar = getActionBar();
@@ -69,6 +121,17 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		}
 
 		final TextView pButton = (TextView) findViewById(R.id.picButton);
+=======
+		saveButton.setOnClickListener(new View.OnClickListener() {
+		      public void onClick(View view) {
+		          saveState();
+		    	  finish();
+		      }
+
+		    });
+
+		final Button pButton = (Button) findViewById(R.id.picButton);
+>>>>>>> origin/Database-Branch
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
@@ -132,6 +195,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			}
 		});
 
+<<<<<<< HEAD
 		final Button cancel = (Button) findViewById(R.id.cancelButton);
 		cancel.setOnClickListener(new View.OnClickListener() {
 
@@ -150,10 +214,27 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
             }
         }; 
         pic.setOnTouchListener(gestureListener);
+=======
+		longi.setText("Click to Edit");
+>>>>>>> origin/Database-Branch
 
 		updatePref();
 
+		Bundle extras = getIntent().getExtras();
+
+		// Check from the saved Instance
+		itemUri = (savedInstanceState == null) ? null : (Uri) savedInstanceState
+				.getParcelable(MyEntryContentProvider.CONTENT_ITEM_TYPE);
+
+		// Or passed from the other activity
+		if (extras != null) {
+			itemUri = extras
+					.getParcelable(MyEntryContentProvider.CONTENT_ITEM_TYPE);
+
+			fillData(itemUri);
+		}	
 	}
+<<<<<<< HEAD
 	
 	class myGestureDetector extends SimpleOnGestureListener {
         @Override
@@ -317,12 +398,143 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			pic = (ImageView) findViewById(R.id.image_preview);
 		}
 	}
+=======
+>>>>>>> origin/Database-Branch
 
 	@Override
 	public void onRestart(){
 		super.onRestart();
 		finish();
 		startActivity(getIntent());
+	}
+
+	/*
+	@Override
+	protected void onPause() {
+		super.onPause();
+		saveState();
+	}
+*/
+	private void fillData(Uri uri) {
+		String temp1 = "";
+		String temp2 = "";
+		String[] projection = {EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_CUSTOMID,
+				EntryTable.COLUMN_COMMONNAME, EntryTable.COLUMN_DATE,
+				EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTOS,
+				EntryTable.COLUMN_PHOTO, EntryTable.COLUMN_LONGITUDE,
+				EntryTable.COLUMN_LATITUDE, EntryTable.COLUMN_PLANTNOTES,
+				EntryTable.COLUMN_HABITATNOTES, EntryTable.COLUMN_EXTRANOTES1,
+				EntryTable.COLUMN_EXTRANOTES2, EntryTable.COLUMN_EXTRANOTES3,
+				EntryTable.COLUMN_EXTRANOTES4, EntryTable.COLUMN_EXTRANOTES5 };
+		Cursor cursor = getContentResolver().query(uri, projection, null, null,
+				null);
+		if (cursor != null) {
+			cursor.moveToFirst();
+
+			mSpecies.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_SPECIES)));
+			mID.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_CUSTOMID)));
+			mCommonName.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_COMMONNAME)));
+			mDate.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_DATE)));
+			mTime.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_TIME)));
+			temp1 = (cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTOS)));
+			//mPhoto
+			temp2 = (cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTO)));
+			mLongitude.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_LONGITUDE)));
+			mLatitude.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_LATITUDE)));
+			mPlantNotes.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_PLANTNOTES)));
+			mHabitatNotes.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_HABITATNOTES)));
+			mExtraNotes1.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES1)));
+			mExtraNotes2.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES2)));
+			mExtraNotes3.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES3)));
+			mExtraNotes4.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES4)));
+			mExtraNotes5.setText(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES4)));
+
+			// Always close the cursor
+			cursor.close();
+		}
+	}
+
+	private void saveState() {
+		String species = mSpecies.getText().toString();
+		String id = mID.getText().toString();
+		String name = mCommonName.getText().toString();
+		String date = mDate.getText().toString();
+		String time = mTime.getText().toString();
+		//String photos = .getText().toString();
+		//String photo = .getText().toString();
+		String photos = "lol";
+		String photo = "placeholders!";
+		String lon = mLongitude.getText().toString();
+		String lat = mLatitude.getText().toString();
+		String plantNotes = mPlantNotes.getText().toString();
+		String habitatNotes = mHabitatNotes.getText().toString();
+		String extraNotes1 = mExtraNotes1.getText().toString();
+		String extraNotes2 = mExtraNotes2.getText().toString();
+		String extraNotes3 = mExtraNotes3.getText().toString();
+		String extraNotes4 = mExtraNotes4.getText().toString();
+		String extraNotes5 = mExtraNotes5.getText().toString();
+		
+		 species = "placeholders!";
+		 id = "placeholders!";
+		 name = "placeholders!";
+		 date = "placeholders!";
+		 time = "placeholders!";
+		//String photos = .getText().toString();
+		//String photo = .getText().toString();
+		 photos = "lol";
+		 photo = "placeholders!";
+		 lon = "placeholders!";
+		 lat = "placeholders!";
+		plantNotes = "placeholders!";
+		habitatNotes ="placeholders!";
+		 extraNotes1 = "placeholders!";
+		 extraNotes2 = "placeholders!";
+		 extraNotes3 ="placeholders!";
+		 extraNotes4 = "placeholders!";
+		 extraNotes5 = "placeholders!";
+		
+		ContentValues values = new ContentValues();
+		
+		values.put(EntryTable.COLUMN_SPECIES, species);
+		values.put(EntryTable.COLUMN_CUSTOMID, id);
+		values.put(EntryTable.COLUMN_COMMONNAME, name);
+		values.put(EntryTable.COLUMN_DATE, date);
+		values.put(EntryTable.COLUMN_TIME, time);
+		values.put(EntryTable.COLUMN_PHOTOS, photos);
+		values.put(EntryTable.COLUMN_PHOTO, photo);
+		values.put(EntryTable.COLUMN_LONGITUDE, lon);
+		values.put(EntryTable.COLUMN_LATITUDE, lat);
+		values.put(EntryTable.COLUMN_PLANTNOTES, plantNotes);
+		values.put(EntryTable.COLUMN_HABITATNOTES,  habitatNotes);
+		values.put(EntryTable.COLUMN_EXTRANOTES1,  extraNotes1);
+		values.put(EntryTable.COLUMN_EXTRANOTES2,  extraNotes2);
+		values.put(EntryTable.COLUMN_EXTRANOTES3,  extraNotes3);
+		values.put(EntryTable.COLUMN_EXTRANOTES4,  extraNotes4);
+		values.put(EntryTable.COLUMN_EXTRANOTES5,  extraNotes5);
+
+		if (itemUri == null) {
+			// New item
+			itemUri = getContentResolver().insert(MyEntryContentProvider.CONTENT_URI, values);
+		} else {
+			// Update item
+			getContentResolver().update(itemUri, values, null, null);
+		}
 	}
 
 	public void updatePref(){
@@ -449,6 +661,14 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 		Intent intent = new Intent(EntryScreen.this, Location_2_3.class);
 		startActivity(intent);
 	}
+	
+	
+	
+	  
+	public void closeMe()
+	{
+		finish();
+	}
 
 	@Override
 	public void onManual(DialogFragment dialog){
@@ -524,6 +744,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 			new MultiMediaScanner(this.getBaseContext(), allFiles);
 		}
 	}
+<<<<<<< HEAD
     
     public class MultiMediaScanner implements MediaScannerConnectionClient {
 
@@ -557,6 +778,9 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 
     }
 	
+=======
+
+>>>>>>> origin/Database-Branch
 	public String getMonth(int month){
 		String m = "";
 		switch (month+1) {

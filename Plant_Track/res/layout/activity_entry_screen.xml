@@ -526,9 +526,16 @@
                 android:id="@+id/cancelButton"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
+<<<<<<< HEAD
                 android:layout_alignParentRight="true"
                 android:text="@string/cancel" />
             
+=======
+                android:layout_alignParentLeft="true"
+                android:onClick="closeMe"
+                android:text="@string/save" />
+
+>>>>>>> origin/Database-Branch
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="150dp"

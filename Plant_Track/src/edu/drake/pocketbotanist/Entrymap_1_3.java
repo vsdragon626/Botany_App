@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
+<<<<<<< HEAD
 import com.google.android.gms.maps.CameraUpdateFactory;
+=======
+>>>>>>> origin/Database-Branch
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;

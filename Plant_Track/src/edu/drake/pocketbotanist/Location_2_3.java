@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
@@ -12,6 +13,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+=======
+>>>>>>> origin/Database-Branch
 
 public class Location_2_3<GoogleMap> extends Activity implements OnMapClickListener{
 
