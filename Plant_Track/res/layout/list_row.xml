@@ -11,39 +11,42 @@
 
         <TextView
             android:id="@+id/customidlabel"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:lines="1"
-            android:text="@+id/TextView01"
-            android:textSize="24sp" >
+            android:text="@+id/customidlabel"
+            android:textSize="20sp" >
         </TextView>
 
         <TextView
             android:id="@+id/namelabel"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:textColor="#B5B5B5"
             android:lines="1"
-            android:text="@+id/TextView01"
-            android:textSize="24sp" >
+            android:text="@+id/namelabel"
+            android:textSize="16sp" >
         </TextView>
 
         <TextView
             android:id="@+id/timelabel"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
+            android:textColor="#CCCCCC"
             android:lines="1"
-            android:text="@+id/TextView01"
-            android:textSize="24sp" >
+            android:text="@+id/timelabel"
+            android:textSize="14sp" >
         </TextView>
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/flower" />
 
 </RelativeLayout>

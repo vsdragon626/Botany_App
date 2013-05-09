@@ -16,6 +16,7 @@
             android:id="@+id/basicInfoButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:textColor="#5FB336"
             android:gravity="bottom"
             android:paddingLeft="10dp"
             android:text="@string/BasicInfoButton"
@@ -30,7 +31,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#FFFFFF" />
+                android:background="#5FB336" />
         </RelativeLayout>
 
         <!-- ID Number, Species, Common Name, and Date and Time -->
@@ -175,6 +176,7 @@
             android:id="@+id/picButton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:textColor="#5FB336"
             android:gravity="bottom"
             android:paddingLeft="10dp"
             android:text="@string/pic"
@@ -189,10 +191,10 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#FFFFFF" />
+                android:background="#5FB336" />
         </RelativeLayout>
 
-        <!-- #CCCCCC is the exsact color of the buttons which is why it wasn't used, thank you Josh. -->
+        <!-- #CCCCCC is the exact color of the buttons which is why it wasn't used, thank you Josh. -->
 
         <ImageView
             android:id="@+id/image_preview"
@@ -206,6 +208,7 @@
         <TextView
             android:id="@+id/locButton"
             android:layout_width="match_parent"
+            android:textColor="#5FB336"
             android:layout_height="40dp"
             android:gravity="bottom"
             android:paddingLeft="10dp"
@@ -221,7 +224,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#FFFFFF" />
+                android:background="#5FB336" />
         </RelativeLayout>
 
         <TextView
@@ -293,6 +296,7 @@
         <TextView
             android:id="@+id/noteButton"
             android:layout_width="match_parent"
+            android:textColor="#5FB336"
             android:layout_height="40dp"
             android:gravity="bottom"
             android:paddingLeft="10dp"
@@ -308,7 +312,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#FFFFFF" />
+                android:background="#5FB336" />
         </RelativeLayout>
 
         <TextView

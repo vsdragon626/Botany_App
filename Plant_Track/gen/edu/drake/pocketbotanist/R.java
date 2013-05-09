@@ -178,8 +178,7 @@ containing a value of this type.
         public static final int search_small=0x7f020012;
     }
     public static final class id {
-        public static final int TextView01=0x7f05003b;
-        public static final int action_settings=0x7f050043;
+        public static final int action_settings=0x7f050042;
         public static final int action_spinner=0x7f050031;
         public static final int basicInfoButton=0x7f050006;
         public static final int cancelButton=0x7f05002d;
@@ -206,7 +205,7 @@ containing a value of this type.
         public static final int hNotes=0x7f05001c;
         public static final int hybrid=0x7f050004;
         public static final int idEdit=0x7f050008;
-        public static final int imageView=0x7f05003e;
+        public static final int imageView=0x7f05003d;
         public static final int imageView1=0x7f050039;
         public static final int image_preview=0x7f050011;
         public static final int lat=0x7f050016;
@@ -216,11 +215,11 @@ containing a value of this type.
         public static final int longit=0x7f050015;
         public static final int mainlinearlayout=0x7f050030;
         public static final int map=0x7f05002f;
-        public static final int menu_edit=0x7f050042;
-        public static final int menu_map=0x7f050041;
-        public static final int menu_search=0x7f050040;
-        public static final int menu_settings=0x7f05003f;
-        public static final int namelabel=0x7f05003c;
+        public static final int menu_edit=0x7f050041;
+        public static final int menu_map=0x7f050040;
+        public static final int menu_search=0x7f05003f;
+        public static final int menu_settings=0x7f05003e;
+        public static final int namelabel=0x7f05003b;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int noteButton=0x7f050018;
@@ -245,7 +244,7 @@ containing a value of this type.
         public static final int textView6=0x7f050019;
         public static final int textView7=0x7f05001b;
         public static final int textView9=0x7f05001d;
-        public static final int timelabel=0x7f05003d;
+        public static final int timelabel=0x7f05003c;
     }
     public static final class layout {
         public static final int activity_entry_screen=0x7f030000;

@@ -1,16 +1,21 @@
 package edu.drake.pocketbotanist;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
@@ -32,10 +37,8 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.ContentValues;
-import android.database.Cursor;
-import edu.drake.pocketbotanist.contentprovider.*;
-import edu.drake.pocketbotanist.database.*;
+import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
+import edu.drake.pocketbotanist.database.EntryTable;
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 PhotoDialogFragment.PhotoDialogListener{
@@ -187,10 +190,10 @@ PhotoDialogFragment.PhotoDialogListener{
 
 		mLongitude.setText("Click to Edit");
 		mLatitude.setText("Click to Edit");
-		
+
 		final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
+		int hour = c.get(Calendar.HOUR_OF_DAY);
+		int minute = c.get(Calendar.MINUTE);
 		if(hour > 12){
 			if(minute < 10){
 				mTime.setText(String.valueOf(hour-12) + " : 0" + String.valueOf(minute)+" PM");
@@ -207,13 +210,13 @@ PhotoDialogFragment.PhotoDialogListener{
 				mTime.setText(String.valueOf(hour) + " : " + String.valueOf(minute) + " AM");
 			}
 		}
-		
+
 		int year = c.get(Calendar.YEAR);
 		int month = c.get(Calendar.MONTH);
 		int day = c.get(Calendar.DAY_OF_MONTH);
 		String m = getMonth(month);
 		mDate.setText(m + " " + String.valueOf(day) + ", " + String.valueOf(year));
-		
+
 
 		updatePref();
 
@@ -228,7 +231,7 @@ PhotoDialogFragment.PhotoDialogListener{
 
 			fillData(itemUri);
 		}
-		
+
 		ActionBar actionBar = getActionBar();
 		if (mID.getText().toString().compareTo("") != 1){
 			actionBar.setTitle("New Entry");
@@ -265,52 +268,25 @@ PhotoDialogFragment.PhotoDialogListener{
 					}
 					//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
 				}
+				Bitmap bm = null;
+				try {
+					bm = Bitmap.createScaledBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(images[iter].getAbsolutePath())), 100, 100, false);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
 				imageUri = pathUri.toString();
-				mPhoto.setImageURI(pathUri);
+				mPhoto.setImageBitmap(bm);
 			} catch (Exception e) {
 				Log.v("Gesture Error", "Failed to read gesture");
 			}
 			return false;
 		}
 	}
-
-	/*
-	 * Try and work this in
-	 * public static Bitmap loadImageFromUrl(String url) {
-
-        Bitmap bm;
-        try {  
-
-                URL aURL = new URL(url);  
-                URLConnection conn = aURL.openConnection(); 
-
-                conn.connect();  
-                InputStream is = null;
-                try
-                {
-                 is= conn.getInputStream();  
-                }catch(IOException e)
-                {
-                     return null;
-                }
-
-                BufferedInputStream bis = new BufferedInputStream(is);  
-
-                bm = BitmapFactory.decodeStream(bis);
-
-                bis.close();  
-                is.close();  
-
-           } catch (IOException e) {  
-            return null;
-           }  
-
-        return  Bitmap.createScaledBitmap(bm,100,100,true);
-
-
-    }
-	 */
 
 	@Override
 	public void onRestart(){
@@ -319,8 +295,6 @@ PhotoDialogFragment.PhotoDialogListener{
 	}
 
 	private void fillData(Uri uri) {
-		String temp1 = "";
-		String temp2 = "";
 		String[] projection = {EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_CUSTOMID,
 				EntryTable.COLUMN_COMMONNAME, EntryTable.COLUMN_DATE,
 				EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTOS,
@@ -585,13 +559,15 @@ PhotoDialogFragment.PhotoDialogListener{
 			imageDirectory.mkdir();
 		}
 
+		mPhotos = path+foldername;
+
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 		if(numOfPics == 0){
-			filename = mID.getText()+".jpg";
+			filename = mID.getText()+".bmp";
 		}
 		else{
-			filename = mID.getText()+"("+numOfPics+")"+".jpg";
+			filename = mID.getText()+"("+numOfPics+")"+".bmp";
 		}
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
 
@@ -599,17 +575,36 @@ PhotoDialogFragment.PhotoDialogListener{
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
 
 		startActivityForResult(takePictureIntent, 1);
-
-		//TODO Work on this method
-		fillPic(file);
+		
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    // Check which request we're responding to
+	    if (requestCode == 1) {
+	        // Make sure the request was successful
+	        if (resultCode == RESULT_OK) {
+	        	File f = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
+	        	fillPic(f);
+	        }
+	    }
 	}
 
 	public void fillPic(File f){
 		//TODO WORK ON THIS SHIT!
-		mPhoto.setImageURI(null);
+		Bitmap bm = null;
+		try {
+			bm = Bitmap.createScaledBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(), Uri.parse(f.getAbsolutePath())), 100, 100, false);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Uri pathUri = Uri.parse(f.getAbsolutePath());
 		imageUri = pathUri.toString();
-		mPhoto.setImageURI(pathUri);
+		mPhoto.setImageBitmap(bm);
 	}
 
 	@Override
