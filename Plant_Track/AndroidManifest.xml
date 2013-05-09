@@ -81,5 +81,5 @@
       android:exported="false">
    </provider>
     </application>
-
+    
 </manifest>

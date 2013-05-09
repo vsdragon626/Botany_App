@@ -3,10 +3,7 @@ package edu.drake.pocketbotanist;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/Database-Branch
 public class SettingsFragment extends PreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {

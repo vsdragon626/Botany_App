@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
@@ -19,18 +18,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
->>>>>>> 2a6b28037db1541c8225c5513ea1ceca618f6bd2
-=======
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
->>>>>>> origin/Camera-Pretty-Branch
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -41,42 +31,19 @@ import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-<<<<<<< HEAD
 import android.widget.Toast;
-
-public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
-													 PhotoDialogFragment.PhotoDialogListener{
-	private int numTimes;
-	private ImageView pic;
-	private String filename,foldername;
-	private File[] allFiles;
-	private String path = Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/";
-	private TextView lati;
-	private TextView longi;
-	private TextView date;
-	private TextView time;
-	private EditText idnum,species,common;
-	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
-	private GestureDetector gestureDetector;
-<<<<<<< HEAD
-    View.OnTouchListener gestureListener;
-    File imagePath;
-    File[] images;
-    int iter = 0;
-	
-=======
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.widget.EditText;
-import android.widget.Spinner;
 import edu.drake.pocketbotanist.contentprovider.*;
 import edu.drake.pocketbotanist.database.*;
 
-
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
-PhotoDialogFragment.PhotoDialogListener {
+PhotoDialogFragment.PhotoDialogListener{
+	private int numTimes;
+	private String filename,foldername;
+	private File[] allFiles;
+	private String path = Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/";
+	private GestureDetector gestureDetector;
 	private Uri itemUri;
 	private EditText mSpecies;
 	private EditText mID;
@@ -93,64 +60,50 @@ PhotoDialogFragment.PhotoDialogListener {
 	private MultiAutoCompleteTextView mExtraNotes3;
 	private MultiAutoCompleteTextView mExtraNotes4;
 	private MultiAutoCompleteTextView mExtraNotes5;
+	private View.OnTouchListener gestureListener;
+	private File imagePath;
+	private File[] images;
+	private int iter = 0;
 
->>>>>>> origin/Database-Branch
-=======
-    private View.OnTouchListener gestureListener;
-    private File imagePath;
-    private File[] images;
-    private int iter = 0;
-    private boolean picAdded = false;
-	
->>>>>>> origin/Camera-Pretty-Branch
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_entry_screen);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
-		mSpecies = (EditText) findViewById(R.id.editText1);
-		mID = (EditText) findViewById(R.id.editText1);
-		mCommonName = (EditText) findViewById(R.id.editText1);
-		mDate = (TextView) findViewById(R.id.textView5);
-		mTime = (TextView) findViewById(R.id.textView5);
+		mSpecies = (EditText) findViewById(R.id.speciesEdit);
+		mID = (EditText) findViewById(R.id.idEdit);
+		mCommonName = (EditText) findViewById(R.id.commonEdit);
+		mDate = (TextView) findViewById(R.id.dateTime);
+		mTime = (TextView) findViewById(R.id.dateTime2);
 		mPhoto = (ImageView) findViewById(R.id.image_preview);
-		mLongitude = (TextView) findViewById(R.id.textView5);
-		mLatitude = (TextView) findViewById(R.id.textView5);
-		mPlantNotes = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mHabitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mExtraNotes1 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mExtraNotes2 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mExtraNotes3 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mExtraNotes4 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		mExtraNotes5 = (MultiAutoCompleteTextView) findViewById(R.id.bigtext3);
-		
-		Button saveButton = (Button) findViewById(R.id.button5);
-		
-<<<<<<< HEAD
+		mLongitude = (TextView) findViewById(R.id.longit);
+		mLatitude = (TextView) findViewById(R.id.latit);
+		mPlantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
+		mHabitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
+		mExtraNotes1 = (MultiAutoCompleteTextView) findViewById(R.id.extra1);
+		mExtraNotes2 = (MultiAutoCompleteTextView) findViewById(R.id.extra2);
+		mExtraNotes3 = (MultiAutoCompleteTextView) findViewById(R.id.extra3);
+		mExtraNotes4 = (MultiAutoCompleteTextView) findViewById(R.id.extra4);
+		mExtraNotes5 = (MultiAutoCompleteTextView) findViewById(R.id.extra5);
+
+		Button saveButton = (Button) findViewById(R.id.saveButton);
+
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			ActionBar actionBar = getActionBar();
 			actionBar.setTitle(extras.getString("passer"));
-			fillData(extras.getString("passer"));
 		}
 
 		final TextView pButton = (TextView) findViewById(R.id.picButton);
-<<<<<<< HEAD
-=======
+
 		saveButton.setOnClickListener(new View.OnClickListener() {
-		      public void onClick(View view) {
-		          saveState();
-		    	  finish();
-		      }
+			public void onClick(View view) {
+				saveState();
+				finish();
+			}
 
-		    });
+		});
 
-		final Button pButton = (Button) findViewById(R.id.picButton);
->>>>>>> origin/Database-Branch
-=======
->>>>>>> origin/Camera-Pretty-Branch
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
@@ -169,24 +122,24 @@ PhotoDialogFragment.PhotoDialogListener {
 			}
 		});
 
-		date.setOnClickListener(new View.OnClickListener() {
+		mDate.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new DatePickerFragment((TextView) date);
+				DialogFragment newFragment = new DatePickerFragment((TextView) mDate);
 				newFragment.show(getFragmentManager(), "datePicker");
 			}
 		});
 
-		time.setOnClickListener(new View.OnClickListener() {
+		mTime.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				DialogFragment newFragment = new TimePickerFragment((TextView) time);
+				DialogFragment newFragment = new TimePickerFragment((TextView) mTime);
 				newFragment.show(getFragmentManager(), "timePicker");
 			}
 		});
 
-		pic.setOnLongClickListener(new View.OnLongClickListener() {
+		mPhoto.setOnLongClickListener(new View.OnLongClickListener() {
 
 			@Override
 			public boolean onLongClick(View v){
@@ -196,7 +149,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			}
 		});
 
-		lati.setOnClickListener(new View.OnClickListener() {
+		mLatitude.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -205,7 +158,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			}
 		});
 
-		longi.setOnClickListener(new View.OnClickListener() {
+		mLongitude.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -214,7 +167,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			}
 		});
 
-<<<<<<< HEAD
+
 		final Button cancel = (Button) findViewById(R.id.cancelButton);
 		cancel.setOnClickListener(new View.OnClickListener() {
 
@@ -223,26 +176,21 @@ PhotoDialogFragment.PhotoDialogListener {
 				finish();
 			}
 		});
-		
-		imagePath = new File(path+idnum.getText().toString());
+
+		imagePath = new File(path+mID.getText().toString());
 		images = imagePath.listFiles();
 		gestureDetector = new GestureDetector(this, new myGestureDetector());
-        gestureListener = new View.OnTouchListener() {
-            public boolean onTouch(View v, MotionEvent event) {
-                return gestureDetector.onTouchEvent(event);
-            }
-        }; 
-        pic.setOnTouchListener(gestureListener);
-<<<<<<< HEAD
-=======
-		longi.setText("Click to Edit");
->>>>>>> origin/Database-Branch
-=======
->>>>>>> origin/Camera-Pretty-Branch
+		gestureListener = new View.OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				return gestureDetector.onTouchEvent(event);
+			}
+		}; 
+		mPhoto.setOnTouchListener(gestureListener);
+
+		mLongitude.setText("Click to Edit");
+		mLatitude.setText("Click to Edit");
 
 		updatePref();
-
-		Bundle extras = getIntent().getExtras();
 
 		// Check from the saved Instance
 		itemUri = (savedInstanceState == null) ? null : (Uri) savedInstanceState
@@ -256,82 +204,45 @@ PhotoDialogFragment.PhotoDialogListener {
 			fillData(itemUri);
 		}	
 	}
-<<<<<<< HEAD
-	
+
 	class myGestureDetector extends SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        	images = imagePath.listFiles();
-        	try {
-                if (Math.abs(e1.getY() - e2.getY()) > 250)
-                    return false;
-                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 200) {
-                	//TODO Left Swipe
-                	if(iter>0){
-                		iter--;
-                	}
-                	else{
-                		iter = images.length-1;
-                	}
-                	System.out.print("Iter:"+iter+" In subtraction");
-                	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
-                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 200) {
-                    //TODO Right Swipe
-                	if(iter>images.length-1){
-                		iter++;
-                	}
-                	else{
-                		iter = 0;
-                	}
-                	System.out.print("Iter:"+iter+" In subtraction");
-                	//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
-                }
-            	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
-            	pic.setImageURI(pathUri);
-            } catch (Exception e) {
-                Log.v("Gesture Error", "Failed to read gesture");
-            }
-            return false;
-        }
-    }
-	
-	class myGestureDetector extends SimpleOnGestureListener {
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        	images = imagePath.listFiles();
-        	try {
-                if (Math.abs(e1.getY() - e2.getY()) > 250)
-                    return false;
-                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 150) {
-                	//TODO Left Swipe
-                	if(iter <= 0 && iter < images.length-1){
-                		iter++;
-                	}
-                	else{
-                		iter = images.length-1;
-                	}
-                	System.out.print("Iter:"+iter+" In subtraction");
-                	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
-                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 150) {
-                    //TODO Right Swipe
-                	if(iter > images.length-1 && iter >= 0){
-                		iter++;
-                	}
-                	else{
-                		iter = 0;
-                	}
-                	System.out.print("Iter:"+iter+" In subtraction");
-                	//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
-                }
-            	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
-            	pic.setImageURI(pathUri);
-            	picAdded = true;
-            } catch (Exception e) {
-                Log.v("Gesture Error", "Failed to read gesture");
-            }
-            return false;
-        }
-    }
+		//TODO make sure this no longer gives out of memory error
+		@Override
+		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+			images = imagePath.listFiles();
+			try {
+				if (Math.abs(e1.getY() - e2.getY()) > 250)
+					return false;
+				if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 150) {
+					//TODO Left Swipe
+					if(iter <= 0 && iter < images.length-1){
+						iter++;
+					}
+					else{
+						iter = images.length-1;
+					}
+					System.out.print("Iter:"+iter+" In subtraction");
+					//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+				}  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 150) {
+					//TODO Right Swipe
+					if(iter > images.length-1 && iter >= 0){
+						iter++;
+					}
+					else{
+						iter = 0;
+					}
+					System.out.print("Iter:"+iter+" In subtraction");
+					//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
+				}
+				Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
+				mPhoto.setImageURI(pathUri);
+			} catch (Exception e) {
+				Log.v("Gesture Error", "Failed to read gesture");
+			}
+			return false;
+		}
+	}
+
 	/*
 	 * Try and work this in
 	 * public static Bitmap loadImageFromUrl(String url) {
@@ -368,134 +279,6 @@ PhotoDialogFragment.PhotoDialogListener {
 
     }
 	 */
-	
-	public void fillData(String id){
-		//TODO function that will fill the data if there is an entry in the database
-		if(id.equals("ST2-225")){
-			idnum = (EditText) findViewById(R.id.idEdit);
-			idnum.setText(id);
-			species = (EditText) findViewById(R.id.speciesEdit);
-			species.setText("Taraxacum Ocinale");
-			common = (EditText) findViewById(R.id.commonEdit);
-			common.setText("Dandelion");
-			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = (TextView) findViewById(R.id.dateTime);
-			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-			time = (TextView) findViewById(R.id.dateTime2);
-			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-			pic = (ImageView) findViewById(R.id.image_preview);
-			if(!picAdded) pic.setImageResource(R.drawable.plant1);
-			lati = (TextView) findViewById(R.id.lat);
-			lati.setText("41.656497");
-			longi = (TextView) findViewById(R.id.lon);
-			longi.setText("-93.592873");
-			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
-			plantNotes.setText("This particular plant had a nearly flawless flower, with what looked like a heathly green stem.");
-			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
-			habitatNotes.setText("The habitat surrounding this plant was about standard for what you would exect");
-			extraNotes1 = (MultiAutoCompleteTextView) findViewById(R.id.extra1);
-			extraNotes1.setText("");
-			extraNotes2 = (MultiAutoCompleteTextView) findViewById(R.id.extra2);
-			extraNotes2.setText("");
-			extraNotes3 = (MultiAutoCompleteTextView) findViewById(R.id.extra3);
-			extraNotes3.setText("");
-			extraNotes4 = (MultiAutoCompleteTextView) findViewById(R.id.extra4);
-			extraNotes4.setText("");
-			extraNotes5 = (MultiAutoCompleteTextView) findViewById(R.id.extra5);
-			extraNotes5.setText("");
-			
-		}
-		else if(id.equals("PAPAVERACEAE")){
-			idnum = (EditText) findViewById(R.id.idEdit);
-			idnum.setText(id);
-			species = (EditText) findViewById(R.id.speciesEdit);
-			species.setText("Sanguinaria canadensis L.");
-			common = (EditText) findViewById(R.id.commonEdit);
-			common.setText("Bloodroot");
-			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = (TextView) findViewById(R.id.dateTime);
-			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-			time = (TextView) findViewById(R.id.dateTime2);
-			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-			pic = (ImageView) findViewById(R.id.image_preview);
-			if(!picAdded) pic.setImageResource(R.drawable.plant0);
-			lati = (TextView) findViewById(R.id.lat);
-			lati.setText("42° 1' 49\" N");
-			longi = (TextView) findViewById(R.id.lon);
-			longi.setText("93° 35' 27\" W");
-			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
-			plantNotes.setText("");
-			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
-			habitatNotes.setText("Iowa: Story Co.: Ames: Carr Woods (East River Valley Access; flat wooded area, specimens interspersed among other members of the herbaceous layer)");
-			
-		}
-		else if(id.equals("CRASSULACEAE")){
-			idnum = (EditText) findViewById(R.id.idEdit);
-			idnum.setText(id);
-			species = (EditText) findViewById(R.id.speciesEdit);
-			species.setText("Penthorum sedoides L.");
-			common = (EditText) findViewById(R.id.commonEdit);
-			common.setText("Ditch Stonecrop");
-			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = (TextView) findViewById(R.id.dateTime);
-			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-			time = (TextView) findViewById(R.id.dateTime2);
-			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-			pic = (ImageView) findViewById(R.id.image_preview);
-			if(!picAdded) pic.setImageResource(R.drawable.plant2);
-			lati = (TextView) findViewById(R.id.lat);
-			lati.setText("42° 4' 14\" N");
-			longi = (TextView) findViewById(R.id.lon);
-			longi.setText("93° 39' 4\" W");
-			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
-			plantNotes.setText("Quite abundant along the riverbank on the west side, south of the boat ramp/Riverside Dr. overpass.");
-			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
-			habitatNotes.setText("Iowa: Story Co.: Ames: Sleepy Hollow Access to South Skunk River.");
-		
-		}
-		else if(id.equals("COMMELINACEAE")){
-			idnum = (EditText) findViewById(R.id.idEdit);
-			idnum.setText(id);
-			species = (EditText) findViewById(R.id.speciesEdit);
-			species.setText("Tradescantia ohiensis Raf.");
-			common = (EditText) findViewById(R.id.commonEdit);
-			common.setText("Ohio Spiderwort");
-			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = (TextView) findViewById(R.id.dateTime);
-			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-			time = (TextView) findViewById(R.id.dateTime2);
-			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-			pic = (ImageView) findViewById(R.id.image_preview);
-			if(!picAdded) pic.setImageResource(R.drawable.plant3);
-			lati = (TextView) findViewById(R.id.lat);
-			lati.setText("42° 3' 23\" N");
-			longi = (TextView) findViewById(R.id.lon);
-			longi.setText("93° 38' 42\" W");
-			plantNotes = (MultiAutoCompleteTextView) findViewById(R.id.pNotes);
-			plantNotes.setText("At the time of collection, Stange Rd. heading north ended in a T-intersection with Bloomington Dr.  Specimen was located in a routinely water-logged ditch on the north side of the T-intersection.  Subsequent urban development around 2007 or 2008 destroyed the habitat; Stange Rd. now runs further north, on top of where the population grew.");
-			habitatNotes = (MultiAutoCompleteTextView) findViewById(R.id.hNotes);
-			habitatNotes.setText("Iowa: Story Co.: Ames: Intersection of Stange and Bloomington.");
-		}
-		else{
-			Calendar c = Calendar.getInstance();
-			String m = getMonth(c.get(Calendar.MONTH));
-			date = (TextView) findViewById(R.id.dateTime);
-			date.setText(m + " " + String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + ", " + String.valueOf(c.get(Calendar.YEAR)));
-			time = (TextView) findViewById(R.id.dateTime2);
-			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
-			lati = (TextView) findViewById(R.id.lat);
-			lati.setText("Click to Edit");
-			longi = (TextView) findViewById(R.id.lon);
-			longi.setText("Click to Edit");
-			pic = (ImageView) findViewById(R.id.image_preview);
-		}
-	}
-=======
->>>>>>> origin/Database-Branch
 
 	@Override
 	public void onRestart(){
@@ -510,7 +293,8 @@ PhotoDialogFragment.PhotoDialogListener {
 		super.onPause();
 		saveState();
 	}
-*/
+	 */
+
 	private void fillData(Uri uri) {
 		String temp1 = "";
 		String temp2 = "";
@@ -585,28 +369,28 @@ PhotoDialogFragment.PhotoDialogListener {
 		String extraNotes3 = mExtraNotes3.getText().toString();
 		String extraNotes4 = mExtraNotes4.getText().toString();
 		String extraNotes5 = mExtraNotes5.getText().toString();
-		
-		 species = "placeholders!";
-		 id = "placeholders!";
-		 name = "placeholders!";
-		 date = "placeholders!";
-		 time = "placeholders!";
+
+		species = "placeholders!";
+		id = "placeholders!";
+		name = "placeholders!";
+		date = "placeholders!";
+		time = "placeholders!";
 		//String photos = .getText().toString();
 		//String photo = .getText().toString();
-		 photos = "lol";
-		 photo = "placeholders!";
-		 lon = "placeholders!";
-		 lat = "placeholders!";
+		photos = "lol";
+		photo = "placeholders!";
+		lon = "placeholders!";
+		lat = "placeholders!";
 		plantNotes = "placeholders!";
 		habitatNotes ="placeholders!";
-		 extraNotes1 = "placeholders!";
-		 extraNotes2 = "placeholders!";
-		 extraNotes3 ="placeholders!";
-		 extraNotes4 = "placeholders!";
-		 extraNotes5 = "placeholders!";
-		
+		extraNotes1 = "placeholders!";
+		extraNotes2 = "placeholders!";
+		extraNotes3 ="placeholders!";
+		extraNotes4 = "placeholders!";
+		extraNotes5 = "placeholders!";
+
 		ContentValues values = new ContentValues();
-		
+
 		values.put(EntryTable.COLUMN_SPECIES, species);
 		values.put(EntryTable.COLUMN_CUSTOMID, id);
 		values.put(EntryTable.COLUMN_COMMONNAME, name);
@@ -757,10 +541,7 @@ PhotoDialogFragment.PhotoDialogListener {
 		Intent intent = new Intent(EntryScreen.this, Location_2_3.class);
 		startActivity(intent);
 	}
-	
-	
-	
-	  
+
 	public void closeMe()
 	{
 		finish();
@@ -774,18 +555,17 @@ PhotoDialogFragment.PhotoDialogListener {
 
 	@Override
 	public void onTakePicture(DialogFragment dialog) {
-		idnum = (EditText) findViewById(R.id.idEdit);
 		File imageDirectory;
 		int numOfPics = 0;
-		if(!idnum.getText().toString().isEmpty()){
-			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+idnum.getText()+"/");
+		if(!mID.getText().toString().isEmpty()){
+			imageDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/"+mID.getText()+"/");
 			if (!imageDirectory.exists()){
 				imageDirectory.mkdir();
-				foldername = idnum.getText()+"/";
+				foldername = mID.getText()+"/";
 			}
 			else{
 				numOfPics = imageDirectory.list().length;
-				foldername = idnum.getText()+"/";
+				foldername = mID.getText()+"/";
 			}
 		}
 		else{
@@ -804,42 +584,36 @@ PhotoDialogFragment.PhotoDialogListener {
 			}
 			imageDirectory.mkdir();
 		}
-		
+
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		
+
 		if(numOfPics == 0){
-			filename = idnum.getText()+".jpg";
+			filename = mID.getText()+".jpg";
 		}
 		else{
-			filename = idnum.getText()+"("+numOfPics+")"+".jpg";
+			filename = mID.getText()+"("+numOfPics+")"+".jpg";
 		}
 		File file = new File(Environment.getExternalStorageDirectory()+"/Pocket Botanist/"+foldername, filename);
-		
+
 		Uri outputFileUri = Uri.fromFile(file); 
 		takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri); 
 
 		startActivityForResult(takePictureIntent, 1);
-		
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-		//TODO write method to fill picture
->>>>>>> 2a6b28037db1541c8225c5513ea1ceca618f6bd2
-=======
+
+		//TODO Work on this method
 		fillPic(file);
 	}
-	
+
 	public void fillPic(File f){
-		pic.setImageURI(null);
+		//TODO WORK ON THIS SHIT!
+		mPhoto.setImageURI(null);
 		Uri pathUri = Uri.parse(f.getAbsolutePath());
-    	pic.setImageURI(pathUri);
-    	picAdded = true;
->>>>>>> origin/Camera-Pretty-Branch
+		mPhoto.setImageURI(pathUri);
 	}
 
 	@Override
 	public void onViewPicture(DialogFragment dialog) {
-		File folder = new File(path+idnum.getText()+"/");
+		File folder = new File(path+mID.getText()+"/");
 		if(!folder.exists()){
 			folder.mkdir();
 		}
@@ -851,43 +625,39 @@ PhotoDialogFragment.PhotoDialogListener {
 			new MultiMediaScanner(this.getBaseContext(), allFiles);
 		}
 	}
-<<<<<<< HEAD
-    
-    public class MultiMediaScanner implements MediaScannerConnectionClient {
 
-        private MediaScannerConnection mMs;
-        private File[] mFile;
+	public class MultiMediaScanner implements MediaScannerConnectionClient {
 
-        public MultiMediaScanner(Context context, File[] f) {
-            mFile = f;
-            mMs = new MediaScannerConnection(context, this);
-            mMs.connect();
-        }
+		private MediaScannerConnection mMs;
+		private File[] mFile;
 
-        public void onMediaScannerConnected() {
-        	for(int i = 0; i < mFile.length; i++){
-        		mMs.scanFile(mFile[i].getAbsolutePath(), null);
-        	}
-        }
+		public MultiMediaScanner(Context context, File[] f) {
+			mFile = f;
+			mMs = new MediaScannerConnection(context, this);
+			mMs.connect();
+		}
 
-        public void onScanCompleted(String path, Uri uri) {
-        	if(numTimes==mFile.length-1){
-        		Intent intent = new Intent(Intent.ACTION_VIEW);
-            	intent.setData(uri);
-            	startActivity(intent);
-            	mMs.disconnect();
-            	numTimes=0;
-        	}
-        	else{
-            	numTimes++;
-        	}
-        }
+		public void onMediaScannerConnected() {
+			for(int i = 0; i < mFile.length; i++){
+				mMs.scanFile(mFile[i].getAbsolutePath(), null);
+			}
+		}
 
-    }
-	
-=======
+		public void onScanCompleted(String path, Uri uri) {
+			if(numTimes==mFile.length-1){
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setData(uri);
+				startActivity(intent);
+				mMs.disconnect();
+				numTimes=0;
+			}
+			else{
+				numTimes++;
+			}
+		}
 
->>>>>>> origin/Database-Branch
+	}
+
 	public String getMonth(int month){
 		String m = "";
 		switch (month+1) {

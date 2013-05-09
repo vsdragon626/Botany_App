@@ -91,6 +91,7 @@ public class MyEntryContentProvider extends ContentProvider{
 	public Uri insert(Uri uri, ContentValues values) {
 		int uriType = sURIMatcher.match(uri);
 		SQLiteDatabase sqlDB = database.getWritableDatabase();
+		@SuppressWarnings("unused")
 		int rowsDeleted = 0;
 		long id = 0;
 		switch (uriType) {
