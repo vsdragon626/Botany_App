@@ -77,7 +77,7 @@
          
          <provider
       android:name=".contentprovider.MyEntryContentProvider"
-      android:authorities="edu.drake.pocketbotanist.entries.contentprovider" 
+      android:authorities="edu.drake.pocketbotanist.contentprovider" 
       android:exported="false">
    </provider>
     </application>

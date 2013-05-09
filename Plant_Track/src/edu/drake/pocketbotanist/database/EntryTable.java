@@ -10,22 +10,22 @@ public class EntryTable {
 // via "super string" later
   public static final String TABLE_ENTRY = "entry";
   public static final String COLUMN_ID = "_id";
-  public static final String COLUMN_CUSTOMID = "custom id";
+  public static final String COLUMN_CUSTOMID = "custom_id";
   public static final String COLUMN_SPECIES = "species";
-  public static final String COLUMN_COMMONNAME = "common name";
+  public static final String COLUMN_COMMONNAME = "common_name";
   public static final String COLUMN_DATE = "date";
   public static final String COLUMN_TIME = "time";
   public static final String COLUMN_PHOTOS = "photos";
   public static final String COLUMN_PHOTO = "photo";
   public static final String COLUMN_LONGITUDE = "longitude";
   public static final String COLUMN_LATITUDE = "latitude";
-  public static final String COLUMN_PLANTNOTES = "plant notes";
-  public static final String COLUMN_HABITATNOTES = "habitat notes";
-  public static final String COLUMN_EXTRANOTES1 = "extra notes 1";
-  public static final String COLUMN_EXTRANOTES2 = "extra notes 2";
-  public static final String COLUMN_EXTRANOTES3 = "extra notes 3";
-  public static final String COLUMN_EXTRANOTES4 = "extra notes 4";
-  public static final String COLUMN_EXTRANOTES5 = "extra notes 5";
+  public static final String COLUMN_PLANTNOTES = "plant_notes";
+  public static final String COLUMN_HABITATNOTES = "habitat_notes";
+  public static final String COLUMN_EXTRANOTES1 = "extra_notes_1";
+  public static final String COLUMN_EXTRANOTES2 = "extra_notes_2";
+  public static final String COLUMN_EXTRANOTES3 = "extra_notes_3";
+  public static final String COLUMN_EXTRANOTES4 = "extra_notes_4";
+  public static final String COLUMN_EXTRANOTES5 = "extra_notes_5";
   
 
   // Database creation SQL statement
@@ -33,23 +33,23 @@ public class EntryTable {
       + TABLE_ENTRY
       + "(" 
       + COLUMN_ID + " integer primary key autoincrement, " 
-      + COLUMN_CUSTOMID + " custom id field, " 
-      + COLUMN_SPECIES + " flower species," 
-      + COLUMN_COMMONNAME + " flower common name," 
-      + COLUMN_DATE + " date of entry creation," 
-      + COLUMN_TIME + " time of entry creation," 
-      + COLUMN_PHOTOS + " gallery location," 
-      + COLUMN_PHOTO + " photo location," 
-      + COLUMN_LONGITUDE + " longitude," 
-      + COLUMN_LATITUDE + " latitude," 
-      + COLUMN_PLANTNOTES + " notes about the plant," 
-      + COLUMN_HABITATNOTES + " notes about the plant habitat," 
-      + COLUMN_EXTRANOTES1 + " custom entry field 1," 
-      + COLUMN_EXTRANOTES2 + " custom entry field 2," 
-      + COLUMN_EXTRANOTES3 + " custom entry field 3," 
-      + COLUMN_EXTRANOTES4 + " custom entry field 4,"
+      + COLUMN_CUSTOMID + " text not null, " 
+      + COLUMN_SPECIES + " text not null, " 
+      + COLUMN_COMMONNAME + " text not null, " 
+      + COLUMN_DATE + " text not null, " 
+      + COLUMN_TIME + " text not null, " 
+      + COLUMN_PHOTOS + " text not null, " 
+      + COLUMN_PHOTO + " text not null, " 
+      + COLUMN_LONGITUDE + " text not null, " 
+      + COLUMN_LATITUDE + " text not null, " 
+      + COLUMN_PLANTNOTES + " text not null, " 
+      + COLUMN_HABITATNOTES + " text not null, " 
+      + COLUMN_EXTRANOTES1 + " text not null, " 
+      + COLUMN_EXTRANOTES2 + " text not null, " 
+      + COLUMN_EXTRANOTES3 + " text not null, " 
+      + COLUMN_EXTRANOTES4 + " text not null, "
       + COLUMN_EXTRANOTES5
-      + " custom entry field 5" 
+      + " text not null" 
       + ");";
 
   //if the database doesn't exist, we create it here
