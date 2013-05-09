@@ -13,6 +13,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,10 +71,22 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case DELETE_ID:
+			String[] projection = { EntryTable.COLUMN_PHOTOS };
 			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 			.getMenuInfo();
 			Uri uri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/"
 					+ info.id);
+			Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+			cursor.moveToFirst();
+			File temp = new File(cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTOS)));
+			if(temp.exists()){
+				File[] files = temp.listFiles();
+				for(int i = 0; i < files.length; i++){
+					files[i].delete();
+				}
+				temp.delete();
+			}
 			getContentResolver().delete(uri, null, null);
 			fillData();
 			return true;
@@ -108,18 +122,18 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	}
 
 	public void entryScreen(String t){
-		Intent intent = new Intent(getBaseContext(), EntryScreen.class);
+		Intent intent = new Intent(this, EntryScreen.class);
 		intent.putExtra("passer", t);
 		startActivity(intent);
 	}
 
 	public void settCall(){
-		Intent sett = new Intent(getBaseContext(),SettingsActivity.class);
+		Intent sett = new Intent(this,SettingsActivity.class);
 		startActivity(sett);
 	}
 
 	public void map1_3(){
-		Intent map13 = new Intent(getBaseContext(),Entrymap_1_3.class);
+		Intent map13 = new Intent(this,Entrymap_1_3.class);
 		startActivity(map13);
 	}
 
@@ -141,7 +155,7 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	//then we create our cursor loader which will be responsible for loading data from the database
 	//using the projection and our content provider
 	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_TIME };
+		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTOS, EntryTable.COLUMN_PHOTO };
 		CursorLoader cursorLoader = new CursorLoader(this,
 				MyEntryContentProvider.CONTENT_URI, projection, null, null, null);
 		return cursorLoader;
@@ -150,10 +164,9 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	private void fillData() {
 
 		// Fields from the database (projection)
-		// Must include the _id column for the adapter to work
-		String[] from = new String[] { EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES , EntryTable.COLUMN_TIME };
+		String[] from = new String[] { EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES , EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTO};
 		// Fields on the UI to which we map
-		int[] to = new int[] { R.id.customidlabel, R.id.namelabel, R.id.timelabel };
+		int[] to = new int[] { R.id.customidlabel, R.id.namelabel, R.id.timelabel, R.id.imageView };
 
 		getLoaderManager().initLoader(0, null, this);
 		adapter = new SimpleCursorAdapter(this, R.layout.list_row, null, from,
@@ -161,6 +174,13 @@ LoaderManager.LoaderCallbacks<Cursor> {
 
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	  public void onCreateContextMenu(ContextMenu menu, View v,
+	      ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu(menu, v, menuInfo);
+	    menu.add(0, DELETE_ID, 0, R.string.menu_delete);
+	  }
 
 
 	@Override

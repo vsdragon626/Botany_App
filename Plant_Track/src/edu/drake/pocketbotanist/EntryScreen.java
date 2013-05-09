@@ -51,6 +51,7 @@ PhotoDialogFragment.PhotoDialogListener{
 	private TextView mDate;
 	private TextView mTime;
 	private ImageView mPhoto;
+	private String mPhotos = "";
 	private TextView mLongitude;
 	private TextView mLatitude;
 	private MultiAutoCompleteTextView mPlantNotes;
@@ -61,6 +62,7 @@ PhotoDialogFragment.PhotoDialogListener{
 	private MultiAutoCompleteTextView mExtraNotes4;
 	private MultiAutoCompleteTextView mExtraNotes5;
 	private View.OnTouchListener gestureListener;
+	private String imageUri = "";
 	private File imagePath;
 	private File[] images;
 	private int iter = 0;
@@ -89,10 +91,6 @@ PhotoDialogFragment.PhotoDialogListener{
 		Button saveButton = (Button) findViewById(R.id.saveButton);
 
 		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-			ActionBar actionBar = getActionBar();
-			actionBar.setTitle(extras.getString("passer"));
-		}
 
 		final TextView pButton = (TextView) findViewById(R.id.picButton);
 
@@ -189,6 +187,33 @@ PhotoDialogFragment.PhotoDialogListener{
 
 		mLongitude.setText("Click to Edit");
 		mLatitude.setText("Click to Edit");
+		
+		final Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+		if(hour > 12){
+			if(minute < 10){
+				mTime.setText(String.valueOf(hour-12) + " : 0" + String.valueOf(minute)+" PM");
+			}
+			else{
+				mTime.setText(String.valueOf(hour-12) + " : " + String.valueOf(minute) + " PM");
+			}
+		}
+		else{
+			if(minute < 10){
+				mTime.setText(String.valueOf(hour) + " : 0" + String.valueOf(minute) + " AM");
+			}
+			else{
+				mTime.setText(String.valueOf(hour) + " : " + String.valueOf(minute) + " AM");
+			}
+		}
+		
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
+		String m = getMonth(month);
+		mDate.setText(m + " " + String.valueOf(day) + ", " + String.valueOf(year));
+		
 
 		updatePref();
 
@@ -202,7 +227,15 @@ PhotoDialogFragment.PhotoDialogListener{
 					.getParcelable(MyEntryContentProvider.CONTENT_ITEM_TYPE);
 
 			fillData(itemUri);
-		}	
+		}
+		
+		ActionBar actionBar = getActionBar();
+		if (mID.getText().toString().compareTo("") != 1){
+			actionBar.setTitle("New Entry");
+		}
+		else{
+			actionBar.setTitle(mID.getText().toString());
+		}
 	}
 
 	class myGestureDetector extends SimpleOnGestureListener {
@@ -221,7 +254,6 @@ PhotoDialogFragment.PhotoDialogListener{
 					else{
 						iter = images.length-1;
 					}
-					System.out.print("Iter:"+iter+" In subtraction");
 					//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
 				}  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 150) {
 					//TODO Right Swipe
@@ -231,10 +263,10 @@ PhotoDialogFragment.PhotoDialogListener{
 					else{
 						iter = 0;
 					}
-					System.out.print("Iter:"+iter+" In subtraction");
 					//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
 				}
 				Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
+				imageUri = pathUri.toString();
 				mPhoto.setImageURI(pathUri);
 			} catch (Exception e) {
 				Log.v("Gesture Error", "Failed to read gesture");
@@ -283,17 +315,8 @@ PhotoDialogFragment.PhotoDialogListener{
 	@Override
 	public void onRestart(){
 		super.onRestart();
-		finish();
-		startActivity(getIntent());
+		updatePref();
 	}
-
-	/*
-	@Override
-	protected void onPause() {
-		super.onPause();
-		saveState();
-	}
-	 */
 
 	private void fillData(Uri uri) {
 		String temp1 = "";
@@ -305,10 +328,9 @@ PhotoDialogFragment.PhotoDialogListener{
 				EntryTable.COLUMN_LATITUDE, EntryTable.COLUMN_PLANTNOTES,
 				EntryTable.COLUMN_HABITATNOTES, EntryTable.COLUMN_EXTRANOTES1,
 				EntryTable.COLUMN_EXTRANOTES2, EntryTable.COLUMN_EXTRANOTES3,
-				EntryTable.COLUMN_EXTRANOTES4, EntryTable.COLUMN_EXTRANOTES5 };
-		Cursor cursor = getContentResolver().query(uri, projection, null, null,
-				null);
-		if (cursor != null) {
+				EntryTable.COLUMN_EXTRANOTES4, EntryTable.COLUMN_EXTRANOTES5 };				
+		if (uri != null) {
+			Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 			cursor.moveToFirst();
 
 			mSpecies.setText(cursor.getString(cursor
@@ -321,11 +343,10 @@ PhotoDialogFragment.PhotoDialogListener{
 					.getColumnIndexOrThrow(EntryTable.COLUMN_DATE)));
 			mTime.setText(cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_TIME)));
-			temp1 = (cursor.getString(cursor
+			mPhotos = (cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTOS)));
-			//mPhoto
-			temp2 = (cursor.getString(cursor
-					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTO)));
+			mPhoto.setImageURI(Uri.parse((cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_PHOTO)))));
 			mLongitude.setText(cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_LONGITUDE)));
 			mLatitude.setText(cursor.getString(cursor
@@ -356,10 +377,8 @@ PhotoDialogFragment.PhotoDialogListener{
 		String name = mCommonName.getText().toString();
 		String date = mDate.getText().toString();
 		String time = mTime.getText().toString();
-		//String photos = .getText().toString();
-		//String photo = .getText().toString();
-		String photos = "lol";
-		String photo = "placeholders!";
+		String photos = mPhotos;
+		String photo = imageUri;
 		String lon = mLongitude.getText().toString();
 		String lat = mLatitude.getText().toString();
 		String plantNotes = mPlantNotes.getText().toString();
@@ -369,25 +388,6 @@ PhotoDialogFragment.PhotoDialogListener{
 		String extraNotes3 = mExtraNotes3.getText().toString();
 		String extraNotes4 = mExtraNotes4.getText().toString();
 		String extraNotes5 = mExtraNotes5.getText().toString();
-
-		species = "placeholders!";
-		id = "placeholders!";
-		name = "placeholders!";
-		date = "placeholders!";
-		time = "placeholders!";
-		//String photos = .getText().toString();
-		//String photo = .getText().toString();
-		photos = "lol";
-		photo = "placeholders!";
-		lon = "placeholders!";
-		lat = "placeholders!";
-		plantNotes = "placeholders!";
-		habitatNotes ="placeholders!";
-		extraNotes1 = "placeholders!";
-		extraNotes2 = "placeholders!";
-		extraNotes3 ="placeholders!";
-		extraNotes4 = "placeholders!";
-		extraNotes5 = "placeholders!";
 
 		ContentValues values = new ContentValues();
 
@@ -608,6 +608,7 @@ PhotoDialogFragment.PhotoDialogListener{
 		//TODO WORK ON THIS SHIT!
 		mPhoto.setImageURI(null);
 		Uri pathUri = Uri.parse(f.getAbsolutePath());
+		imageUri = pathUri.toString();
 		mPhoto.setImageURI(pathUri);
 	}
 

@@ -30,7 +30,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <!-- ID Number, Species, Common Name, and Date and Time -->
@@ -52,7 +52,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <EditText
@@ -82,7 +82,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <EditText
@@ -113,7 +113,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <EditText
@@ -143,7 +143,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -189,7 +189,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <!-- #CCCCCC is the exsact color of the buttons which is why it wasn't used, thank you Josh. -->
@@ -221,7 +221,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <TextView
@@ -241,7 +241,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -308,7 +308,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <TextView
@@ -328,7 +328,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -356,7 +356,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -387,7 +387,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -417,7 +417,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -446,7 +446,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -475,7 +475,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
@@ -504,7 +504,7 @@
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="2dip"
-                android:background="#000000" />
+                android:background="#FFFFFF" />
         </RelativeLayout>
 
         <MultiAutoCompleteTextView
