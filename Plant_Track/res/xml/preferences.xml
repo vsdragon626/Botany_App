@@ -10,7 +10,7 @@
     </SwitchPreference>
 	<EditTextPreference
         android:name="First Additonal Note"
-        android:defaultValue="Nothing"
+        android:defaultValue="Untitled Field"
         android:dependency="SwitchPref1"
         android:key="editTextPref1"
         android:shouldDisableView="true"
@@ -28,7 +28,7 @@
     </SwitchPreference>
     <EditTextPreference
         android:name="Second Additonal Note"
-        android:defaultValue="Nothing"
+        android:defaultValue="Untitled Field"
         android:dependency="SwitchPref2"
         android:key="editTextPref2"
         android:summary="Enter the title of the new catagory"
@@ -45,7 +45,7 @@
     </SwitchPreference>
     <EditTextPreference
         android:name="Third Additonal Note"
-        android:defaultValue="Nothing"
+        android:defaultValue="Untitled Field"
         android:dependency="SwitchPref3"
         android:key="editTextPref3"
         android:summary="Enter the title of the new catagory"
@@ -62,7 +62,7 @@
     </SwitchPreference>
     <EditTextPreference
         android:name="Fourth Additonal Note"
-        android:defaultValue="Nothing"
+        android:defaultValue="Untitled Field"
         android:dependency="SwitchPref4"
         android:key="editTextPref4"
         android:summary="Enter the title of the new catagory"
@@ -79,7 +79,7 @@
     </SwitchPreference>
     <EditTextPreference
         android:name="Fifth Additonal Note"
-        android:defaultValue="Nothing"
+        android:defaultValue="Untitled Field"
         android:dependency="SwitchPref5"
         android:key="editTextPref5"
         android:summary="Enter the title of the new catagory"

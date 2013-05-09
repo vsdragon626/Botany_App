@@ -2,18 +2,30 @@
 
     <item android:id="@+id/menu_search"
           android:title="@string/menu_search"
+<<<<<<< HEAD
           android:icon="@drawable/search_icon"
+=======
+          android:icon="@drawable/search_small"
+>>>>>>> origin/Camera-Pretty-Branch
           android:showAsAction="ifRoom|collapseActionView"
           android:actionViewClass="android.widget.SearchView" />
     
     <item
         android:id="@+id/menu_map"
+<<<<<<< HEAD
         android:icon="@drawable/map_icon"
+=======
+        android:icon="@drawable/map_small"
+>>>>>>> origin/Camera-Pretty-Branch
         android:showAsAction="ifRoom"
         android:title="@string/menu_map"/>
     <item
         android:id="@+id/menu_edit"
+<<<<<<< HEAD
         android:icon="@drawable/entry"
+=======
+        android:icon="@drawable/entry_small"
+>>>>>>> origin/Camera-Pretty-Branch
         android:showAsAction="ifRoom"
         android:title="@string/menu_edit"/>
     <item

@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.google.android.gms.maps.CameraUpdate;
+>>>>>>> origin/Camera-Pretty-Branch
 import com.google.android.gms.maps.CameraUpdateFactory;
 =======
 >>>>>>> origin/Database-Branch
@@ -25,12 +29,16 @@ public class Entrymap_1_3<GoogleMap> extends Activity {
 		
 		com.google.android.gms.maps.GoogleMap mMap;
 		mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+<<<<<<< HEAD
 		CameraPosition cameraPosition = new CameraPosition.Builder()
 			.target(center)
 			.zoom(10)
 			.build();
 		mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 		mMap.setMyLocationEnabled(true);
+=======
+		//mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(null, 41, -93, 0));
+>>>>>>> origin/Camera-Pretty-Branch
 		((com.google.android.gms.maps.GoogleMap) mMap).addMarker(new MarkerOptions()
 		        .position(new LatLng(42.030278, -93.5908330))
 		        .title("PAPAVERACEAE")

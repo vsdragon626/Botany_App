@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.media.MediaScannerConnection.MediaScannerConnectionClient;
 import android.net.Uri;
@@ -19,11 +20,17 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 >>>>>>> 2a6b28037db1541c8225c5513ea1ceca618f6bd2
+=======
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
+>>>>>>> origin/Camera-Pretty-Branch
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -51,6 +58,7 @@ public class EntryScreen extends Activity implements MapDialogFragment.MapDialog
 	private EditText idnum,species,common;
 	private MultiAutoCompleteTextView plantNotes, habitatNotes, extraNotes1, extraNotes2, extraNotes3, extraNotes4, extraNotes5;
 	private GestureDetector gestureDetector;
+<<<<<<< HEAD
     View.OnTouchListener gestureListener;
     File imagePath;
     File[] images;
@@ -87,6 +95,14 @@ PhotoDialogFragment.PhotoDialogListener {
 	private MultiAutoCompleteTextView mExtraNotes5;
 
 >>>>>>> origin/Database-Branch
+=======
+    private View.OnTouchListener gestureListener;
+    private File imagePath;
+    private File[] images;
+    private int iter = 0;
+    private boolean picAdded = false;
+	
+>>>>>>> origin/Camera-Pretty-Branch
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -121,6 +137,7 @@ PhotoDialogFragment.PhotoDialogListener {
 		}
 
 		final TextView pButton = (TextView) findViewById(R.id.picButton);
+<<<<<<< HEAD
 =======
 		saveButton.setOnClickListener(new View.OnClickListener() {
 		      public void onClick(View view) {
@@ -132,6 +149,8 @@ PhotoDialogFragment.PhotoDialogListener {
 
 		final Button pButton = (Button) findViewById(R.id.picButton);
 >>>>>>> origin/Database-Branch
+=======
+>>>>>>> origin/Camera-Pretty-Branch
 		pButton.setOnClickListener(new View.OnClickListener() {      
 			@Override
 			public void onClick(View v) {
@@ -214,9 +233,12 @@ PhotoDialogFragment.PhotoDialogListener {
             }
         }; 
         pic.setOnTouchListener(gestureListener);
+<<<<<<< HEAD
 =======
 		longi.setText("Click to Edit");
 >>>>>>> origin/Database-Branch
+=======
+>>>>>>> origin/Camera-Pretty-Branch
 
 		updatePref();
 
@@ -273,6 +295,80 @@ PhotoDialogFragment.PhotoDialogListener {
         }
     }
 	
+	class myGestureDetector extends SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        	images = imagePath.listFiles();
+        	try {
+                if (Math.abs(e1.getY() - e2.getY()) > 250)
+                    return false;
+                if(e1.getX() - e2.getX() > 60 && Math.abs(velocityX) > 150) {
+                	//TODO Left Swipe
+                	if(iter <= 0 && iter < images.length-1){
+                		iter++;
+                	}
+                	else{
+                		iter = images.length-1;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+                }  else if (e2.getX() - e1.getX() > 60 && Math.abs(velocityX) > 150) {
+                    //TODO Right Swipe
+                	if(iter > images.length-1 && iter >= 0){
+                		iter++;
+                	}
+                	else{
+                		iter = 0;
+                	}
+                	System.out.print("Iter:"+iter+" In subtraction");
+                	//Toast.makeText(getBaseContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
+                }
+            	Uri pathUri = Uri.parse(images[iter].getAbsolutePath());
+            	pic.setImageURI(pathUri);
+            	picAdded = true;
+            } catch (Exception e) {
+                Log.v("Gesture Error", "Failed to read gesture");
+            }
+            return false;
+        }
+    }
+	/*
+	 * Try and work this in
+	 * public static Bitmap loadImageFromUrl(String url) {
+
+        Bitmap bm;
+        try {  
+
+                URL aURL = new URL(url);  
+                URLConnection conn = aURL.openConnection(); 
+
+                conn.connect();  
+                InputStream is = null;
+                try
+                {
+                 is= conn.getInputStream();  
+                }catch(IOException e)
+                {
+                     return null;
+                }
+
+                BufferedInputStream bis = new BufferedInputStream(is);  
+
+                bm = BitmapFactory.decodeStream(bis);
+
+                bis.close();  
+                is.close();  
+
+           } catch (IOException e) {  
+            return null;
+           }  
+
+        return  Bitmap.createScaledBitmap(bm,100,100,true);
+
+
+    }
+	 */
+	
 	public void fillData(String id){
 		//TODO function that will fill the data if there is an entry in the database
 		if(id.equals("ST2-225")){
@@ -289,7 +385,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant1);
+			if(!picAdded) pic.setImageResource(R.drawable.plant1);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("41.656497");
 			longi = (TextView) findViewById(R.id.lon);
@@ -324,7 +420,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant0);
+			if(!picAdded) pic.setImageResource(R.drawable.plant0);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 1' 49\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -349,7 +445,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant2);
+			if(!picAdded) pic.setImageResource(R.drawable.plant2);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 4' 14\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -374,7 +470,7 @@ PhotoDialogFragment.PhotoDialogListener {
 			time = (TextView) findViewById(R.id.dateTime2);
 			time.setText(String.valueOf(c.get(Calendar.HOUR)) + " : " + String.valueOf(c.get(Calendar.MINUTE)) + " ");
 			pic = (ImageView) findViewById(R.id.image_preview);
-			pic.setImageResource(R.drawable.plant3);
+			if(!picAdded) pic.setImageResource(R.drawable.plant3);
 			lati = (TextView) findViewById(R.id.lat);
 			lati.setText("42° 3' 23\" N");
 			longi = (TextView) findViewById(R.id.lon);
@@ -725,9 +821,20 @@ PhotoDialogFragment.PhotoDialogListener {
 		startActivityForResult(takePictureIntent, 1);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 		//TODO write method to fill picture
 >>>>>>> 2a6b28037db1541c8225c5513ea1ceca618f6bd2
+=======
+		fillPic(file);
+	}
+	
+	public void fillPic(File f){
+		pic.setImageURI(null);
+		Uri pathUri = Uri.parse(f.getAbsolutePath());
+    	pic.setImageURI(pathUri);
+    	picAdded = true;
+>>>>>>> origin/Camera-Pretty-Branch
 	}
 
 	@Override
