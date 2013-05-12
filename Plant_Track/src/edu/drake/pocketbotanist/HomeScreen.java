@@ -18,11 +18,12 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.SimpleCursorAdapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
+//import android.widget.SearchView;
 import android.widget.Spinner;
 import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
 import edu.drake.pocketbotanist.database.EntryTable;
@@ -57,7 +58,18 @@ LoaderManager.LoaderCallbacks<Cursor> {
 
 
 		fillData();
+		View listItem=(View)((Menu) this.getListView()).getItem(0);
 		registerForContextMenu(getListView());
+		if (adapter.isEmpty())
+			System.out.println("IT'S FUCKING EMPTY WHAT THE FUCK?");
+		String[] projection = { EntryTable.COLUMN_CUSTOMID };
+		long info =  adapter.getItemId(0);
+		Uri uri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/"
+				+ info);
+		Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+		cursor.moveToFirst();
+		System.out.println((cursor.getString(cursor
+					.getColumnIndexOrThrow(EntryTable.COLUMN_CUSTOMID))));
 	}
 
 	@Override
@@ -91,7 +103,9 @@ LoaderManager.LoaderCallbacks<Cursor> {
 			fillData();
 			return true;
 		}
+		
 		return super.onContextItemSelected(item);
+		
 	}
 
 
@@ -99,7 +113,7 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_home_screen, menu);
-		SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+		//SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		return true;
 	}
 
@@ -133,6 +147,7 @@ LoaderManager.LoaderCallbacks<Cursor> {
 	}
 
 	public void map1_3(){
+		
 		Intent map13 = new Intent(this,Entrymap_1_3.class);
 		startActivity(map13);
 	}
