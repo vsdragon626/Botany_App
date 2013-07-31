@@ -1,7 +1,8 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import com.pocketbotanist.R;
 
 
 public class SettingsFragment extends PreferenceFragment {

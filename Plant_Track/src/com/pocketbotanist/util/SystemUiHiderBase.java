@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist.util;
+package com.pocketbotanist.util;
 
 import android.app.Activity;
 import android.view.View;

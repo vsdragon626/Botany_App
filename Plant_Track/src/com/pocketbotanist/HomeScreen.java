@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import java.io.File;
 
@@ -7,10 +7,10 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.ContextMenu;
@@ -18,16 +18,14 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.SimpleCursorAdapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-//import android.widget.SearchView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
-import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
-import edu.drake.pocketbotanist.database.EntryTable;
-
+import com.pocketbotanist.R;
+import com.pocketbotanist.contentprovider.MyEntryContentProvider;
+import com.pocketbotanist.database.EntryTable;
 
 
 public class HomeScreen extends ListActivity implements
@@ -44,7 +42,7 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		this.getListView().setDividerHeight(2);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-		//Inital folder creation code
+		//Initial folder creation code
 		File appDirectory = new File(Environment.getExternalStorageDirectory().toString()+"/Pocket Botanist/");
 		if (!appDirectory.exists()){
 			appDirectory.mkdir();
@@ -58,10 +56,10 @@ LoaderManager.LoaderCallbacks<Cursor> {
 
 
 		fillData();
-		View listItem=(View)((Menu) this.getListView()).getItem(0);
+		//View listItem=(View)((Menu) this.getListView()).getItem(0);
 		registerForContextMenu(getListView());
 		if (adapter.isEmpty())
-			System.out.println("IT'S FUCKING EMPTY WHAT THE FUCK?");
+			System.out.println("IT'S EMPTY");
 		String[] projection = { EntryTable.COLUMN_CUSTOMID };
 		long info =  adapter.getItemId(0);
 		Uri uri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/"

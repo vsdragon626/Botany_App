@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;

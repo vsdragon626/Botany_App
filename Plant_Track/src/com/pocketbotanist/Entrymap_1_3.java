@@ -1,13 +1,8 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import android.app.Activity;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.Adapter;
-import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapFragment;
@@ -15,13 +10,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import edu.drake.pocketbotanist.database.EntryTable;
-import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.CursorAdapter;
+import com.pocketbotanist.R;
 
 public class Entrymap_1_3<GoogleMap> extends Activity {
 

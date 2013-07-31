@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;

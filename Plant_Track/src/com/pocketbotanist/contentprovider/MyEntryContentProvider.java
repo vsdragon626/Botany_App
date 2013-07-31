@@ -1,7 +1,10 @@
-package edu.drake.pocketbotanist.contentprovider;
+package com.pocketbotanist.contentprovider;
 
 import java.util.Arrays;
 import java.util.HashSet;
+
+import com.pocketbotanist.database.EntryDatabaseHelper;
+import com.pocketbotanist.database.EntryTable;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -12,8 +15,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-import edu.drake.pocketbotanist.database.EntryDatabaseHelper;
-import edu.drake.pocketbotanist.database.EntryTable;
 
 public class MyEntryContentProvider extends ContentProvider{
 

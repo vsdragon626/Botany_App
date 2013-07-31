@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import com.pocketbotanist.R;
 
 public class ManualLocationActivity extends Activity {
 

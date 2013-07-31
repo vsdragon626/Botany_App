@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist.util;
+package com.pocketbotanist.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

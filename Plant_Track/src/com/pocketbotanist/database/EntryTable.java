@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist.database;
+package com.pocketbotanist.database;
 
 //standard database imports
 import android.database.sqlite.SQLiteDatabase;

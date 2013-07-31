@@ -1,6 +1,7 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
-import edu.drake.pocketbotanist.util.SystemUiHider;
+import com.pocketbotanist.R;
+import com.pocketbotanist.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

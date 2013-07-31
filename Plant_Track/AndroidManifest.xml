@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="edu.drake.pocketbotanist"
+	package="com.pocketbotanist"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme"
         android:configChanges="keyboardHidden|orientation" >
         <activity
-            android:name="edu.drake.pocketbotanist.HomeScreen"
+            android:name="com.pocketbotanist.HomeScreen"
             android:label="@string/main" >
 
             <intent-filter>
@@ -41,28 +41,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.drake.pocketbotanist.EntryScreen"
+            android:name="com.pocketbotanist.EntryScreen"
             android:label="@string/title_activity_entry_screen"
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="edu.drake.pocketbotanist.SettingsActivity"
+            android:name="com.pocketbotanist.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name="edu.drake.pocketbotanist.ManualLocationActivity"
+            android:name="com.pocketbotanist.ManualLocationActivity"
             android:label="@string/title_activity_manual_location" >
         </activity>
         <activity
-            android:name="edu.drake.pocketbotanist.Entrymap_1_3"
+            android:name="com.pocketbotanist.Entrymap_1_3"
             android:label="@string/title_activity_entrymap_1_3" >
         </activity>
         <activity
-            android:name="edu.drake.pocketbotanist.Location_2_3"
+            android:name="com.pocketbotanist.Location_2_3"
             android:label="@string/title_location_2_3" >
         </activity>
         <activity
-            android:name="edu.drake.planttrack.Mapfragmentpreview"
+            android:name="com.pocketbotanist.Mapfragmentpreview"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_mapfragmentpreview"
             android:theme="@style/FullscreenTheme" >
@@ -76,7 +76,7 @@
        android:required="true" />
          
          <provider
-      android:name=".contentprovider.MyEntryContentProvider"
+      android:name="com.pocketbotanist.contentprovider.MyEntryContentProvider"
       android:authorities="edu.drake.pocketbotanist.contentprovider" 
       android:exported="false">
    </provider>

@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import java.util.Calendar;
 

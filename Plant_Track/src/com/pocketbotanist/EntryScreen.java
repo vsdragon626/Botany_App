@@ -1,4 +1,4 @@
-package edu.drake.pocketbotanist;
+package com.pocketbotanist;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,8 +37,10 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import edu.drake.pocketbotanist.contentprovider.MyEntryContentProvider;
-import edu.drake.pocketbotanist.database.EntryTable;
+import com.pocketbotanist.R;
+import com.pocketbotanist.contentprovider.MyEntryContentProvider;
+import com.pocketbotanist.database.EntryTable;
+
 
 public class EntryScreen extends Activity implements MapDialogFragment.MapDialogListener, 
 PhotoDialogFragment.PhotoDialogListener{
