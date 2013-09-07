@@ -4,7 +4,6 @@ import java.io.File;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;
-import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.ActivityInfo;
@@ -23,13 +22,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
-import com.pocketbotanist.R;
+
 import com.pocketbotanist.contentprovider.MyEntryContentProvider;
 import com.pocketbotanist.database.EntryTable;
 
 
-public class HomeScreen extends ListActivity implements
-LoaderManager.LoaderCallbacks<Cursor> {
+
+public abstract class HomeScreen extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
 	// private Cursor cursor;
@@ -162,17 +161,21 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		startActivity(i);
 	}
 
-	@Override
+	//@Override
 	//When we create the loader we're going to get the projection for the ID, customID, species name, and time columns
 	//(insures that these exist within the database)
 	//then we create our cursor loader which will be responsible for loading data from the database
 	//using the projection and our content provider
-	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+	/* public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
 		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTOS, EntryTable.COLUMN_PHOTO };
-		CursorLoader cursorLoader = new CursorLoader(this,
+		CursorLoader cursor = new CursorLoader(this,
 				MyEntryContentProvider.CONTENT_URI, projection, null, null, null);
-		return cursorLoader;
-	}
+		if (cursor != null) {
+			((Cursor) cursor).moveToFirst();
+		}
+		
+		return cursor;
+	} */
 
 	private void fillData() {
 
@@ -181,16 +184,14 @@ LoaderManager.LoaderCallbacks<Cursor> {
 		// Fields on the UI to which we map
 		int[] to = new int[] { R.id.customidlabel, R.id.namelabel, R.id.timelabel, R.id.imageView };
 
-		getLoaderManager().initLoader(0, null, this);
-		adapter = new SimpleCursorAdapter(this, R.layout.list_row, null, from,
-				to, 0);
+		getLoaderManager().initLoader(1, null, this);		//changed to 1
+		adapter = new SimpleCursorAdapter(this, R.layout.list_row, null, from, to, 0);
 
 		setListAdapter(adapter);
 	}
 	
 	@Override
-	  public void onCreateContextMenu(ContextMenu menu, View v,
-	      ContextMenuInfo menuInfo) {
+	  public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 	    super.onCreateContextMenu(menu, v, menuInfo);
 	    menu.add(0, DELETE_ID, 0, R.string.menu_delete);
 	  }

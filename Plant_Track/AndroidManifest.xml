@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,9 +20,9 @@
         android:required="true"/>
 
     <permission
-        android:name="edu.drake.pocketbotanist.permission.MAPS_RECEIVE"
+        android:name="com.pocketbotanist.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
-<uses-permission android:name="edu.drake.pocketbotanist.permission.MAPS_RECEIVE"/>
+<uses-permission android:name="com.pocketbotanist.permission.MAPS_RECEIVE"/>
 
     <application
         android:allowBackup="true"
@@ -43,7 +43,8 @@
         <activity
             android:name="com.pocketbotanist.EntryScreen"
             android:label="@string/title_activity_entry_screen"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden" 
+            >
         </activity>
         <activity
             android:name="com.pocketbotanist.SettingsActivity"
@@ -77,7 +78,7 @@
          
          <provider
       android:name="com.pocketbotanist.contentprovider.MyEntryContentProvider"
-      android:authorities="edu.drake.pocketbotanist.contentprovider" 
+      android:authorities="com.pocketbotanist.contentprovider" 
       android:exported="false">
    </provider>
     </application>

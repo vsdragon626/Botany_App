@@ -9,6 +9,6 @@ package com.pocketbotanist;
 
 public final class Manifest {
     public static final class permission {
-        public static final String MAPS_RECEIVE="edu.drake.pocketbotanist.permission.MAPS_RECEIVE";
+        public static final String MAPS_RECEIVE="com.pocketbotanist.permission.MAPS_RECEIVE";
     }
 }
