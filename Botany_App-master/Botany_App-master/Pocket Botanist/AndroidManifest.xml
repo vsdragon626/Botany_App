@@ -75,12 +75,13 @@
          <uses-library  
        android:name="com.google.android.maps"  
        android:required="true" />
-         
-         <provider
+   
+   <provider
       android:name="com.pocketbotanist.contentprovider.MyEntryContentProvider"
       android:authorities="com.pocketbotanist.contentprovider" 
       android:exported="false">
-   </provider>
+   </provider>  
+       
     </application>
     
 </manifest>

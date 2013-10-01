@@ -4,6 +4,7 @@ import java.io.File;
 
 import android.app.ListActivity;
 import android.app.LoaderManager;
+import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.ActivityInfo;
@@ -28,7 +29,7 @@ import com.pocketbotanist.database.EntryTable;
 
 
 
-public abstract class HomeScreen extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class HomeScreen extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 	private static final int DELETE_ID = Menu.FIRST + 1;
 	// private Cursor cursor;
@@ -55,7 +56,8 @@ public abstract class HomeScreen extends ListActivity implements LoaderManager.L
 
 
 		fillData();
-		//View listItem=(View)((Menu) this.getListView()).getItem(0);
+		@SuppressWarnings("unused")
+		View view = (View) getListView().getItemAtPosition(0);
 		registerForContextMenu(getListView());
 		if (adapter.isEmpty())
 			System.out.println("IT'S EMPTY");
@@ -64,9 +66,12 @@ public abstract class HomeScreen extends ListActivity implements LoaderManager.L
 		Uri uri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/"
 				+ info);
 		Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+		if(cursor != null)
+		{
 		cursor.moveToFirst();
 		System.out.println((cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_CUSTOMID))));
+		}
 	}
 
 	@Override
@@ -166,16 +171,12 @@ public abstract class HomeScreen extends ListActivity implements LoaderManager.L
 	//(insures that these exist within the database)
 	//then we create our cursor loader which will be responsible for loading data from the database
 	//using the projection and our content provider
-	/* public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
+	public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
 		String[] projection = { EntryTable.COLUMN_ID, EntryTable.COLUMN_CUSTOMID, EntryTable.COLUMN_SPECIES, EntryTable.COLUMN_TIME, EntryTable.COLUMN_PHOTOS, EntryTable.COLUMN_PHOTO };
-		CursorLoader cursor = new CursorLoader(this,
+		CursorLoader cursorLoader = new CursorLoader(this,
 				MyEntryContentProvider.CONTENT_URI, projection, null, null, null);
-		if (cursor != null) {
-			((Cursor) cursor).moveToFirst();
-		}
-		
-		return cursor;
-	} */
+		return cursorLoader;
+	}
 
 	private void fillData() {
 
