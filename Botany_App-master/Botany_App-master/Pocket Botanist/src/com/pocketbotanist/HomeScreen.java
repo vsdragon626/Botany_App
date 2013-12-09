@@ -162,7 +162,6 @@ public class HomeScreen extends ListActivity implements LoaderManager.LoaderCall
 		Intent i = new Intent(this, EntryScreen.class);
 		Uri itemUri = Uri.parse(MyEntryContentProvider.CONTENT_URI + "/" + id);
 		i.putExtra(MyEntryContentProvider.CONTENT_ITEM_TYPE, itemUri);
-
 		startActivity(i);
 	}
 

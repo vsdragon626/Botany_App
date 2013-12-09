@@ -25,7 +25,7 @@ public class MyEntryContentProvider extends ContentProvider{
 	private static final int ENTRIES = 10;
 	private static final int ENTRY_ID = 20;
 
-	private static final String AUTHORITY = "edu.drake.pocketbotanist.contentprovider";
+	private static final String AUTHORITY = "com.pocketbotanist.contentprovider";
 
 	private static final String BASE_PATH = "entries";
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
