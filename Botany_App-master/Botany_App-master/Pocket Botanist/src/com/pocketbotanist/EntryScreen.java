@@ -308,7 +308,7 @@ PhotoDialogFragment.PhotoDialogListener{
 		if (uri != null) {
 			Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
 			cursor.moveToFirst();
-
+			if (cursor.getColumnCount() > 0) {
 			mSpecies.setText(cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_SPECIES)));
 			mID.setText(cursor.getString(cursor
@@ -341,7 +341,7 @@ PhotoDialogFragment.PhotoDialogListener{
 					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES4)));
 			mExtraNotes5.setText(cursor.getString(cursor
 					.getColumnIndexOrThrow(EntryTable.COLUMN_EXTRANOTES4)));
-
+			}
 			// Always close the cursor
 			cursor.close();
 		}
