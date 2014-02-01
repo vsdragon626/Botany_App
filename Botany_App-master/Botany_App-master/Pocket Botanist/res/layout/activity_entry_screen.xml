@@ -6,6 +6,7 @@
     tools:context=".New Entry" >
 
     <LinearLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -23,6 +24,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
+            android:id="@+id/relative1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -45,6 +47,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -75,6 +78,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -106,6 +110,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -136,6 +141,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -148,6 +154,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relative6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -183,6 +190,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
+            android:id="@+id/relative7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -216,6 +224,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
+            android:id="@+id/relative8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -236,6 +245,7 @@
             android:textSize="15sp" />
 
         <RelativeLayout
+            android:id="@+id/relative9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -248,6 +258,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relative10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -269,6 +280,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relative11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
@@ -304,6 +316,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <RelativeLayout
+            android:id="@+id/relative13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -324,6 +337,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -352,6 +366,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
+            android:id="@+id/relative15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="20dp"
@@ -411,7 +426,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RelativeLayout
-            
             android:id="@+id/extraRealative2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
